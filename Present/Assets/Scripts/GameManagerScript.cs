@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class GameManagerScript : MonoBehaviour
+public class GameManagerScript : MonoSingleton<GameManagerScript>
 {
 	public int Score;
 	public readonly int MAX_SCORE = 100;
@@ -106,16 +104,9 @@ public class GameManagerScript : MonoBehaviour
 		}
 	} 
 
-	// Start is called before the first frame update
 	void Start()
 	{
 		GameState = State.Start;
-	}
-
-	// Update is called once per frame
-	void Update()
-	{
-
 	}
 
 	void stateSpecificInit(State state)
