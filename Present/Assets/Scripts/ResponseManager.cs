@@ -35,12 +35,14 @@ public class ResponseManager : MonoSingleton<ResponseManager>
         AvailableResponses = new List<Response>();
     }
 
-    public void UseResponse(Response response)
+    public void UseResponse(ResponseCard responseCard)
     {
         // TODO: Tell someone we used the response
-        GameManagerScript.Instance.ModifyScore(response.Points);
+        GameManagerScript.Instance.ModifyScore(responseCard.Response.Points);
         // TODO: Clear remaining collected? Available?
         //CollectedResponses.Clear();
+        CollectedResponses.Remove(responseCard);
+        ObjectPoolService.Instance.ReleaseInstance(responseCard);
     }
 
     public ResponsePacket SpawnRandomAvailableResponse()
@@ -57,7 +59,7 @@ public class ResponseManager : MonoSingleton<ResponseManager>
 
         Color color = GetColorForResponse(randomResponse);
 
-        ResponsePacket packetInstance = Instantiate(_responsePacketPrefab);
+        ResponsePacket packetInstance = ObjectPoolService.Instance.AcquireInstance<ResponsePacket>(_responsePacketPrefab.gameObject);
         packetInstance.Response = randomResponse;
         packetInstance.Color = color;
 
@@ -79,7 +81,8 @@ public class ResponseManager : MonoSingleton<ResponseManager>
 
     public void AddCollectedResponse(Response response)
     {
-        ResponseCard cardInstance = Instantiate(_responseCardPrefab, _responseCardContainer, false);
+        ResponseCard cardInstance = ObjectPoolService.Instance.AcquireInstance<ResponseCard>(_responseCardPrefab.gameObject);
+        cardInstance.transform.SetParent(_responseCardContainer, false);
         cardInstance.Response = response;
 
         CollectedResponses.Add(cardInstance);
@@ -90,7 +93,7 @@ public class ResponseManager : MonoSingleton<ResponseManager>
 
         var removed = CollectedResponses[randomIndex];
 
-        Destroy(removed.gameObject);
+        ObjectPoolService.Instance.ReleaseInstance(removed);
 
         CollectedResponses.RemoveAt(randomIndex);
     }
@@ -98,7 +101,7 @@ public class ResponseManager : MonoSingleton<ResponseManager>
     {
         foreach(var responseCard in CollectedResponses)
         {
-            Destroy(responseCard);
+            ObjectPoolService.Instance.ReleaseInstance(responseCard);
         }
 
         CollectedResponses.Clear();
