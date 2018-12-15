@@ -605,6 +605,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8619002085575521266}
   - component: {fileID: 5995600762174254964}
+  - component: {fileID: 8325324038968538204}
   m_Layer: 0
   m_Name: ResponsePanel
   m_TagString: Untagged
@@ -640,6 +641,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5000532074507762878}
   m_CullTransparentMesh: 0
+--- !u!114 &8325324038968538204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5000532074507762878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bd6ef03c8e179744a023a5ba214f289, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _responseCardPrefab: {fileID: 8163180789991110908, guid: 72c5fdd351bd34c4da0b6b69fdeb9205,
+    type: 3}
+  _responsePacketPrefab: {fileID: 8313413217787527191, guid: 66cd0f032f75efc47bcf40aca4bc3f31,
+    type: 3}
+  _minResponsePoints: 0
+  _maxResponsePoints: 100
+  _responseColorRange:
+    serializedVersion: 2
+    key0: {r: 1, g: 0, b: 0, a: 1}
+    key1: {r: 0.9747988, g: 1, b: 0, a: 1}
+    key2: {r: 0.036265016, g: 1, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 30262
+    ctime2: 65535
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 3
+    m_NumAlphaKeys: 2
 --- !u!1 &5125794755623902359
 GameObject:
   m_ObjectHideFlags: 0
@@ -843,6 +891,7 @@ GameObject:
   - component: {fileID: 4884304064068958779}
   - component: {fileID: 312948028190576021}
   - component: {fileID: 5980510101346807878}
+  - component: {fileID: 6751839063991753666}
   m_Layer: 0
   m_Name: ResponseTrayContentPanel
   m_TagString: Untagged
@@ -906,3 +955,26 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &6751839063991753666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8817743442625980019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1297475563, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 10
+    m_Right: 10
+    m_Top: 10
+    m_Bottom: 10
+  m_ChildAlignment: 1
+  m_Spacing: 5
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 0
+  m_ChildControlWidth: 1
+  m_ChildControlHeight: 0
