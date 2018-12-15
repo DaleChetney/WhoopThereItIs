@@ -1,30 +1,64 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class ResponseCard : MonoBehaviour
+public class ResponseCard : MonoBehaviour, IPoolable
 {
     [SerializeField]
     private Text _responseText;
 
-    public Response Response;
+    [SerializeField]
+    private Image _backgroundImage;
+
+    [SerializeField]
+    private Color _highlightColor;
+
+    private Response _response;
+    public Response Response
+    {
+        get { return _response; }
+        set { _response = value; _responseText.text = _response.Phrase; }
+    }
+
     public bool IsHighlighted = false;
 
-    void Start()
-    {
-        if(_responseText == null)
-            _responseText = GetComponentInChildren<Text>(true);
-
-        _responseText.text = Response.Phrase;
-    }
+    private Color _originalColor;
 
     public void Highlight()
     {
         IsHighlighted = true;
+        _backgroundImage.color = _highlightColor;
+    }
+
+    public void UnHighlight()
+    {
+        IsHighlighted = false;
+        _backgroundImage.color = _originalColor;
     }
 
     public void Select()
     {
-        ResponseManager.Instance.UseResponse(Response);
-        Destroy(gameObject);
+        ResponseManager.Instance.UseResponse(this);
+    }
+
+    public void Initialize()
+    {
+        if (_responseText == null)
+            _responseText = GetComponentInChildren<Text>(true);
+        if (_backgroundImage == null)
+            _backgroundImage = GetComponentInChildren<Image>(true);
+
+        _originalColor = _backgroundImage.color;
+    }
+
+    public void Activate()
+    {
+        gameObject.SetActive(true);
+    }
+
+    public void Deactivate()
+    {
+        _response = null;
+        UnHighlight();
+        gameObject.SetActive(false);
     }
 }
