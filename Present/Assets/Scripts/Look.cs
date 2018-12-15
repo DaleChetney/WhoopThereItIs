@@ -7,7 +7,7 @@ public class Look : MonoBehaviour
     public float sensitivity = 10f;
     public float maxXAngle = 80f;
     public float maxYAngle = 80f;
-    public float driftSpeed = 1.0f;
+    public float driftSpeed = 0.5f;
     public float maxAttentionSpan = 1.0f;
     public float movementThreshold = 5.0f;
     public Transform eyeContact;
@@ -15,6 +15,12 @@ public class Look : MonoBehaviour
     private Vector2 currentRotation;
     private Vector2 lastMousePosition;
     private Vector3 distractionPosition;
+    private bool nodding = false;
+    private bool shaking = false;
+    private Vector3 above;
+    private Vector3 below;
+    private Vector3 left;
+    private Vector3 right;
 
 
     // Start is called before the first frame update
@@ -22,6 +28,10 @@ public class Look : MonoBehaviour
     {
         currentRotation = Input.mousePosition;
         lastMousePosition = currentRotation;
+        above = Camera.main.transform.position + new Vector3(0f, 100f, 0f);
+        below = Camera.main.transform.position + new Vector3(0f, -100f, 0f);
+        left = Camera.main.transform.position + new Vector3(-100f, 0f, 0f);
+        right = Camera.main.transform.position + new Vector3(100f, 0f, 0f);
         StartCoroutine("Wander");
 
     }
@@ -29,33 +39,33 @@ public class Look : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Vector2.Distance(Input.mousePosition, lastMousePosition) > movementThreshold)
+
+        if (!nodding && !shaking)
         {
-            //UserInputMove();
-            ResetGaze();
+            if (Vector2.Distance(Input.mousePosition, lastMousePosition) > movementThreshold)
+            {
+                ResetGaze();
+            }
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                StartCoroutine("Nod");
+            }
+
+            if (Input.GetMouseButtonDown(1))
+            {
+                StartCoroutine("Shake");
+            }
         }
-      
+
         DriftMove();
+
         lastMousePosition = Input.mousePosition;
     }
 
     private void ResetGaze()
     {
         distractionPosition = eyeContact.position;
-    }
-
-    private void UserInputMove()
-    {
-        
-        currentRotation.x += Input.GetAxis("Mouse X") * sensitivity;
-        currentRotation.y -= Input.GetAxis("Mouse Y") * sensitivity;
-        //currentRotation.x = Mathf.Repeat(currentRotation.x, 360);
-        currentRotation.x = Mathf.Clamp(currentRotation.x, -maxXAngle, maxXAngle);
-        currentRotation.y = Mathf.Clamp(currentRotation.y, -maxYAngle, maxYAngle);
-        Camera.main.transform.rotation = Quaternion.Euler(currentRotation.y, currentRotation.x, 0);
-        Camera.main.transform.rotation = Quaternion.Slerp(Camera.main.transform.rotation, Quaternion.LookRotation(distractionPosition - Camera.main.transform.position), driftSpeed * Time.deltaTime);
-
-
     }
 
     private void DriftMove()
@@ -67,12 +77,44 @@ public class Look : MonoBehaviour
     {
         for (; ; )
         {
-            MoveGaze();
+            if(!nodding && !shaking)
+            {
+                Distract();
+            }
             yield return new WaitForSeconds(Random.Range(0, maxAttentionSpan));
         }
     }
 
-    private void MoveGaze()
+    IEnumerator Nod()
+    {
+        Vector3 oldTarget = distractionPosition;
+        nodding = true;
+        distractionPosition = above;
+        yield return new WaitForSeconds(0.05f);
+        distractionPosition = below;
+        yield return new WaitForSeconds(0.10f);
+        distractionPosition = above;
+        yield return new WaitForSeconds(0.05f);
+        distractionPosition = oldTarget;
+        nodding = false;
+    }
+
+    IEnumerator Shake()
+    {
+        Vector3 oldTarget = distractionPosition;
+        shaking = true;
+        distractionPosition = left;
+        yield return new WaitForSeconds(0.05f);
+        distractionPosition = right;
+        yield return new WaitForSeconds(0.10f);
+        distractionPosition = left;
+        yield return new WaitForSeconds(0.05f);
+        distractionPosition = oldTarget;
+        shaking = false;
+    }
+
+
+    private void Distract()
     {
         int index = Random.Range(0, distractions.Length);
         distractionPosition = distractions[index].position;
