@@ -95,11 +95,9 @@ public class GameManagerScript : MonoSingleton<GameManagerScript>
         {
             // TODO: Do something with available grunt stuff
         }
-        else
-        {
-            ResponseManager.Instance.ClearAvailableResponses();
-            ResponseManager.Instance.AddAvailableResponses(_currentSegment.ValidResponses);
-        }
+
+        ResponseManager.Instance.ClearAvailableResponses();
+        ResponseManager.Instance.ClearCollectedResponses();
     }
 
     public void StartResponseTimer()
@@ -116,6 +114,7 @@ public class GameManagerScript : MonoSingleton<GameManagerScript>
 		}
         else
         {
+            ResponseManager.Instance.AddAvailableResponses(_currentSegment.ValidResponses);
             ResponseManager.Instance.StartHighlightingResponses(timeToRespond);
         }
 

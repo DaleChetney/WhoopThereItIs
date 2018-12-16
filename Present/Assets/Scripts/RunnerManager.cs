@@ -90,7 +90,11 @@ public class RunnerManager : MonoSingleton<RunnerManager>
 
     public void SpawnPacket(ObstacleType obstacleType)
     {
+        if (!ResponseManager.Instance.AnyResponsesAvailable) return;
+
         ResponsePacket packet = ResponseManager.Instance.GetRandomAvailableResponse();
+        if (packet == null) return;
+
         var spawnPosition = transform.position;
         spawnPosition.x += RunnerManager.Instance.rightBoundary;
         spawnPosition.y = spawnPositions[obstacleType];

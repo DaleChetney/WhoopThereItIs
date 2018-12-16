@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using System.Linq;
 
 public class ResponseManager : MonoSingleton<ResponseManager>, IScrollHandler
 {
@@ -16,13 +17,6 @@ public class ResponseManager : MonoSingleton<ResponseManager>, IScrollHandler
     [SerializeField]
     private ResponsePacket _responsePacketPrefab;
 
-    [Header("Other")]
-    [SerializeField]
-    private int _minResponsePoints;
-
-    [SerializeField]
-    private int _maxResponsePoints;
-
     [SerializeField]
     private Gradient _responseColorRange;
 
@@ -31,9 +25,14 @@ public class ResponseManager : MonoSingleton<ResponseManager>, IScrollHandler
     // Responses available to spawn in the runner
     private List<Response> _availableResponses = new List<Response>();
 
+    private int _currentMinPoints;
+    private int _currentMaxPoints;
+
     private int _highlightedResponseIndex = -1;
     private bool _isHighlightingResponses = false;
     private float _fullGlowDelay = -1;
+
+    public bool AnyResponsesAvailable => _availableResponses.Count > 0;
 
     public void StartHighlightingResponses(float fullGlowDelay)
     {
@@ -91,6 +90,7 @@ public class ResponseManager : MonoSingleton<ResponseManager>, IScrollHandler
     // Mousewheel Scroll Listener
     void IScrollHandler.OnScroll(PointerEventData eventData)
     {
+        Debug.Log(eventData.scrollDelta);
         if (!_isHighlightingResponses)
             return;
 
@@ -107,6 +107,8 @@ public class ResponseManager : MonoSingleton<ResponseManager>, IScrollHandler
     public void AddAvailableResponses(IEnumerable<Response> responses)
     {
         _availableResponses.AddRange(responses);
+        _currentMinPoints = _availableResponses.Min(r => r.Points);
+        _currentMaxPoints = _availableResponses.Max(r => r.Points);
     }
     public void ClearAvailableResponses()
     {
@@ -157,12 +159,12 @@ public class ResponseManager : MonoSingleton<ResponseManager>, IScrollHandler
 
     private void SetHighlightedResponse(int newHighlightIndex)
     {
-        if(_highlightedResponseIndex > 0)
+        if(_highlightedResponseIndex >= 0)
         {
             _collectedResponses[_highlightedResponseIndex].UnHighlight();
         }
 
-        if (newHighlightIndex > 0)
+        if (newHighlightIndex >= 0)
         {
             _collectedResponses[newHighlightIndex].Highlight();
         }
@@ -172,19 +174,7 @@ public class ResponseManager : MonoSingleton<ResponseManager>, IScrollHandler
 
     private Color GetColorForResponse(Response response)
     {
-        if(response.Points < _minResponsePoints)
-        {
-            Debug.LogError("Response points is +" + response.Points + ", which is less than configured minimum - gradient color cannot be calculated");
-            return _responseColorRange.Evaluate(0f);
-        }
-
-        if (response.Points > _maxResponsePoints)
-        {
-            Debug.LogError("Response points is greater than configured maximum - gradient color cannot be calculated");
-            return _responseColorRange.Evaluate(1f);
-        }
-
-        float colorIndex = (float)response.Points / (_maxResponsePoints - _minResponsePoints);
+        float colorIndex = (float)response.Points / ((_currentMaxPoints - _currentMinPoints) + _currentMinPoints);
         Color color = _responseColorRange.Evaluate(colorIndex);
 
         return color;

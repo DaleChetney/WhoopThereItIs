@@ -210,7 +210,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _responseText: {fileID: 1875586177788359081}
   _backgroundImage: {fileID: 1678052625004757432}
-  _highlightColor: {r: 0, g: 1, b: 0.9800041, a: 1}
+  _highlightColor: {r: 0.44335282, g: 0.374466, b: 0.5188679, a: 1}
   IsHighlighted: 0
 --- !u!1 &5593906010759989926
 GameObject:
