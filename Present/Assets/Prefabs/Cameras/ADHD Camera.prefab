@@ -98,8 +98,8 @@ MonoBehaviour:
   sensitivity: 10
   maxXAngle: 80
   maxYAngle: 80
-  driftSpeed: 1
-  maxAttentionSpan: 1
+  driftSpeed: 0.5
+  maxAttentionSpan: 20
   movementThreshold: 5
   eyeContact: {fileID: 0}
   distractions: []
