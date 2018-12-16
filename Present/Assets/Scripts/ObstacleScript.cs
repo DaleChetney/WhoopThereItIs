@@ -9,7 +9,7 @@ public class ObstacleScript : MonoBehaviour
 		if (other.name == "Player")
 		{
             ResponseManager.Instance.RemoveRandomCollectedResponse();
-			// TODO: Move player backwards 
+			GameObject.Find("Player").GetComponent<PlayerController2D>().ResetAfterDeath();
 			gameObject.SetActive(false);
 		}
 	}

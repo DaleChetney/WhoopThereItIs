@@ -63,4 +63,9 @@ public class PlayerController2D : PlayerPhysics
 			playerCollider.size = new Vector2(verticalSizeX, verticalSizeY);
 		}
 	}
+
+	public void ResetAfterDeath()
+	{
+		throw new System.Exception("ResetAfterDeath is not implemented");
+	}
 }
