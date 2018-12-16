@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -83,7 +84,7 @@ public class PlayerController2D : PlayerPhysics
 		}
 	}
 
-	private void Crouch()
+    private void Crouch()
 	{
 		if (isGrounded && Input.GetKeyDown(KeyCode.S))
 		{
@@ -98,10 +99,13 @@ public class PlayerController2D : PlayerPhysics
 			playerCollider.size = new Vector2(verticalSizeX, verticalSizeY);
 			playerRigidbody.position = new Vector2(playerRigidbody.position.x, playerRigidbody.position.y + 0.17f);
 		}
-	}
+    }
 
-	public void ResetAfterDeath()
-	{
-		throw new System.Exception("ResetAfterDeath is not implemented");
-	}
+    public void Knockback()
+    {
+        if (isGrounded)
+            velocity.y = jumpVelocity*0.6f;
+        else
+            velocity.y = jumpVelocity * 0.3f;
+    }
 }

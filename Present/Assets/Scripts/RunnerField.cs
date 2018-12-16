@@ -1,25 +1,30 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class RunnerField : MonoBehaviour
 {
+
     [SerializeField]
-    public Transform[] groundSprites;
-    public float leftBoundary;
-    public float rightBoundary;
-    public float scrollSpeed;
+    public GameObject groundPrefab;
+    public int groundPieces;
+
+    private List<Transform> groundSprites = new List<Transform>();
 
     // Start is called before the first frame update
     void Start()
     {
-        float spriteSpacing = (rightBoundary - leftBoundary) / groundSprites.Length;
-        for(int i = 0; i<groundSprites.Length; i++)
+
+        float spriteSpacing = (RunnerManager.Instance.rightBoundary - RunnerManager.Instance.leftBoundary) / groundPieces;
+        for(int i = 0; i< groundPieces; i++)
         {
-            var spawnPosition = groundSprites[i].position;
-            spawnPosition.x = transform.position.x + rightBoundary - i * spriteSpacing;
+            var groundSprite = ObjectPoolService.Instance.AcquireInstance<FieldGround>(groundPrefab);
+            var spawnPosition = transform.position;
+            spawnPosition.x = transform.position.x + RunnerManager.Instance.rightBoundary - i * spriteSpacing;
             spawnPosition.z = transform.position.z - i * 0.01f;
-            groundSprites[i].position = spawnPosition;
+            groundSprite.transform.position = spawnPosition;
+            groundSprites.Add(groundSprite.transform);
         }
     }
 
@@ -28,11 +33,11 @@ public class RunnerField : MonoBehaviour
     {
         foreach (var grnd in groundSprites)
         {
-            grnd.position += new Vector3(-scrollSpeed * Time.deltaTime,0,-0.001f);
-            if(grnd.position.x < transform.position.x + leftBoundary)
+            grnd.position += new Vector3(-RunnerManager.Instance.scrollSpeed * Time.deltaTime, 0, -0.001f);
+            if (grnd.position.x < transform.position.x + RunnerManager.Instance.leftBoundary)
             {
                 var newVec = grnd.position;
-                newVec.x = transform.position.x + rightBoundary;
+                newVec.x = transform.position.x + RunnerManager.Instance.rightBoundary;
                 newVec.z = transform.position.z;
                 grnd.position = newVec;
             }

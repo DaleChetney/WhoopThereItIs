@@ -48,9 +48,16 @@ public class TextFeed : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
+
+
         if (!writing && textQueue.Count > 0)
         {
             updateText((string)textQueue.Dequeue());
+            //Text is finished writing. Tell the timer to start.
+            if(textQueue.Count < 1)
+            {
+                GameManagerScript.Instance.StartResponseTimer();
+            }
         }
     }
 
