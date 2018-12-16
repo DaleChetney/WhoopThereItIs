@@ -62,7 +62,6 @@ public class GameManagerScript : MonoSingleton<GameManagerScript>
     {
         Debug.Log("Next Conversation Segment");
         _currentSegment = null;
-		RandomSegmentCount++;
 
         if(_remainingStarterSegments.Count > 0)
         {
@@ -70,9 +69,16 @@ public class GameManagerScript : MonoSingleton<GameManagerScript>
         }
         else if(_remainingRandomSegments.Count > 0)
         {
-            int randomIndex = Random.Range(0, _remainingRandomSegments.Count);
+			if(RandomSegmentCount >= RANDOM_SEGMENTS_NEEDED_TO_WIN)
+			{
+				_gameState = State.GameWin;
+				Debug.Log("YOU WON");
+				return;
+			}
+			int randomIndex = Random.Range(0, _remainingRandomSegments.Count);
             _currentSegment = _remainingRandomSegments[randomIndex];
-            _remainingRandomSegments.RemoveAt(randomIndex);
+			RandomSegmentCount++;
+			_remainingRandomSegments.RemoveAt(randomIndex);
         }
 
         if (_currentSegment == null)
@@ -89,11 +95,9 @@ public class GameManagerScript : MonoSingleton<GameManagerScript>
         {
             // TODO: Do something with available grunt stuff
         }
-        else
-        {
-            ResponseManager.Instance.ClearAvailableResponses();
-            ResponseManager.Instance.AddAvailableResponses(_currentSegment.ValidResponses);
-        }
+
+        ResponseManager.Instance.ClearAvailableResponses();
+        ResponseManager.Instance.ClearCollectedResponses();
     }
 
     public void StartResponseTimer()
@@ -110,6 +114,7 @@ public class GameManagerScript : MonoSingleton<GameManagerScript>
 		}
         else
         {
+            ResponseManager.Instance.AddAvailableResponses(_currentSegment.ValidResponses);
             ResponseManager.Instance.StartHighlightingResponses(timeToRespond);
         }
 
