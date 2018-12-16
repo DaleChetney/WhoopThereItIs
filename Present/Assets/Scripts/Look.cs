@@ -46,16 +46,6 @@ public class Look : MonoBehaviour
             {
                 ResetGaze();
             }
-
-            if (Input.GetMouseButtonDown(0))
-            {
-                StartCoroutine("Nod");
-            }
-
-            if (Input.GetMouseButtonDown(1))
-            {
-                StartCoroutine("Shake");
-            }
         }
 
         DriftMove();
@@ -118,5 +108,20 @@ public class Look : MonoBehaviour
     {
         int index = Random.Range(0, distractions.Length);
         distractionPosition = distractions[index].position;
+    }
+
+    public void GruntEffects(GruntType gruntType)
+    {
+        if (!nodding && !shaking)
+        {
+            if (gruntType == GruntType.Green)
+            {
+                StartCoroutine("Nod");
+            }
+            else if (gruntType == GruntType.Red)
+            {
+                StartCoroutine("Shake");
+            }
+        }
     }
 }
