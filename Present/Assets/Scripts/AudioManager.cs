@@ -7,6 +7,7 @@ public class AudioManager : MonoSingleton<AudioManager>
     public AudioSource bgm;
     public AudioSource knockBack;
     public AudioSource jump;
+    public AudioSource slide;
 
     // Start is called before the first frame update
     void Start()

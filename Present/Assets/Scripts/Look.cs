@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Look : MonoBehaviour
+public class Look : MonoSingleton<Look>
 {
     public float sensitivity = 10f;
     public float maxXAngle = 80f;
