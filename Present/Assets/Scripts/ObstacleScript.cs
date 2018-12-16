@@ -20,9 +20,7 @@ public class ObstacleScript : MonoBehaviour, IPoolable
     {
         transform.position += new Vector3(-RunnerManager.Instance.scrollSpeed * Time.deltaTime, 0, -0.001f);
         if (transform.position.x < RunnerManager.Instance.transform.position.x + RunnerManager.Instance.leftBoundary)
-        {
-            ObjectPoolService.Instance.ReleaseInstance<ObstacleScript>(this);
-        }
+            ReleaseSelf();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -32,8 +30,13 @@ public class ObstacleScript : MonoBehaviour, IPoolable
             ResponseManager.Instance.RemoveRandomCollectedResponse();
 			GameObject.Find("DaydreamPlayer").GetComponent<PlayerController2D>().Knockback();
             RunnerManager.Instance.InterruptScrolling();
-            ObjectPoolService.Instance.ReleaseInstance<ObstacleScript>(this);
-		}
+            ReleaseSelf();
+        }
+    }
+
+    internal virtual void ReleaseSelf()
+    {
+        ObjectPoolService.Instance.ReleaseInstance<ObstacleScript>(this);
     }
 }
 
