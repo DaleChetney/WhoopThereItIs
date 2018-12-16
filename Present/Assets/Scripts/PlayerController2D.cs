@@ -20,7 +20,7 @@ public class PlayerController2D : PlayerPhysics
 		set
 		{
 			_isCrouching = value;
-			playerAnimator.SetBool("isCrouching", value);
+			playerAnimator.SetBool(crouchAnimHash, value);
 		}
 	}
 	protected bool _isJumping;
@@ -34,12 +34,16 @@ public class PlayerController2D : PlayerPhysics
 		set
 		{
 			_isJumping = value;
-			playerAnimator.SetBool("isJumping", value);
+			playerAnimator.SetBool(jumpAnimHash, value);
 		}
 	}
-	protected bool wasGrounded;
 	protected CapsuleCollider2D playerCollider;
 	protected Animator playerAnimator;
+
+	protected int crouchAnimHash = Animator.StringToHash("isCrouching");
+	protected int jumpAnimHash = Animator.StringToHash("isJumping");
+	protected int runAnimHash = Animator.StringToHash("isGrounded");
+	protected int knockbackAnimHash = Animator.StringToHash("onObstacleHit");
 
 	protected const float verticalSizeX = 0.33f;
 	protected const float verticalSizeY = 0.64f;
@@ -53,14 +57,13 @@ public class PlayerController2D : PlayerPhysics
 		playerAnimator = GetComponent<Animator>();
 		IsCrouching = false;
 		IsJumping = false;
-		//wasGrounded = true;
 	}
 
 	protected override void ComputeVelocity()
 	{
 		Jump();
 		Crouch();
-		playerAnimator.SetBool("isGrounded", isGrounded);
+		playerAnimator.SetBool(runAnimHash, isGrounded);
 	}
 
 	private void Jump()
@@ -107,5 +110,9 @@ public class PlayerController2D : PlayerPhysics
 			velocity.y = jumpVelocity*0.6f;
 		else
 			velocity.y = jumpVelocity * 0.3f;
+		IsJumping = false;
+		IsCrouching = false;
+		isGrounded = false;
+		playerAnimator.SetTrigger(knockbackAnimHash);
 	}
 }
