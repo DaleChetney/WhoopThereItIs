@@ -22,17 +22,19 @@ public class Look : MonoBehaviour
     private Vector3 left;
     private Vector3 right;
     private bool eyeContactLost = false;
+    private Camera cam;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        cam = GetComponent<Camera>();
         currentRotation = Input.mousePosition;
         lastMousePosition = currentRotation;
-        above = Camera.main.transform.position + new Vector3(0f, 100f, 0f);
-        below = Camera.main.transform.position + new Vector3(0f, -100f, 0f);
-        left = Camera.main.transform.position + new Vector3(-100f, 0f, 0f);
-        right = Camera.main.transform.position + new Vector3(100f, 0f, 0f);
+        above = cam.transform.position + new Vector3(0f, 100f, 0f);
+        below = cam.transform.position + new Vector3(0f, -100f, 0f);
+        left = cam.transform.position + new Vector3(-100f, 0f, 0f);
+        right = cam.transform.position + new Vector3(100f, 0f, 0f);
         StartCoroutine("Wander");
 
     }
@@ -62,7 +64,7 @@ public class Look : MonoBehaviour
 
     private void DriftMove()
     {
-        Camera.main.transform.rotation = Quaternion.Slerp(Camera.main.transform.rotation, Quaternion.LookRotation(distractionPosition - Camera.main.transform.position), driftSpeed * Time.deltaTime);
+        cam.transform.rotation = Quaternion.Slerp(cam.transform.rotation, Quaternion.LookRotation(distractionPosition - cam.transform.position), driftSpeed * Time.deltaTime);
         if(!eyeContactLost && distractionPosition != eyeContact.position && DistractionReached())
         {
             eyeContactLost = true;
@@ -72,7 +74,7 @@ public class Look : MonoBehaviour
 
     private bool DistractionReached()
     {
-        float angle = Quaternion.Angle(Camera.main.transform.rotation, Quaternion.LookRotation(distractionPosition - Camera.main.transform.position));
+        float angle = Quaternion.Angle(cam.transform.rotation, Quaternion.LookRotation(distractionPosition - cam.transform.position));
         return angle < 5f;
     }
 
@@ -143,7 +145,7 @@ public class Look : MonoBehaviour
         yield return new WaitForSeconds(1f);
         while (eyeContactLost)
         {
-            GameManagerScript.Instance.ModifyScore(-1);
+            //GameManagerScript.Instance.ModifyScore(-1);
             yield return new WaitForSeconds(1f);
         }
     }
