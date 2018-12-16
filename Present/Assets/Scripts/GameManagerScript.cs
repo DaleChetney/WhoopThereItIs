@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 public class GameManagerScript : MonoSingleton<GameManagerScript>
 {
@@ -13,6 +14,8 @@ public class GameManagerScript : MonoSingleton<GameManagerScript>
 	public int Round;
 	public readonly int FIRST_ROUND = 1;
 	public readonly int LAST_ROUND = 5;
+
+    public ConversationData conversationData;
 
 	private enum State { Start, PreRound, ActiveRound, PostRound, GameOver, GameWin };
 
@@ -104,7 +107,21 @@ public class GameManagerScript : MonoSingleton<GameManagerScript>
 		}
 	} 
 
-	void Start()
+    public void StartResponseTimer()
+    {
+        //TODO: Tell UI to glow (& any other ui changes)
+        StartCoroutine("TakeQueuedResponse");
+    }
+
+    IEnumerator TakeQueuedResponse()
+    {
+        yield return new WaitForSeconds(2.0f);//Also make this use specified time later
+        //TODO: tell the response manager to take the selected response
+        //ResponseManager.Instance.GetSelectedResponse();
+        //TODO: tell the UI to stop glowing
+    }
+
+    void Start()
 	{
 		GameState = State.Start;
 	}
