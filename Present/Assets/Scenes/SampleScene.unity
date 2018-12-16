@@ -112,6 +112,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!224 &83924350 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 4884304064068958779, guid: c22c23bf56d56a54e88b4e2daa37742f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1298112830}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &111158765
 GameObject:
   m_ObjectHideFlags: 0
@@ -156,9 +162,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Score: 0
-  Anxiety: 0
-  Round: 0
-  conversationData: {fileID: 0}
+  _conversationData: {fileID: 11400000, guid: 57e021d1be78d974fbab6fa412395da3, type: 2}
 --- !u!4 &111158768
 Transform:
   m_ObjectHideFlags: 0
@@ -185,9 +189,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bd6ef03c8e179744a023a5ba214f289, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _responseCardContainer: {fileID: 0}
-  _responseCardPrefab: {fileID: 0}
-  _responsePacketPrefab: {fileID: 0}
+  _responseCardContainer: {fileID: 83924350}
+  _responseCardPrefab: {fileID: 8163180789991110908, guid: 72c5fdd351bd34c4da0b6b69fdeb9205,
+    type: 3}
+  _responsePacketPrefab: {fileID: 8313413217787527191, guid: 66cd0f032f75efc47bcf40aca4bc3f31,
+    type: 3}
   _minResponsePoints: 0
   _maxResponsePoints: 0
   _responseColorRange:

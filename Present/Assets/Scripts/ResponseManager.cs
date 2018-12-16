@@ -174,7 +174,7 @@ public class ResponseManager : MonoSingleton<ResponseManager>, IScrollHandler
     {
         if(response.Points < _minResponsePoints)
         {
-            Debug.LogError("Response points is less than configured minimum - gradient color cannot be calculated");
+            Debug.LogError("Response points is +" + response.Points + ", which is less than configured minimum - gradient color cannot be calculated");
             return _responseColorRange.Evaluate(0f);
         }
 

@@ -16,7 +16,8 @@ public class RunnerManager : MonoSingleton<RunnerManager>
     public float knockbackForce;
     public float speedRecovery;
 
-    private DateTime nextSpawnTime;
+    private DateTime nextObstacleSpawnTime;
+    private DateTime nextPacketSpawnTime;
     private float defaultScrollSpeed;
 
     private Dictionary<ObstacleType, float> spawnPositions = new Dictionary<ObstacleType, float>()
@@ -31,23 +32,30 @@ public class RunnerManager : MonoSingleton<RunnerManager>
     void Start()
     {
         defaultScrollSpeed = scrollSpeed;
-        nextSpawnTime = GetNextSpawnTime();
+        SetNextSpawnTime();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (DateTime.UtcNow > nextSpawnTime)
+        if (DateTime.UtcNow > nextObstacleSpawnTime)
         {
-            nextSpawnTime = GetNextSpawnTime();
+            SetNextSpawnTime();
             ObstacleType obstacleType = (ObstacleType)UnityEngine.Random.Range(0, obstaclePrefabs.Length);
             SpawnObstacle(obstacleType);
+        }
+
+        if (DateTime.UtcNow > nextPacketSpawnTime)
+        {
+            nextPacketSpawnTime = DateTime.MaxValue;
+            ObstacleType obstacleType = (ObstacleType)UnityEngine.Random.Range(0, obstaclePrefabs.Length);
+            SpawnPacket(obstacleType);
         }
 
         if (scrollSpeed < defaultScrollSpeed)
         {
             scrollSpeed += defaultScrollSpeed * speedRecovery * Time.deltaTime;
-            nextSpawnTime.AddSeconds(Time.deltaTime);
+            nextObstacleSpawnTime.AddSeconds(Time.deltaTime);
         }
         else
         {
@@ -80,10 +88,21 @@ public class RunnerManager : MonoSingleton<RunnerManager>
         obstacle.transform.position = spawnPosition;
     }
 
-    private DateTime GetNextSpawnTime()
+    public void SpawnPacket(ObstacleType obstacleType)
     {
-        var spawnVariance = UnityEngine.Random.Range(-spawnTimeVariance * obstacleSpawnIntervalSec, spawnTimeVariance * obstacleSpawnIntervalSec);
-        return DateTime.UtcNow.AddSeconds(obstacleSpawnIntervalSec + spawnVariance);
+        ResponsePacket packet = ResponseManager.Instance.GetRandomAvailableResponse();
+        var spawnPosition = transform.position;
+        spawnPosition.x += RunnerManager.Instance.rightBoundary;
+        spawnPosition.y = spawnPositions[obstacleType];
+        spawnPosition.z = 1;
+        packet.transform.position = spawnPosition;
+    }
+
+    private void SetNextSpawnTime()
+    {
+        float spawnVariance = UnityEngine.Random.Range(-spawnTimeVariance * obstacleSpawnIntervalSec, spawnTimeVariance * obstacleSpawnIntervalSec);
+        nextObstacleSpawnTime = DateTime.UtcNow.AddSeconds(obstacleSpawnIntervalSec + spawnVariance);
+        nextPacketSpawnTime = DateTime.UtcNow.AddSeconds((obstacleSpawnIntervalSec + spawnVariance) * 0.5f);
     }
 
     public void InterruptScrolling()

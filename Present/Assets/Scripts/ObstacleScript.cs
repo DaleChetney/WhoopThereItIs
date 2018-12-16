@@ -27,7 +27,7 @@ public class ObstacleScript : MonoBehaviour, IPoolable
     {
 		if (other.name == "DaydreamPlayer")
 		{
-            ResponseManager.Instance.RemoveRandomCollectedResponse();
+            //ResponseManager.Instance.RemoveRandomCollectedResponse();
 			GameObject.Find("DaydreamPlayer").GetComponent<PlayerController2D>().Knockback();
             RunnerManager.Instance.InterruptScrolling();
             ReleaseSelf();
