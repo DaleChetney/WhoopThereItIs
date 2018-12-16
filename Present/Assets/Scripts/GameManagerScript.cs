@@ -1,69 +1,142 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class GameManagerScript : MonoSingleton<GameManagerScript>
 {
 	public int Score;
-	public readonly int MAX_SCORE = 100;
-	public readonly int MIN_SCORE = 0;
+	public const int MAX_SCORE = 100;
+	public const int MIN_SCORE = 0;
 
-	public int Anxiety;
-	public readonly int MAX_ANXIETY = 100;
-	public readonly int MIN_ANXIETY = 0;
+    [SerializeField]
+    private ConversationData _conversationData;
 
-	public int Round;
-	public readonly int FIRST_ROUND = 1;
-	public readonly int LAST_ROUND = 5;
-
-    public ConversationData conversationData;
-
-	private enum State { Start, PreRound, ActiveRound, PostRound, GameOver, GameWin };
-
+	private enum State { StartScreen, InGame, GameLose, GameWin };
 	private State _gameState;
-	private State GameState
-	{
-		get
-		{
-			return _gameState;
-		}
-		set
-		{
-			if (value != _gameState)
-			{
-				var oldStateObjects = GameObject.FindGameObjectsWithTag(_gameState.ToString());
 
-				foreach (GameObject stateObject in oldStateObjects)
-				{
-					stateObject.SetActive(false);
-				}
+    private Queue<ConversationSegment> _remainingStarterSegments;
+    private List<ConversationSegment> _remainingRandomSegments;
 
-				var tempObjects = GameObject.FindGameObjectsWithTag("temp");
+    private ConversationSegment _currentSegment;
 
-				foreach (GameObject stateObject in tempObjects)
-				{
-					Destroy(stateObject);
-				}
+    void Start()
+    {
+        StartGame();
+    }
 
-				var newStateObjects = GameObject.FindGameObjectsWithTag(value.ToString());
+    void StartGame()
+    {
+        _currentSegment = null;
 
-				foreach (GameObject stateObject in newStateObjects)
-				{
-					stateObject.SetActive(true);
-				}
+        if (_conversationData == null)
+        {
+            Debug.LogError("Conversation Data missing - cannot start game");
+            return;
+        }
+        if (_conversationData.StartingConversationSegments.Length == 0 && _conversationData.RandomConversationSegments.Length == 0)
+        {
+            Debug.LogError("Conversation Data empty - cannot start game");
+            return;
+        }
 
-				stateSpecificInit(value);
-				_gameState = value;
+        _gameState = State.InGame;
+        Score = 0;
 
-			}
-		}
-	}
+        _remainingStarterSegments = new Queue<ConversationSegment>();
+        foreach (var starterSegment in _conversationData.StartingConversationSegments)
+        {
+            _remainingStarterSegments.Enqueue(starterSegment);
+        }
 
-	public void ModifyScore(int modifier)
+        _remainingRandomSegments = new List<ConversationSegment>();
+        _remainingRandomSegments.AddRange(_conversationData.RandomConversationSegments);
+
+        NextConversationSegment();
+    }
+
+    private void NextConversationSegment()
+    {
+        Debug.Log("Next Conversation Segment");
+        _currentSegment = null;
+
+        if(_remainingStarterSegments.Count > 0)
+        {
+            _currentSegment = _remainingStarterSegments.Dequeue();
+        }
+        else if(_remainingRandomSegments.Count > 0)
+        {
+            int randomIndex = Random.Range(0, _remainingRandomSegments.Count);
+            _currentSegment = _remainingRandomSegments[randomIndex];
+            _remainingRandomSegments.RemoveAt(randomIndex);
+        }
+
+        if (_currentSegment == null)
+        {
+            // Out of segments, you made it
+            _gameState = State.GameWin;
+            Debug.Log("YOU WON");
+            return;
+        }
+
+        TextFeed.Instance.Say(_currentSegment.ConversationText);
+
+        if(_currentSegment.ResponseType == ConversationResponseType.GruntResponse)
+        {
+            // TODO: Do something with available grunt stuff
+        }
+        else
+        {
+            ResponseManager.Instance.ClearAvailableResponses();
+            ResponseManager.Instance.AddAvailableResponses(_currentSegment.ValidResponses);
+        }
+    }
+
+    public void StartResponseTimer()
+    {
+        Debug.Log("Timer started");
+
+        float timeToRespond = _currentSegment.TimeToRespond;
+
+        if(_currentSegment.ResponseType == ConversationResponseType.GruntResponse)
+        {
+            // TODO: light up correct grunt
+        }
+        else
+        {
+            ResponseManager.Instance.StartHighlightingResponses(timeToRespond);
+        }
+
+        StartCoroutine(TakeQueuedResponse(timeToRespond));
+    }
+
+    IEnumerator TakeQueuedResponse(float delaySeconds)
+    {
+        yield return new WaitForSeconds(delaySeconds);
+        Debug.Log("Time is up");
+
+        int responsePoints = 0;
+
+        if (_currentSegment.ResponseType == ConversationResponseType.GruntResponse)
+        {
+            // TODO: Grunt stuff? Default if timed out?
+            // responsePoints = something from grunts
+        }
+        else
+        {
+            responsePoints = ResponseManager.Instance.UseHighlightedResponse();
+        }
+
+        ModifyScore(responsePoints);
+        NextConversationSegment();
+    }
+
+    public void ModifyScore(int modifier)
 	{
 		Score += modifier;
 		if (Score <= MIN_SCORE)
 		{
-			GameState = State.GameOver;
+            _gameState = State.GameLose;
+            Debug.Log("YOU LOST");
 		}
 		else if (Score > MAX_SCORE)
 		{
@@ -71,79 +144,4 @@ public class GameManagerScript : MonoSingleton<GameManagerScript>
 		}
 	}
 
-	public void ModifyAnxiety(int modifier)
-	{
-		Anxiety += modifier;
-		if (Anxiety < MIN_ANXIETY)
-		{
-			Anxiety = MIN_ANXIETY;
-		}
-		else if (Anxiety > MAX_ANXIETY)
-		{
-			Anxiety = MAX_ANXIETY;
-		}
-	}
-
-	public void NextScreen()
-	{
-		switch (GameState)
-		{
-			case State.Start:
-				GameState = State.PreRound;
-				break;
-			case State.PreRound:
-				GameState = State.ActiveRound;
-				break;
-			case State.PostRound:
-				GameState = State.PreRound;
-				break;
-
-			case State.GameOver:
-				GameState = State.Start;
-				break;
-			case State.GameWin:
-				GameState = State.Start;
-				break;
-		}
-	} 
-
-    public void StartResponseTimer()
-    {
-        // TODO: make this use specified time later
-        float timeToRespond = 2.0f;
-
-        ResponseManager.Instance.StartHighlightingResponses(timeToRespond);
-        StartCoroutine(TakeQueuedResponse(timeToRespond));
-    }
-
-    IEnumerator TakeQueuedResponse(float delaySeconds)
-    {
-        yield return new WaitForSeconds(delaySeconds);
-        int responsePoints = ResponseManager.Instance.UseHighlightedResponse();
-        ModifyScore(responsePoints);
-    }
-
-    void Start()
-	{
-		GameState = State.Start;
-	}
-
-	void stateSpecificInit(State state)
-	{
-		switch (state)
-		{
-			case State.ActiveRound:
-				Score = 50;
-				Anxiety = 0;
-				break;
-			case State.Start:
-				Round = 1;
-				break;
-			case State.PostRound:
-				Round++;
-				break;
-			default:
-				break;
-		}
-	}
 }

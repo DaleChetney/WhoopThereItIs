@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Diagnostics;
 
-public class TextFeed : MonoBehaviour {
+
+public class TextFeed : MonoSingleton<TextFeed>
+{
 
     public Text text;
     public float typeDelay;
@@ -10,64 +13,43 @@ public class TextFeed : MonoBehaviour {
     private bool writing = false;
     private Queue textQueue = new Queue();
 
-	// Use this for initialization
-	void Start () {
-       
-        say("Hey you. You gonna socialize or just keep staring at that plant?");
-        say("I mean, it does seem a bit shady. Get it? Plant humor. Ha.");
-        say("So who do you know here? Don't say the plant.");
-        say("Hey you. You gonna socialize or just keep staring at that plant?");
-        say("I mean, it does seem a bit shady. Get it? Plant humor. Ha.");
-        say("So who do you know here? Don't say the plant.");
-        say("Hey you. You gonna socialize or just keep staring at that plant?");
-        say("I mean, it does seem a bit shady. Get it? Plant humor. Ha.");
-        say("So who do you know here? Don't say the plant.");
-        say("Hey you. You gonna socialize or just keep staring at that plant?");
-        say("I mean, it does seem a bit shady. Get it? Plant humor. Ha.");
-        say("So who do you know here? Don't say the plant.");
-        say("Hey you. You gonna socialize or just keep staring at that plant?");
-        say("I mean, it does seem a bit shady. Get it? Plant humor. Ha.");
-        say("So who do you know here? Don't say the plant.");
-        say("Hey you. You gonna socialize or just keep staring at that plant?");
-        say("I mean, it does seem a bit shady. Get it? Plant humor. Ha.");
-        say("So who do you know here? Don't say the plant.");
-        say("Hey you. You gonna socialize or just keep staring at that plant?");
-        say("I mean, it does seem a bit shady. Get it? Plant humor. Ha.");
-        say("So who do you know here? Don't say the plant.");
-        say("Hey you. You gonna socialize or just keep staring at that plant?");
-        say("I mean, it does seem a bit shady. Get it? Plant humor. Ha.");
-        say("So who do you know here? Don't say the plant.");
-        say("Hey you. You gonna socialize or just keep staring at that plant?");
-        say("I mean, it does seem a bit shady. Get it? Plant humor. Ha.");
-        say("So who do you know here? Don't say the plant.");
-        say("Hey you. You gonna socialize or just keep staring at that plant?");
-        say("I mean, it does seem a bit shady. Get it? Plant humor. Ha.");
-        say("So who do you know here? Don't say the plant.");
-
+    void Start ()
+    {
+        text.text = "";
     }
 
-    // Update is called once per frame
-    void Update () {
-
-
+    void Update ()
+    {
         if (!writing && textQueue.Count > 0)
         {
-            updateText((string)textQueue.Dequeue());
-            //Text is finished writing. Tell the timer to start.
-            if(textQueue.Count < 1)
-            {
-                GameManagerScript.Instance.StartResponseTimer();
-            }
+            UpdateText((string)textQueue.Dequeue());
         }
     }
 
-    public void say(string textToSay)
+    public void Say(string textToSay)
     {
         textQueue.Enqueue(textToSay);
-        
+#if UNITY_STANDALONE || UNITY_EDITOR_WIN
+            Speak(textToSay);
+#endif
+
     }
 
-    private void updateText(string toAppend)
+    private void Speak(string textToSay)
+    {
+        string path = System.IO.Path.GetFullPath(".");
+#if UNITY_EDITOR_WIN
+        path = Application.dataPath;
+#endif
+        ProcessStartInfo startInfo = new ProcessStartInfo();
+        startInfo.CreateNoWindow = true;
+        startInfo.FileName = path + "/TTS_App.exe";
+        startInfo.Arguments = " \"" + textToSay + "\"";
+        startInfo.UseShellExecute = false;
+        Process.Start(startInfo);
+    }
+
+    private void UpdateText(string toAppend)
     {
         writing = true;
         StartCoroutine(characterByCharacter(toAppend));
@@ -90,6 +72,12 @@ public class TextFeed : MonoBehaviour {
             }
         }
         text.text += "\n";
-        writing = false;   
+        writing = false;
+
+        //Text is finished writing. Tell the timer to start.
+        if (textQueue.Count < 1)
+        {
+            GameManagerScript.Instance.StartResponseTimer();
+        }
     }
 }

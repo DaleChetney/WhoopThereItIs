@@ -4,8 +4,8 @@
 public class ConversationData : ScriptableObject
 {
     [SerializeField]
-    private ConversationSegment[] StartingConversationSegments;
+    public ConversationSegment[] StartingConversationSegments;
 
     [SerializeField]
-    private ConversationSegment[] RandomConversationSegments;
+    public ConversationSegment[] RandomConversationSegments;
 }

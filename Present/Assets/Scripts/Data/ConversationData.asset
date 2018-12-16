@@ -12,7 +12,175 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ff3c74ae96c94045bfb21ca805d0b04, type: 3}
   m_Name: ConversationData
   m_EditorClassIdentifier: 
-  StartingConversationSegments: []
+  StartingConversationSegments:
+  - ConversationText: 'Hey you. You gonna socialize or just keep staring at that plant?
+      I mean, it does seem a bit shady. Get it? Plant humor. Ha. So who do you know
+      here? Don''t say the plant. '
+    ResponseType: 0
+    ValidResponses:
+    - Phrase: Kevin
+      Points: 20
+    - Phrase: You, now
+      Points: 10
+    - Phrase: The plant
+      Points: -10
+    - Phrase: The Jews
+      Points: -10
+    - Phrase: Charlemagne. And he's a cabbage.
+      Points: -10
+    - Phrase: I uhhh... Kevin?
+      Points: 15
+    - Phrase: No one
+      Points: 5
+    - Phrase: Does anyone really know anyone?
+      Points: -5
+    - Phrase: Kevin, a-doiiiiii
+      Points: -10
+    - Phrase: Most of the people here (lie)
+      Points: -5
+    - Phrase: Please leave me alone
+      Points: -100
+    GruntType: 0
+    TimeToRespond: 10
+  - ConversationText: "Well obviously you know Kevin. How else would you be here?
+      I mean I guess you could just be wandering into random parties looking for a
+      good time, but you don\u2019t seem the type. Anyway, have you known Kevin long?
+      \ "
+    ResponseType: 0
+    ValidResponses:
+    - Phrase: Not long. We work together.
+      Points: 10
+    - Phrase: "Coworkers, but like we\u2019re not on the same team, but like our teams
+        work together sometimes."
+      Points: -2
+    - Phrase: Like, forever.
+      Points: 10
+    - Phrase: We are literally siblings.
+      Points: -5
+    - Phrase: "Sooo\u2026 maybe.... A week?"
+      Points: -10
+    - Phrase: "I\u2019m not sure I\u2019d say I KNOW Kevin\u2026"
+      Points: 5
+    - Phrase: Longer than you, bitch
+      Points: -20
+    - Phrase: According to the restraining order, at least 5 years
+      Points: 5
+    - Phrase: Please leave me alone
+      Points: -100
+    GruntType: 0
+    TimeToRespond: 10
+  - ConversationText: 'Ah. Me and Kev go way back. Like, WAY back. We used to get
+      into so much trouble. Nothing serious, mind you. Just stupid kid stuff, ya know?  '
+    ResponseType: 1
+    ValidResponses: []
+    GruntType: 0
+    TimeToRespond: 5
+  - ConversationText: This one time we got the bright idea to TP our teacher's house.
+      What we didn't know was that she had an absolute beast of a dog chained up on
+      the front porch.
+    ResponseType: 1
+    ValidResponses: []
+    GruntType: 1
+    TimeToRespond: 5
+  - ConversationText: 'Long story short, that dog scared the piss out of Kevin. Literally.
+      At least he already had the TP on hand. '
+    ResponseType: 1
+    ValidResponses: []
+    GruntType: 0
+    TimeToRespond: 0
+  - ConversationText: ' I guess I shouldn''t tell that story at his party should I?'
+    ResponseType: 1
+    ValidResponses: []
+    GruntType: 1
+    TimeToRespond: 0
+  - ConversationText: 'Oh well. He''ll forgive me. He always does.  I''ll be honest,
+      I kinda skimmed the invitation. What are we celebrating this time anyway? '
+    ResponseType: 0
+    ValidResponses:
+    - Phrase: "His kid\u2019s bar mitzvah"
+      Points: 10
+    - Phrase: "It\u2019s a Housewarming party"
+      Points: 10
+    - Phrase: Baby shower
+      Points: 0
+    - Phrase: 3 months sobriety
+      Points: 5
+    - Phrase: Heck if I know
+      Points: 5
+    - Phrase: "Kevin\u2019s Birthday"
+      Points: 10
+    - Phrase: "It\u2019s the company\u2019s Holiday party"
+      Points: -5
+    - Phrase: "Uhh I\u2019m not\u2026 really like sure?"
+      Points: 5
+    - Phrase: "I think it\u2019s we\u2019re here to celebrate something."
+      Points: -5
+    - Phrase: 9/11
+      Points: -11
+    - Phrase: Early mid-life crisis?
+      Points: 7
+    - Phrase: Being one year closer to our deaths?
+      Points: -5
+    - Phrase: White supremacy
+      Points: -15
+    - Phrase: Nothing, Kevin just like pretending he has friends
+      Points: -10
+    - Phrase: "His wife\u2019s miscarriage"
+      Points: -20
+    - Phrase: MAGA
+      Points: -10
+    - Phrase: Do we need a reason? Life is good.
+      Points: 15
+    - Phrase: Wow, you just randomly show up to parties then?
+      Points: 5
+    - Phrase: Not particularly observant are you?
+      Points: 5
+    - Phrase: I too like to live dangerously
+      Points: -5
+    - Phrase: The gay agenda
+      Points: -5
+    - Phrase: The bee movie
+      Points: -5
+    - Phrase: "Kevin, it\u2019s a Kevin party"
+      Points: -5
+    - Phrase: Please leave me alone
+      Points: -100
+    GruntType: 0
+    TimeToRespond: 20
+  - ConversationText: Well I'll drink to that, I suppose. I'll drink to pretty much
+      anything though. Especially if Kevin's buying amiright?
+    ResponseType: 1
+    ValidResponses: []
+    GruntType: 0
+    TimeToRespond: 5
+  - ConversationText: Hey, I didn't get your name, friend. Who are you?
+    ResponseType: 0
+    ValidResponses:
+    - Phrase: "Kevin\u2019s friend"
+      Points: 5
+    - Phrase: Kevin
+      Points: -5
+    - Phrase: No, thanks
+      Points: -10
+    - Phrase: Your mom
+      Points: -10
+    - Phrase: Hello. My name is Inigo Montoya. You killed my father. Prepare to die.
+      Points: 5
+    - Phrase: A friend of the family
+      Points: 5
+    - Phrase: "One of Kevin\u2019s coworkers"
+      Points: 5
+    - Phrase: Please leave me alone
+      Points: -100
+    - Phrase: "Who\u2019s asking?"
+      Points: -5
+    GruntType: 0
+    TimeToRespond: 10
+  - ConversationText: 
+    ResponseType: 0
+    ValidResponses: []
+    GruntType: 0
+    TimeToRespond: 0
   RandomConversationSegments:
   - ConversationText: Who are you?
     ResponseType: 0
