@@ -13,8 +13,8 @@ public class ConversationSegment
     [SerializeField]
     public Response[] ValidResponses;
 
-    //[SerializeField]
-    //Vlid Grunt type 
+    [SerializeField]
+    public GruntType GruntType;
 
     [SerializeField]
     private float TimeToRespond;
