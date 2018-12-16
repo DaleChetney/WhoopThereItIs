@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7390820154452703794}
   - component: {fileID: 2349143362871831506}
   - component: {fileID: 6837420156820319619}
+  - component: {fileID: 9108022320005563758}
   m_Layer: 8
   m_Name: DaydreamPlayer
   m_TagString: Untagged
@@ -137,3 +138,22 @@ MonoBehaviour:
   jumpVelocity: 4
   fallSpeed: 0.3
   maxSpeed: 7
+--- !u!95 &9108022320005563758
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6456144764317728115}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7d5cb6b40d20e7b4d9c75abbdbd25d85, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
