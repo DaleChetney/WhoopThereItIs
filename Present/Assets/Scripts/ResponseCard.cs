@@ -16,7 +16,7 @@ public class ResponseCard : MonoBehaviour, IPoolable
     public Response Response
     {
         get { return _response; }
-        set { _response = value; _responseText.text = _response.Phrase; }
+        set { _response = value; _responseText.text = _response?.Phrase ?? null; }
     }
 
     public bool IsHighlighted = false;
