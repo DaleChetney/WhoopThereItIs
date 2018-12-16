@@ -40,10 +40,7 @@ public class RunnerManager : MonoSingleton<RunnerManager>
         if (DateTime.UtcNow > nextSpawnTime)
         {
             nextSpawnTime = GetNextSpawnTime();
-            int test= UnityEngine.Random.Range(0, obstaclePrefabs.Length);
-            Debug.Log(test);
             ObstacleType obstacleType = (ObstacleType)UnityEngine.Random.Range(0, obstaclePrefabs.Length);
-            Debug.Log(obstacleType);
             SpawnObstacle(obstacleType);
         }
 
