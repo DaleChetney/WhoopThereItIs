@@ -4,6 +4,7 @@ using UnityEngine;
 public class ResponseManager : MonoSingleton<ResponseManager>
 {
     [Header("Scene")]
+    [SerializeField]
     private RectTransform _responseCardContainer;
 
     [Header("Prefabs")]
