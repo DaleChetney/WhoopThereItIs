@@ -95,6 +95,7 @@ public class PlayerController2D : PlayerPhysics
 			IsCrouching = true;
 			playerCollider.direction = CapsuleDirection2D.Horizontal;
 			playerCollider.size = new Vector2(horizontalSizeX, horizontalSizeY);
+            AudioManager.Instance.slide.Play();
 		}
 		else if (IsCrouching && Input.GetKeyUp(KeyCode.S))
 		{
