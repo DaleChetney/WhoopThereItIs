@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class ResponsePacket : MonoBehaviour, IPoolable
 {
     [SerializeField]
-    private Image _backgroundImage;
+    private SpriteRenderer _backgroundImage;
 
     public Response Response;
 
@@ -17,9 +17,9 @@ public class ResponsePacket : MonoBehaviour, IPoolable
 
     private Color _originalColor;
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.name == "Player")
+        if (other.name == "DaydreamPlayer")
         {
             // Add to collected
             ResponseManager.Instance.AddCollectedResponse(Response);
@@ -32,7 +32,7 @@ public class ResponsePacket : MonoBehaviour, IPoolable
     public void Initialize()
     {
         if(_backgroundImage == null)
-            _backgroundImage = GetComponentInChildren<Image>(true);
+            _backgroundImage = GetComponentInChildren<SpriteRenderer>(true);
 
         _originalColor = _backgroundImage.color;
     }
@@ -46,5 +46,12 @@ public class ResponsePacket : MonoBehaviour, IPoolable
     {
         Response = null;
         _backgroundImage.color = _originalColor;
+    }
+
+    void Update()
+    {
+        transform.position += new Vector3(-RunnerManager.Instance.scrollSpeed * Time.deltaTime, 0, -0.001f);
+        if (transform.position.x < RunnerManager.Instance.transform.position.x + RunnerManager.Instance.leftBoundary)
+            ObjectPoolService.Instance.ReleaseInstance(this);
     }
 }

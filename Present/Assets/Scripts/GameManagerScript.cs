@@ -5,8 +5,11 @@ using System.Collections.Generic;
 public class GameManagerScript : MonoSingleton<GameManagerScript>
 {
 	public int Score;
-	public const int MAX_SCORE = 100;
-	public const int MIN_SCORE = 0;
+	public const int MAX_SCORE = 50;
+	public const int MIN_SCORE = -50;
+
+	public int RandomSegmentCount;
+	public const int RANDOM_SEGMENTS_NEEDED_TO_WIN = 10;
 
     [SerializeField]
     private ConversationData _conversationData;
@@ -41,6 +44,7 @@ public class GameManagerScript : MonoSingleton<GameManagerScript>
 
         _gameState = State.InGame;
         Score = 0;
+		RandomSegmentCount = 0;
 
         _remainingStarterSegments = new Queue<ConversationSegment>();
         foreach (var starterSegment in _conversationData.StartingConversationSegments)
@@ -65,9 +69,16 @@ public class GameManagerScript : MonoSingleton<GameManagerScript>
         }
         else if(_remainingRandomSegments.Count > 0)
         {
-            int randomIndex = Random.Range(0, _remainingRandomSegments.Count);
+			if(RandomSegmentCount >= RANDOM_SEGMENTS_NEEDED_TO_WIN)
+			{
+				_gameState = State.GameWin;
+				Debug.Log("YOU WON");
+				return;
+			}
+			int randomIndex = Random.Range(0, _remainingRandomSegments.Count);
             _currentSegment = _remainingRandomSegments[randomIndex];
-            _remainingRandomSegments.RemoveAt(randomIndex);
+			RandomSegmentCount++;
+			_remainingRandomSegments.RemoveAt(randomIndex);
         }
 
         if (_currentSegment == null)
@@ -99,8 +110,10 @@ public class GameManagerScript : MonoSingleton<GameManagerScript>
 
         if(_currentSegment.ResponseType == ConversationResponseType.GruntResponse)
         {
-            // TODO: light up correct grunt
-        }
+			float timeTORespondMillisRaw = _currentSegment.TimeToRespond * 1000;
+			int timeToRespondMillis = Mathf.RoundToInt(timeTORespondMillisRaw);
+			GruntSign.Instance.TriggerGruntOpportunity(_currentSegment.GruntType, _currentSegment.ConversationText, timeToRespondMillis);
+		}
         else
         {
             ResponseManager.Instance.StartHighlightingResponses(timeToRespond);
@@ -118,9 +131,15 @@ public class GameManagerScript : MonoSingleton<GameManagerScript>
 
         if (_currentSegment.ResponseType == ConversationResponseType.GruntResponse)
         {
-            // TODO: Grunt stuff? Default if timed out?
-            // responsePoints = something from grunts
-        }
+			if(GruntSign.Instance.wasLastGruntSuccessful)
+			{
+				responsePoints = 1;
+			}
+			else
+			{
+				responsePoints = -1;
+			}
+		}
         else
         {
             responsePoints = ResponseManager.Instance.UseHighlightedResponse();
