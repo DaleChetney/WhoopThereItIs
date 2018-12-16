@@ -89,13 +89,16 @@ public class ResponseManager : MonoSingleton<ResponseManager>
     }
     public void RemoveRandomCollectedResponse()
     {
-        int randomIndex = Random.Range(0, CollectedResponses.Count);
+        if(CollectedResponses.Count > 0)
+        {
+            int randomIndex = Random.Range(0, CollectedResponses.Count);
 
-        var removed = CollectedResponses[randomIndex];
+            var removed = CollectedResponses[randomIndex];
 
-        ObjectPoolService.Instance.ReleaseInstance(removed);
+            ObjectPoolService.Instance.ReleaseInstance(removed);
 
-        CollectedResponses.RemoveAt(randomIndex);
+            CollectedResponses.RemoveAt(randomIndex);
+        }
     }
     public void ClearCollectedResponses()
     {
