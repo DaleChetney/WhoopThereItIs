@@ -109,16 +109,18 @@ public class GameManagerScript : MonoSingleton<GameManagerScript>
 
     public void StartResponseTimer()
     {
-        //TODO: Tell UI to glow (& any other ui changes)
-        StartCoroutine("TakeQueuedResponse");
+        // TODO: make this use specified time later
+        float timeToRespond = 2.0f;
+
+        ResponseManager.Instance.StartHighlightingResponses(timeToRespond);
+        StartCoroutine(TakeQueuedResponse(timeToRespond));
     }
 
-    IEnumerator TakeQueuedResponse()
+    IEnumerator TakeQueuedResponse(float delaySeconds)
     {
-        yield return new WaitForSeconds(2.0f);//Also make this use specified time later
-        //TODO: tell the response manager to take the selected response
-        //ResponseManager.Instance.GetSelectedResponse();
-        //TODO: tell the UI to stop glowing
+        yield return new WaitForSeconds(delaySeconds);
+        int responsePoints = ResponseManager.Instance.UseHighlightedResponse();
+        ModifyScore(responsePoints);
     }
 
     void Start()

@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class ResponseManager : MonoSingleton<ResponseManager>
+public class ResponseManager : MonoSingleton<ResponseManager>, IScrollHandler
 {
     [Header("Scene")]
     [SerializeField]
@@ -25,38 +27,57 @@ public class ResponseManager : MonoSingleton<ResponseManager>
     private Gradient _responseColorRange;
 
     // Responses the player has picked up in the runner
-    public List<ResponseCard> CollectedResponses { get; private set; }
-
+    private List<ResponseCard> _collectedResponses = new List<ResponseCard>();
     // Responses available to spawn in the runner
-    public List<Response> AvailableResponses { get; private set; }
+    private List<Response> _availableResponses = new List<Response>();
 
-    void Start()
+    private int _highlightedResponseIndex = -1;
+    private bool _isHighlightingResponses = false;
+    private float _fullGlowDelay = -1;
+
+    public void StartHighlightingResponses(float fullGlowDelay)
     {
-        CollectedResponses = new List<ResponseCard>();
-        AvailableResponses = new List<Response>();
+        // TODO: Glow the response tray brighter as fullGlowDelay time gets closer
+        _fullGlowDelay = fullGlowDelay;
+        _isHighlightingResponses = true;
+
+        if (_collectedResponses.Count > 0)
+            SetHighlightedResponse(0);
     }
 
-    public void UseResponse(ResponseCard responseCard)
+    public int UseHighlightedResponse()
     {
-        // TODO: Tell someone we used the response
-        GameManagerScript.Instance.ModifyScore(responseCard.Response.Points);
-        // TODO: Clear remaining collected? Available?
-        //CollectedResponses.Clear();
-        CollectedResponses.Remove(responseCard);
-        ObjectPoolService.Instance.ReleaseInstance(responseCard);
+        if(_highlightedResponseIndex == -1)
+        {
+            Debug.LogError("No response card highlighted - ResponseManager dropped the ball");
+            return 0;
+        }
+
+        ResponseCard highlighted = _collectedResponses[_highlightedResponseIndex];
+        int usedPoints = highlighted.Response.Points;
+
+        ClearCollectedResponses();
+        ClearAvailableResponses();
+
+        _isHighlightingResponses = false;
+
+        // TODO: Stop glowing
+        _fullGlowDelay = -1;
+
+        return usedPoints;
     }
 
-    public ResponsePacket SpawnRandomAvailableResponse()
+    public ResponsePacket GetRandomAvailableResponse()
     {
-        if(AvailableResponses == null || AvailableResponses.Count == 0)
+        if(_availableResponses == null || _availableResponses.Count == 0)
         {
             Debug.LogError("Requested Response but none available");
             return null;
         }
 
-        int randomIndex = Random.Range(0, AvailableResponses.Count);
-        var randomResponse = AvailableResponses[randomIndex];
-        AvailableResponses.Remove(randomResponse);
+        int randomIndex = UnityEngine.Random.Range(0, _availableResponses.Count);
+        var randomResponse = _availableResponses[randomIndex];
+        _availableResponses.Remove(randomResponse);
 
         Color color = GetColorForResponse(randomResponse);
 
@@ -67,17 +88,29 @@ public class ResponseManager : MonoSingleton<ResponseManager>
         return packetInstance;
     }
 
-    public void AddAvailableResponse(Response response)
+    // Mousewheel Scroll Listener
+    void IScrollHandler.OnScroll(PointerEventData eventData)
     {
-        AvailableResponses.Add(response);
+        if (!_isHighlightingResponses)
+            return;
+
+        float scrollChange = eventData.scrollDelta.y;
+
+        // > 0 is scroll up, so decrement index (assuming card 0 is at the top)
+        if (scrollChange > 0)
+            SetHighlightedResponse(PreviousHighlightIndex);
+        // < 0 is scroll down, so increment index
+        else
+            SetHighlightedResponse(NextHighlightIndex);
     }
+
     public void AddAvailableResponses(IEnumerable<Response> responses)
     {
-        AvailableResponses.AddRange(responses);
+        _availableResponses.AddRange(responses);
     }
     public void ClearAvailableResponses()
     {
-        AvailableResponses.Clear();
+        _availableResponses.Clear();
     }
 
     public void AddCollectedResponse(Response response)
@@ -86,26 +119,55 @@ public class ResponseManager : MonoSingleton<ResponseManager>
         cardInstance.transform.SetParent(_responseCardContainer, false);
         cardInstance.Response = response;
 
-        CollectedResponses.Add(cardInstance);
+        _collectedResponses.Add(cardInstance);
+
+        if(_highlightedResponseIndex == -1)
+        {
+            SetHighlightedResponse(0);
+        }
     }
     public void RemoveRandomCollectedResponse()
     {
-        int randomIndex = Random.Range(0, CollectedResponses.Count);
+        if (_collectedResponses.Count > 0)
+        {
+            int randomIndex = UnityEngine.Random.Range(0, _collectedResponses.Count);
 
-        var removed = CollectedResponses[randomIndex];
+            var removed = _collectedResponses[randomIndex];
 
-        ObjectPoolService.Instance.ReleaseInstance(removed);
+            ObjectPoolService.Instance.ReleaseInstance(removed);
 
-        CollectedResponses.RemoveAt(randomIndex);
+            _collectedResponses.RemoveAt(randomIndex);
+
+            if (_highlightedResponseIndex == randomIndex)
+            {
+                SetHighlightedResponse(NextHighlightIndex);
+            }
+        }
     }
     public void ClearCollectedResponses()
     {
-        foreach(var responseCard in CollectedResponses)
+        foreach(var responseCard in _collectedResponses)
         {
             ObjectPoolService.Instance.ReleaseInstance(responseCard);
         }
 
-        CollectedResponses.Clear();
+        _collectedResponses.Clear();
+        _highlightedResponseIndex = -1;
+    }
+
+    private void SetHighlightedResponse(int newHighlightIndex)
+    {
+        if(_highlightedResponseIndex > 0)
+        {
+            _collectedResponses[_highlightedResponseIndex].UnHighlight();
+        }
+
+        if (newHighlightIndex > 0)
+        {
+            _collectedResponses[newHighlightIndex].Highlight();
+        }
+
+        _highlightedResponseIndex = newHighlightIndex;
     }
 
     private Color GetColorForResponse(Response response)
@@ -127,4 +189,22 @@ public class ResponseManager : MonoSingleton<ResponseManager>
 
         return color;
     }
+
+    private int NextHighlightIndex
+    {
+        get
+        {
+            if (_collectedResponses.Count == 0) return -1;
+            return MathHelpers.Mod(_highlightedResponseIndex + 1, (_collectedResponses.Count));
+        }
+    }
+    private int PreviousHighlightIndex
+    {
+        get
+        {
+            if (_collectedResponses.Count == 0) return -1;
+            return MathHelpers.Mod(_highlightedResponseIndex - 1, (_collectedResponses.Count));
+        }
+    }
+
 }

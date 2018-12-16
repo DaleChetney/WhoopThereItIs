@@ -35,11 +35,6 @@ public class ResponseCard : MonoBehaviour, IPoolable
         _backgroundImage.color = _originalColor;
     }
 
-    public void Select()
-    {
-        ResponseManager.Instance.UseResponse(this);
-    }
-
     public void Initialize()
     {
         if (_responseText == null)
@@ -57,7 +52,7 @@ public class ResponseCard : MonoBehaviour, IPoolable
 
     public void Deactivate()
     {
-        _response = null;
+        Response = null;
         UnHighlight();
         gameObject.SetActive(false);
     }
