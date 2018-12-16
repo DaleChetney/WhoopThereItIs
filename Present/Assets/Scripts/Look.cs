@@ -21,6 +21,7 @@ public class Look : MonoBehaviour
     private Vector3 below;
     private Vector3 left;
     private Vector3 right;
+    private bool eyeContactLost = false;
 
 
     // Start is called before the first frame update
@@ -55,12 +56,24 @@ public class Look : MonoBehaviour
 
     private void ResetGaze()
     {
+        eyeContactLost = false;
         distractionPosition = eyeContact.position;
     }
 
     private void DriftMove()
     {
         Camera.main.transform.rotation = Quaternion.Slerp(Camera.main.transform.rotation, Quaternion.LookRotation(distractionPosition - Camera.main.transform.position), driftSpeed * Time.deltaTime);
+        if(!eyeContactLost && distractionPosition != eyeContact.position && DistractionReached())
+        {
+            eyeContactLost = true;
+            StartCoroutine("SubtractPointsForEyeContact");
+        }
+    }
+
+    private bool DistractionReached()
+    {
+        float angle = Quaternion.Angle(Camera.main.transform.rotation, Quaternion.LookRotation(distractionPosition - Camera.main.transform.position));
+        return angle < 5f;
     }
 
     IEnumerator Wander()
@@ -122,6 +135,16 @@ public class Look : MonoBehaviour
             {
                 StartCoroutine("Shake");
             }
+        }
+    }
+
+    IEnumerator SubtractPointsForEyeContact()
+    {
+        yield return new WaitForSeconds(1f);
+        while (eyeContactLost)
+        {
+            GameManagerScript.Instance.ModifyScore(-1);
+            yield return new WaitForSeconds(1f);
         }
     }
 }

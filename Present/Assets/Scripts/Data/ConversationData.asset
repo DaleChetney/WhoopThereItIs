@@ -1,0 +1,932 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ff3c74ae96c94045bfb21ca805d0b04, type: 3}
+  m_Name: ConversationData
+  m_EditorClassIdentifier: 
+  StartingConversationSegments: []
+  RandomConversationSegments:
+  - ConversationText: Who are you?
+    ResponseType: 0
+    ValidResponses:
+    - Phrase: "Kevin\u2019s friend"
+      Points: 2
+    - Phrase: Kevin
+      Points: -2
+    - Phrase: No, thanks
+      Points: -5
+    - Phrase: "My name is ____ (\U0001F3BA\U0001F3BA\U0001F3BA\U0001F3BA)"
+      Points: 5
+    - Phrase: Your mom
+      Points: -11
+    - Phrase: Hello. My name is Inigo Montoya. You killed my father. Prepare to die.
+      Points: 5
+    - Phrase: A friend of the family
+      Points: 1
+    - Phrase: "One of Kevin\u2019s coworkers"
+      Points: 2
+    - Phrase: Please leave me alone
+      Points: -10
+    - Phrase: "Who\u2019s asking?"
+      Points: -5
+    - Phrase: "I work for the international police. I\u2019m hot on the tail of Team
+        Rocket who is also attending this party."
+      Points: -8
+    GruntType: 0
+    TimeToRespond: 10
+  - ConversationText: What do you do for a living?
+    ResponseType: 0
+    ValidResponses:
+    - Phrase: I make sock puppets from scratch and sell them on Etsy.
+      Points: -5
+    - Phrase: "I\u2019m a software developer."
+      Points: 10
+    - Phrase: I perform open heart surgeries.
+      Points: -5
+    - Phrase: I manage the public library nearby.
+      Points: -10
+    - Phrase: "I handle rich people\u2019s taxes."
+      Points: 10
+    - Phrase: I train dogs that were born with 5 legs.
+      Points: -15
+    - Phrase: I run an ASMR youtube channel.
+      Points: -20
+    - Phrase: "I\u2019m above working."
+      Points: -25
+    - Phrase: "I volunteer for the \u201CPorn kills love\u201D campaign."
+      Points: -40
+    - Phrase: "I play HOTS, oh no\u2026"
+      Points: -5
+    - Phrase: Oh ya know. This and that.
+      Points: 1
+    - Phrase: Your mom
+      Points: -11
+    - Phrase: I play in a ska band that exclusively covers a-ha.
+      Points: -5
+    - Phrase: "Just some boring office job, you wouldn\u2019t care."
+      Points: 1
+    - Phrase: "I\u2019m a space cowboy."
+      Points: 25
+    - Phrase: Veterinarian
+      Points: 10
+    - Phrase: Lab tech at Uni
+      Points: 20
+    - Phrase: Maintenance work for cell towers all across the rockies.
+      Points: -5
+    - Phrase: "I don\u2019t"
+      Points: -10
+    - Phrase: Game Jams
+      Points: 1
+    - Phrase: "I\u2019m an international art thief."
+      Points: 10
+    - Phrase: I make memes.
+      Points: -40
+    - Phrase: Please leave me alone
+      Points: -10
+    GruntType: 0
+    TimeToRespond: 7
+  - ConversationText: What are we celebrating?
+    ResponseType: 0
+    ValidResponses:
+    - Phrase: "His kid\u2019s bar mitzvah"
+      Points: 5
+    - Phrase: "It\u2019s a Housewarming party"
+      Points: 5
+    - Phrase: Baby shower
+      Points: -5
+    - Phrase: 3 months sobriety
+      Points: 10
+    - Phrase: Heck if I know
+      Points: 5
+    - Phrase: "Kevin\u2019s Birthday"
+      Points: 10
+    - Phrase: "It\u2019s the company\u2019s Holiday party"
+      Points: -10
+    - Phrase: "Uhh I\u2019m not\u2026 really like sure?"
+      Points: 1
+    - Phrase: "I think it\u2019s we\u2019re here to celebrate something."
+      Points: -5
+    - Phrase: 9/11
+      Points: -100
+    - Phrase: Early mid-life crisis?
+      Points: 1
+    - Phrase: Being one year closer to our deaths?
+      Points: -10
+    - Phrase: White supremacy
+      Points: -100
+    - Phrase: Nothing, Kevin just like pretending he has friends
+      Points: -20
+    - Phrase: "His wife\u2019s miscarriage"
+      Points: -91
+    - Phrase: MAGA
+      Points: -51
+    - Phrase: Do we need a reason? Life is good.
+      Points: 17
+    - Phrase: Wow, you just randomly show up to parties then?
+      Points: 1
+    - Phrase: Not particularly observant are you?
+      Points: 5
+    - Phrase: I too like to live dangerously
+      Points: -10
+    - Phrase: The gay agenda
+      Points: -60
+    - Phrase: The bee movie
+      Points: 3
+    - Phrase: "Kevin, it\u2019s a Kevin party"
+      Points: -5
+    - Phrase: Please leave me alone
+      Points: -10
+    GruntType: 0
+    TimeToRespond: 8
+  - ConversationText: So who do you know here? Don't say the plant.
+    ResponseType: 0
+    ValidResponses:
+    - Phrase: Kevin
+      Points: 5
+    - Phrase: You, now.
+      Points: 10
+    - Phrase: The plant
+      Points: -10
+    - Phrase: The Jews
+      Points: -40
+    - Phrase: "Charlemagne. And he\u2019s a cabbage."
+      Points: -1
+    - Phrase: I uhhh...Kevin?
+      Points: 1
+    - Phrase: No one
+      Points: 5
+    - Phrase: Please leave me alone
+      Points: -10
+    - Phrase: Does anyone really know anyone?
+      Points: 10
+    - Phrase: Kevin, a-doiiiii
+      Points: -10
+    - Phrase: Most of the people here (lie)
+      Points: -20
+    GruntType: 0
+    TimeToRespond: 5
+  - ConversationText: What do you do for fun?
+    ResponseType: 0
+    ValidResponses:
+    - Phrase: Crash house parties.
+      Points: 17
+    - Phrase: Read books
+      Points: 5
+    - Phrase: I like to drive around town
+      Points: 5
+    - Phrase: I like meeting new people
+      Points: 10
+    - Phrase: "Imagine I\u2019m in a platform runner"
+      Points: 1
+    - Phrase: Take house plants
+      Points: 7
+    - Phrase: Watch plants grow
+      Points: -20
+    - Phrase: Fight pussies like you
+      Points: -40
+    - Phrase: Just kinda daze out
+      Points: -15
+    - Phrase: Video games, movies. Pretty standard stuff.
+      Points: 5
+    - Phrase: Please leave me alone
+      Points: -10
+    GruntType: 0
+    TimeToRespond: 8
+  - ConversationText: How long have you known Kevin?
+    ResponseType: 0
+    ValidResponses:
+    - Phrase: Not long. We work together.
+      Points: 5
+    - Phrase: "Coworkers, but like we\u2019re not on the same team, but like our teams
+        work together sometimes."
+      Points: -1
+    - Phrase: Like, forever.
+      Points: 1
+    - Phrase: We are literally siblings.
+      Points: -10
+    - Phrase: "Sooo\u2026 maybe.... A week?"
+      Points: -5
+    - Phrase: "I\u2019m not sure I\u2019d say I KNOW Kevin\u2026"
+      Points: 3
+    - Phrase: Longer than you, bitch
+      Points: -22
+    - Phrase: According to the restraining order, at least 5 years.
+      Points: 5
+    - Phrase: Please leave me alone
+      Points: -10
+    GruntType: 0
+    TimeToRespond: 6
+  - ConversationText: What kind of music you listen to?
+    ResponseType: 0
+    ValidResponses:
+    - Phrase: This and that
+      Points: 1
+    - Phrase: Mostly top 40 stuff
+      Points: -1
+    - Phrase: WHAM. Just WHAM.
+      Points: -5
+    - Phrase: Absolutely FILTHY dubstep
+      Points: 10
+    - Phrase: Only ska covers of a-ha
+      Points: -20
+    - Phrase: "Eh, you\u2019ve never heard of it."
+      Points: -15
+    - Phrase: Hardcore, metalcore, deathcore, grindcore... any core really..
+      Points: 5
+    - Phrase: Please leave me alone
+      Points: -10
+    GruntType: 0
+    TimeToRespond: 6
+  - ConversationText: "So what\u2019s your drink of choice?"
+    ResponseType: 0
+    ValidResponses:
+    - Phrase: Bleach
+      Points: -20
+    - Phrase: Crystal Pepsi
+      Points: -5
+    - Phrase: Vanilla Coke
+      Points: -1
+    - Phrase: Cherry Coke
+      Points: 1
+    - Phrase: Whatever gets me to forget this shitty party
+      Points: -10
+    - Phrase: "I don\u2019t know, I just grabbed this from the counter"
+      Points: 10
+    - Phrase: "It\u2019s an alcohol"
+      Points: 5
+    - Phrase: "It\u2019s uhhhh beer"
+      Points: -5
+    - Phrase: An aged je ne sais quoi shaken into a bottle of Patron
+      Points: -11
+    - Phrase: Anything that makes the loneliness go away for a bit
+      Points: 11
+    - Phrase: Orphan tears
+      Points: -20
+    - Phrase: The blood of the innocent
+      Points: -15
+    - Phrase: "I don\u2019t drink"
+      Points: -5
+    - Phrase: Please leave me alone
+      Points: -10
+    GruntType: 0
+    TimeToRespond: 6
+  - ConversationText: Have you played that game that just came out?
+    ResponseType: 0
+    ValidResponses:
+    - Phrase: No
+      Points: -5
+    - Phrase: Games make people violent
+      Points: -30
+    - Phrase: No, I have a life
+      Points: -15
+    - Phrase: Way to be specific
+      Points: -10
+    - Phrase: No, but you just lost the game
+      Points: -100
+    - Phrase: The one with the stuff? Dude, so good.
+      Points: -11
+    - Phrase: 'Yes. So much fun! '
+      Points: 10
+    - Phrase: "No, but I can\u2019t wait. Been a fan since game 1."
+      Points: -1
+    - Phrase: Please leave me alone
+      Points: -10
+    GruntType: 0
+    TimeToRespond: 4
+  - ConversationText: Did you do any stupid stuff as a kid?
+    ResponseType: 0
+    ValidResponses:
+    - Phrase: Drugs
+      Points: -25
+    - Phrase: "Poked a dog\u2019s eyebrows. Bad idea."
+      Points: -10
+    - Phrase: Tried to dig to Mexico - border patrol is vicious.
+      Points: -15
+    - Phrase: Hung out with this doof named Kevin.
+      Points: 10
+    - Phrase: Lost track of like, 6 cats in two weeks.
+      Points: -40
+    - Phrase: A lot of dirt biking without a helmet.
+      Points: 5
+    - Phrase: Climbed too many trees, roofs, that kinda thing.
+      Points: 10
+    - Phrase: I bullied this weird kid Iggy
+      Points: -5
+    - Phrase: Please leave me alone
+      Points: -10
+    GruntType: 0
+    TimeToRespond: 6
+  - ConversationText: Are you excited about the new Superhero movie?
+    ResponseType: 0
+    ValidResponses:
+    - Phrase: "More excited than you. I bet you didn\u2019t even read the comic."
+      Points: -20
+    - Phrase: I love superhero movies.
+      Points: 10
+    - Phrase: "You goddamn normies and your shit taste in movies\u2026"
+      Points: -40
+    - Phrase: Heack yeah, Superhero is the best!
+      Points: 15
+    - Phrase: Spiderboy and lavadog
+      Points: -5
+    - Phrase: Please leave me alone
+      Points: -10
+    GruntType: 0
+    TimeToRespond: 3
+  - ConversationText: Where are you from?
+    ResponseType: 0
+    ValidResponses:
+    - Phrase: I grew up here in town.
+      Points: 5
+    - Phrase: The northwest quadrant of Uranus.
+      Points: -69
+    - Phrase: "Small town, you wouldn\u2019t know it."
+      Points: 1
+    - Phrase: My mom, HA!
+      Points: -20
+    - Phrase: The Shire.
+      Points: 10
+    - Phrase: Your basic generic midwest suburban area
+      Points: 11
+    - Phrase: Please leave me alone
+      Points: -10
+    GruntType: 0
+    TimeToRespond: 10
+  - ConversationText: "What hobby would you get into if time and money weren\u2019t
+      an issue?"
+    ResponseType: 0
+    ValidResponses:
+    - Phrase: 'Jewelry thieving '
+      Points: -10
+    - Phrase: Creating additional issues
+      Points: -20
+    - Phrase: " I\u2019d keep EVERY bee."
+      Points: -15
+    - Phrase: Time and money bartering
+      Points: -30
+    - Phrase: Definitely more traveling, see the world.
+      Points: 5
+    - Phrase: "I\u2019d train Tigers"
+      Points: 10
+    - Phrase: "I\u2019d build irrigation systems in third world countries"
+      Points: 13
+    - Phrase: Please leave me alone
+      Points: -10
+    GruntType: 0
+    TimeToRespond: 2
+  - ConversationText: "If you didn\u2019t have to sleep, what would you do with the
+      extra time?"
+    ResponseType: 0
+    ValidResponses:
+    - Phrase: Sleep.
+      Points: 1
+    - Phrase: Dream.
+      Points: -1
+    - Phrase: A lot of reading.
+      Points: 2
+    - Phrase: "I don\u2019t sleep."
+      Points: 5
+    - Phrase: Build better games.
+      Points: 10
+    - Phrase: Writing more dialog options.
+      Points: -10
+    - Phrase: I might take up singing.
+      Points: -5
+    - Phrase: Be a successful person
+      Points: 15
+    - Phrase: Cry a little, cry a lot
+      Points: -20
+    - Phrase: Please leave me alone
+      Points: -10
+    GruntType: 0
+    TimeToRespond: 2
+  - ConversationText: What fictional place would you most like to go?
+    ResponseType: 0
+    ValidResponses:
+    - Phrase: "Your girlfriend\u2019s house"
+      Points: -30
+    - Phrase: "My girlfriend\u2019s house"
+      Points: -3
+    - Phrase: Delaware
+      Points: -1
+    - Phrase: That cigarette store Dad went to
+      Points: 5
+    - Phrase: "I\u2019ve always wanted to see Hogwarts."
+      Points: 10
+    - Phrase: Narnia, since I was a kid.
+      Points: 11
+    - Phrase: That planet from the movie Avatar.
+      Points: 12
+    - Phrase: Auschwitz
+      Points: -100
+    - Phrase: "The Moon. No, it\u2019s not real. I don\u2019t want to get into this."
+      Points: -20
+    - Phrase: New Zealand
+      Points: -9
+    - Phrase: Please leave me alone
+      Points: -10
+    GruntType: 0
+    TimeToRespond: 4
+  - ConversationText: What job would you be terrible at?
+    ResponseType: 0
+    ValidResponses:
+    - Phrase: My current one, for sure.
+      Points: 10
+    - Phrase: Keeping children alive.
+      Points: -12
+    - Phrase: "Librarian - can\u2019t read"
+      Points: -7
+    - Phrase: "Anything with horses, I\u2019m allergic."
+      Points: 6
+    - Phrase: Probably construction, I sunburn real easy.
+      Points: 13
+    - Phrase: "Game designer. It\u2019s too hard."
+      Points: -14
+    - Phrase: Please leave me alone
+      Points: -10
+    GruntType: 0
+    TimeToRespond: 6
+  - ConversationText: What is the most annoying habit that other people have?
+    ResponseType: 0
+    ValidResponses:
+    - Phrase: "Asking about other people\u2019s habits"
+      Points: 1
+    - Phrase: Loud chewing
+      Points: 5
+    - Phrase: Correcting people
+      Points: 10
+    - Phrase: Shouting at the top of lungs until everyone else leaves the room
+      Points: -5
+    - Phrase: Asking stupid questions
+      Points: -10
+    - Phrase: Living
+      Points: -20
+    - Phrase: Talking about politics
+      Points: 4
+    - Phrase: Please leave me alone
+      Points: -10
+    GruntType: 0
+    TimeToRespond: 4
+  - ConversationText: What state or country do you never want to go back to?
+    ResponseType: 0
+    ValidResponses:
+    - Phrase: The land of confusion
+      Points: 5
+    - Phrase: Please leave me alone
+      Points: -10
+    - Phrase: <insert Oklahoma rant here>
+      Points: 10
+    - Phrase: The South.
+      Points: -1
+    - Phrase: "Canada. I don\u2019t think you die in real if there."
+      Points: 19
+    GruntType: 0
+    TimeToRespond: 4
+  - ConversationText: What takes up too much of your time?
+    ResponseType: 0
+    ValidResponses:
+    - Phrase: Talking to you.
+      Points: -10
+    - Phrase: Please leave me alone
+      Points: -10
+    - Phrase: Thinking about death.
+      Points: -13
+    - Phrase: Horticulture. I fucking love plants.
+      Points: 10
+    - Phrase: Figuring out what in the new should offend me.
+      Points: -20
+    GruntType: 0
+    TimeToRespond: 6
+  - ConversationText: What would be your first question after waking up from being
+      cryogenically frozen for 100 years?
+    ResponseType: 0
+    ValidResponses:
+    - Phrase: How many Star Wars are there?
+      Points: 5
+    - Phrase: What year is it?
+      Points: 1
+    - Phrase: What number Shrek are we on?
+      Points: 100
+    - Phrase: Are real hoverboards a thing yet?
+      Points: -5
+    - Phrase: Please leave me alone
+      Points: -10
+    GruntType: 0
+    TimeToRespond: 1
+  - ConversationText: "What\u2019s your claim to fame?"
+    ResponseType: 0
+    ValidResponses:
+    - Phrase: I once got kicked out of a buffet for eating too much.
+      Points: 1
+    - Phrase: Have you heard of Auschwitz?
+      Points: -100
+    - Phrase: I memorized Pi to Pi digits
+      Points: -31
+    - Phrase: I won a spelling bee in the 8th grade
+      Points: 8
+    - Phrase: "I\u2019ve balanced over 26 pears at one time"
+      Points: 26
+    - Phrase: Please leave me alone
+      Points: -10
+    GruntType: 0
+    TimeToRespond: 10
+  - ConversationText: 'If you were dictator of a small island nation, what crazy dictator
+      stuff would you do? '
+    ResponseType: 0
+    ValidResponses:
+    - Phrase: Have you heard of Auschwitz?
+      Points: -100
+    - Phrase: Be my own Negan.
+      Points: -50
+    - Phrase: Some of that Lord of the Flies shit.
+      Points: -20
+    - Phrase: Free cake every day
+      Points: 15
+    - Phrase: Mandatory video games
+      Points: -1
+    - Phrase: HA, dick tator (dick takers)
+      Points: 10
+    - Phrase: Force everyone to sing everything
+      Points: -3
+    - Phrase: Pool of Jello?
+      Points: 5
+    - Phrase: "I\u2019d make them like, comment, AND subscribe"
+      Points: -5
+    - Phrase: Please leave me alone
+      Points: -10
+    GruntType: 0
+    TimeToRespond: 2
+  - ConversationText: "What is something that a ton of people are obsessed with but
+      you just don\u2019t get the point of? "
+    ResponseType: 0
+    ValidResponses:
+    - Phrase: Bathing
+      Points: 3
+    - Phrase: Small talk
+      Points: 1
+    - Phrase: Socks and sandals, they just look comfy
+      Points: -5
+    - Phrase: Living
+      Points: -20
+    - Phrase: Memes
+      Points: -50
+    - Phrase: -10
+      Points: 0
+    GruntType: 0
+    TimeToRespond: 1
+  - ConversationText: "What\u2019s the best way a person can spend their time?"
+    ResponseType: 0
+    ValidResponses:
+    - Phrase: The best way to get the hang out with my friends
+      Points: -11
+    - Phrase: Learning and improving themselves
+      Points: 5
+    - Phrase: "Casing strangers\u2019 homes "
+      Points: 1
+    - Phrase: Please leave me alone
+      Points: -10
+    - Phrase: Getting to understand the world around them.
+      Points: 6
+    - Phrase: Death
+      Points: -20
+    GruntType: 0
+    TimeToRespond: 5
+  - ConversationText: What are you most looking forward to in the next 10 years?
+    ResponseType: 0
+    ValidResponses:
+    - Phrase: Self driving cars!
+      Points: 11
+    - Phrase: Getting humans on Mars
+      Points: -11
+    - Phrase: Windows 21 - Whiskey Edition
+      Points: 21
+    - Phrase: Dying
+      Points: -20
+    - Phrase: Half Life 3
+      Points: -3
+    - Phrase: Cyberpunk 2077
+      Points: -2
+    - Phrase: 'Losing my virginity '
+      Points: -20
+    - Phrase: Please leave me alone
+      Points: -10
+    GruntType: 0
+    TimeToRespond: 3
+  - ConversationText: What would you rate 10 / 10?
+    ResponseType: 0
+    ValidResponses:
+    - Phrase: You mean 5/7?
+      Points: 57
+    - Phrase: Anime tiddies
+      Points: -50
+    - Phrase: You ;)
+      Points: -1
+    - Phrase: Not this conversation
+      Points: -20
+    - Phrase: "Ben and Jerry\u2019s Bacon and Egg Ice Cream"
+      Points: -16
+    - Phrase: Please leave me alone
+      Points: -10
+    GruntType: 0
+    TimeToRespond: 10
+  - ConversationText: What fad or trend do you hope comes back?
+    ResponseType: 0
+    ValidResponses:
+    - Phrase: Crocs
+      Points: -20
+    - Phrase: Slavery
+      Points: -100
+    - Phrase: 'Disco for sure. '
+      Points: 10
+    - Phrase: Tamagotchi, I still have 3 somewhere
+      Points: 3
+    - Phrase: Please leave me alone
+      Points: -10
+    GruntType: 0
+    TimeToRespond: 5
+  - ConversationText: What movie title best describes your life?
+    ResponseType: 0
+    ValidResponses:
+    - Phrase: Avengers Infinity Wars
+      Points: -5
+    - Phrase: A Series of Unfortunate Events
+      Points: 5
+    - Phrase: "She\u2019s the Man"
+      Points: 1
+    - Phrase: Mean Girls
+      Points: 10
+    - Phrase: Disaster Artist
+      Points: -2
+    - Phrase: 40 Year Old Virgin
+      Points: 7
+    - Phrase: The hangover
+      Points: 12
+    - Phrase: Shrek the Third
+      Points: 3
+    - Phrase: Please leave me alone
+      Points: -10
+    GruntType: 0
+    TimeToRespond: 5
+  - ConversationText: "What was the best compliment you\u2019ve received?"
+    ResponseType: 0
+    ValidResponses:
+    - Phrase: "\"Well at least you tried\u201D"
+      Points: 5
+    - Phrase: "\u201CThanks for understanding\u201D"
+      Points: -5
+    - Phrase: "\u201CI thought you\u2019d do much worse\u201D"
+      Points: 10
+    - Phrase: "\u201CThat is a lot of hair gel\u201D"
+      Points: 15
+    - Phrase: Please leave me alone
+      Points: -10
+    GruntType: 0
+    TimeToRespond: 5
+  - ConversationText: As the only human left on Earth, what would you do?
+    ResponseType: 0
+    ValidResponses:
+    - Phrase: Nothing
+      Points: -1
+    - Phrase: Die
+      Points: -20
+    - Phrase: Drink my own piss.
+      Points: -5
+    - Phrase: "I\u2019d be lonely and sad :("
+      Points: 10
+    - Phrase: Run horizontally in a bear suit
+      Points: 20
+    - Phrase: Please leave me alone
+      Points: -10
+    GruntType: 0
+    TimeToRespond: 5
+  - ConversationText: "What did you think you would grow out of but haven\u2019t?"
+    ResponseType: 0
+    ValidResponses:
+    - Phrase: Illiteracy
+      Points: 5
+    - Phrase: These footsie pajamas
+      Points: 10
+    - Phrase: Roast beef
+      Points: -5
+    - Phrase: Harry Potter books honestly.
+      Points: 20
+    - Phrase: "Video games, they\u2019re amazing for meeting people"
+      Points: 6
+    - Phrase: Please leave me alone
+      Points: -10
+    GruntType: 0
+    TimeToRespond: 5
+  - ConversationText: In what situation or place would you feel the most out of place
+      in?
+    ResponseType: 0
+    ValidResponses:
+    - Phrase: Parties
+      Points: 1
+    - Phrase: Weddings
+      Points: 5
+    - Phrase: Funerals
+      Points: -5
+    - Phrase: Here
+      Points: -15
+    - Phrase: Karaoke
+      Points: 6
+    - Phrase: Please leave me alone
+      Points: -10
+    GruntType: 0
+    TimeToRespond: 3
+  - ConversationText: "What\u2019s the dumbest thing you\u2019ve done that actually
+      turned out pretty well? "
+    ResponseType: 0
+    ValidResponses:
+    - Phrase: Dig an ugly well
+      Points: 13
+    - Phrase: Talk to Kevin
+      Points: 5
+    - Phrase: hought I joined a child cult, apparently it was an orphanag
+      Points: -5
+    - Phrase: Please leave me alone
+      Points: -10
+    - Phrase: I Invested in Bitcoin during the early days
+      Points: 1
+    GruntType: 0
+    TimeToRespond: 2
+  - ConversationText: What is something you will NEVER do again?
+    ResponseType: 0
+    ValidResponses:
+    - Phrase: Talk to strangers near a plant
+      Points: -20
+    - Phrase: Allow others near my plants
+      Points: -1
+    - Phrase: Attend a Kevin party
+      Points: -15
+    - Phrase: Vote republican
+      Points: 71
+    - Phrase: Crack cocaine
+      Points: -30
+    - Phrase: Meth
+      Points: -47
+    - Phrase: Drink the Kool Aid
+      Points: 10
+    - Phrase: Please leave me alone
+      Points: -10
+    GruntType: 0
+    TimeToRespond: 5
+  - ConversationText: What are you addicted to?
+    ResponseType: 0
+    ValidResponses:
+    - Phrase: Crack cocaine
+      Points: -40
+    - Phrase: "Coffee. Can\u2019t start my day without it."
+      Points: 11
+    - Phrase: Do you see that plant there?
+      Points: 20
+    - Phrase: Science fiction books
+      Points: 5
+    - Phrase: Please leave me alone
+      Points: -10
+    GruntType: 0
+    TimeToRespond: 10
+  - ConversationText: What stereotype do you completely live up to?
+    ResponseType: 0
+    ValidResponses:
+    - Phrase: <redacted>
+      Points: 5
+    - Phrase: <redacted>
+      Points: 10
+    - Phrase: <redacted>
+      Points: -5
+    - Phrase: <redacted>
+      Points: -50
+    - Phrase: Please leave me alone
+      Points: -10
+    - Phrase: <redacted>
+      Points: -100
+    GruntType: 0
+    TimeToRespond: 5
+  - ConversationText: What is something you can never seem to finish?
+    ResponseType: 0
+    ValidResponses:
+    - Phrase: "I\u2019m bad at finishing my senten\u2026"
+      Points: 5
+    - Phrase: Conversations
+      Points: 6
+    - Phrase: Game design documents
+      Points: -1
+    - Phrase: Diets
+      Points: -5
+    - Phrase: Woodworking projects
+      Points: -11
+    - Phrase: Please leave me alone
+      Points: -20
+    GruntType: 0
+    TimeToRespond: 5
+  - ConversationText: What is one of your favorite smells?
+    ResponseType: 0
+    ValidResponses:
+    - Phrase: Yours
+      Points: -30
+    - Phrase: My own
+      Points: -10
+    - Phrase: Victory
+      Points: 10
+    - Phrase: The truck stop 3 miles east of here
+      Points: -15
+    - Phrase: Wet dog
+      Points: -5
+    - Phrase: Please leave me alone
+      Points: -10
+    GruntType: 0
+    TimeToRespond: 6
+  - ConversationText: What small gesture from a stranger made a big impact on you?
+    ResponseType: 0
+    ValidResponses:
+    - Phrase: Birbs
+      Points: -40
+    - Phrase: A guy pulled over and helped push my car to a gas station
+      Points: 10
+    - Phrase: "I got flashed at an Arby\u2019s once. Haven\u2019t been the same since.
+        Can\u2019t look at curly fries the same way."
+      Points: 20
+    - Phrase: A stranger said hi to me once, so that was nice.
+      Points: -5
+    - Phrase: I walked in on my mom with the mailman once.
+      Points: -20
+    - Phrase: This guy had the fluffiest dog ever and he let me pet it. Best day ever.
+      Points: 5
+    - Phrase: Please leave me alone
+      Points: -10
+    GruntType: 0
+    TimeToRespond: 2
+  - ConversationText: What gets you fired up?
+    ResponseType: 0
+    ValidResponses:
+    - Phrase: Fire
+      Points: 10
+    - Phrase: New engine oil and some good compression cylinders.
+      Points: 5
+    - Phrase: Interoffice relations. Oh you said fired UP? Awkward.
+      Points: 1
+    - Phrase: Anime tiddies
+      Points: -60
+    - Phrase: Normies
+      Points: -40
+    - Phrase: My fave fight song
+      Points: -1
+    - Phrase: Political Arguments
+      Points: 5
+    - Phrase: When someone disses my friends
+      Points: -5
+    - Phrase: Disrespect
+      Points: 15
+    - Phrase: Brigette mains
+      Points: 40
+    - Phrase: Please leave me alone
+      Points: -10
+    GruntType: 0
+    TimeToRespond: 8
+  - ConversationText: "What\u2019s the title of the current chapter of your life?"
+    ResponseType: 0
+    ValidResponses:
+    - Phrase: Untitled Document
+      Points: 5
+    - Phrase: Chapter Three
+      Points: -3
+    - Phrase: Epilogue
+      Points: 10
+    - Phrase: Battle Royale
+      Points: -11
+    - Phrase: Naked and Afraid
+      Points: 10
+    - Phrase: Well, That Was Awkward
+      Points: -5
+    - Phrase: Intermission
+      Points: 1
+    - Phrase: Please leave me alone
+      Points: -10
+    GruntType: 0
+    TimeToRespond: 9
+  - ConversationText: What are you afraid people see when they look at you?
+    ResponseType: 0
+    ValidResponses:
+    - Phrase: My face
+      Points: 10
+    - Phrase: All of my eyes.
+      Points: -5
+    - Phrase: "How uncool they\u2019ll look next to me."
+      Points: -10
+    - Phrase: Knives, probably.
+      Points: -15
+    - Phrase: My big anime tiddies. Oh you said afraid.
+      Points: -50
+    - Phrase: Please leave me alone
+      Points: -10
+    GruntType: 0
+    TimeToRespond: 8
