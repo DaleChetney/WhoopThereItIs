@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Diagnostics;
+
 
 public class TextFeed : MonoBehaviour {
 
@@ -10,40 +12,39 @@ public class TextFeed : MonoBehaviour {
     private bool writing = false;
     private Queue textQueue = new Queue();
 
-	// Use this for initialization
-	void Start () {
-       
-        say("Hey you. You gonna socialize or just keep staring at that plant?");
-        say("I mean, it does seem a bit shady. Get it? Plant humor. Ha.");
-        say("So who do you know here? Don't say the plant.");
-        say("Hey you. You gonna socialize or just keep staring at that plant?");
-        say("I mean, it does seem a bit shady. Get it? Plant humor. Ha.");
-        say("So who do you know here? Don't say the plant.");
-        say("Hey you. You gonna socialize or just keep staring at that plant?");
-        say("I mean, it does seem a bit shady. Get it? Plant humor. Ha.");
-        say("So who do you know here? Don't say the plant.");
-        say("Hey you. You gonna socialize or just keep staring at that plant?");
-        say("I mean, it does seem a bit shady. Get it? Plant humor. Ha.");
-        say("So who do you know here? Don't say the plant.");
-        say("Hey you. You gonna socialize or just keep staring at that plant?");
-        say("I mean, it does seem a bit shady. Get it? Plant humor. Ha.");
-        say("So who do you know here? Don't say the plant.");
-        say("Hey you. You gonna socialize or just keep staring at that plant?");
-        say("I mean, it does seem a bit shady. Get it? Plant humor. Ha.");
-        say("So who do you know here? Don't say the plant.");
-        say("Hey you. You gonna socialize or just keep staring at that plant?");
-        say("I mean, it does seem a bit shady. Get it? Plant humor. Ha.");
-        say("So who do you know here? Don't say the plant.");
-        say("Hey you. You gonna socialize or just keep staring at that plant?");
-        say("I mean, it does seem a bit shady. Get it? Plant humor. Ha.");
-        say("So who do you know here? Don't say the plant.");
-        say("Hey you. You gonna socialize or just keep staring at that plant?");
-        say("I mean, it does seem a bit shady. Get it? Plant humor. Ha.");
-        say("So who do you know here? Don't say the plant.");
-        say("Hey you. You gonna socialize or just keep staring at that plant?");
-        say("I mean, it does seem a bit shady. Get it? Plant humor. Ha.");
-        say("So who do you know here? Don't say the plant.");
+    // Use this for initialization
+    void Start () {
 
+        say("Hey you. You gonna socialize or just keep staring at that plant? I mean, it does seem a bit shady. Get it? Plant humor. Ha. So who do you know here? Don't say the plant.");
+        //say("I mean, it does seem a bit shady. Get it? Plant humor. Ha.");
+        //say("So who do you know here? Don't say the plant.");
+        //say("Hey you. You gonna socialize or just keep staring at that plant?");
+        //say("I mean, it does seem a bit shady. Get it? Plant humor. Ha.");
+        //say("So who do you know here? Don't say the plant.");
+        //say("Hey you. You gonna socialize or just keep staring at that plant?");
+        //say("I mean, it does seem a bit shady. Get it? Plant humor. Ha.");
+        //say("So who do you know here? Don't say the plant.");
+        //say("Hey you. You gonna socialize or just keep staring at that plant?");
+        //say("I mean, it does seem a bit shady. Get it? Plant humor. Ha.");
+        //say("So who do you know here? Don't say the plant.");
+        //say("Hey you. You gonna socialize or just keep staring at that plant?");
+        //say("I mean, it does seem a bit shady. Get it? Plant humor. Ha.");
+        //say("So who do you know here? Don't say the plant.");
+        //say("Hey you. You gonna socialize or just keep staring at that plant?");
+        //say("I mean, it does seem a bit shady. Get it? Plant humor. Ha.");
+        //say("So who do you know here? Don't say the plant.");
+        //say("Hey you. You gonna socialize or just keep staring at that plant?");
+        //say("I mean, it does seem a bit shady. Get it? Plant humor. Ha.");
+        //say("So who do you know here? Don't say the plant.");
+        //say("Hey you. You gonna socialize or just keep staring at that plant?");
+        //say("I mean, it does seem a bit shady. Get it? Plant humor. Ha.");
+        //say("So who do you know here? Don't say the plant.");
+        //say("Hey you. You gonna socialize or just keep staring at that plant?");
+        //say("I mean, it does seem a bit shady. Get it? Plant humor. Ha.");
+        //say("So who do you know here? Don't say the plant.");
+        //say("Hey you. You gonna socialize or just keep staring at that plant?");
+        //say("I mean, it does seem a bit shady. Get it? Plant humor. Ha.");
+        //say("So who do you know here? Don't say the plant.");
     }
 
     // Update is called once per frame
@@ -64,7 +65,13 @@ public class TextFeed : MonoBehaviour {
     public void say(string textToSay)
     {
         textQueue.Enqueue(textToSay);
-        
+        ProcessStartInfo startInfo = new ProcessStartInfo();
+        startInfo.CreateNoWindow = true;
+        startInfo.FileName = Application.dataPath+"/TTS_App.exe";
+        startInfo.Arguments = " \""+textToSay+"\"";
+        startInfo.UseShellExecute = false;
+        Process.Start(startInfo);
+
     }
 
     private void updateText(string toAppend)
