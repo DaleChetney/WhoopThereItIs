@@ -2,15 +2,45 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObstacleScript : MonoBehaviour
+public class ObstacleScript : MonoBehaviour, IPoolable
 {
-	private void OnTriggerEnter(Collider other)
-	{
-		if (other.name == "Player")
+    public void Activate()
+    {
+    }
+
+    public void Deactivate()
+    {
+    }
+
+    public void Initialize()
+    {
+    }
+
+    void Update()
+    {
+        transform.position += new Vector3(-RunnerManager.Instance.scrollSpeed * Time.deltaTime, 0, -0.001f);
+        if (transform.position.x < RunnerManager.Instance.transform.position.x + RunnerManager.Instance.leftBoundary)
+        {
+            ObjectPoolService.Instance.ReleaseInstance<ObstacleScript>(this);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+		if (other.name == "DaydreamPlayer")
 		{
             ResponseManager.Instance.RemoveRandomCollectedResponse();
-			GameObject.Find("DaydreamPlayer").GetComponent<PlayerController2D>().ResetAfterDeath();
-			gameObject.SetActive(false);
+			GameObject.Find("DaydreamPlayer").GetComponent<PlayerController2D>().Knockback();
+            RunnerManager.Instance.InterruptScrolling();
+            ObjectPoolService.Instance.ReleaseInstance<ObstacleScript>(this);
 		}
-	}
+    }
+}
+
+public enum ObstacleType
+{
+    ShortJump,
+    LongJump,
+    ShortDuck,
+    LongDuck
 }

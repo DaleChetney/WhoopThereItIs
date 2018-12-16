@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 public class GameManagerScript : MonoSingleton<GameManagerScript>
 {
@@ -13,6 +14,8 @@ public class GameManagerScript : MonoSingleton<GameManagerScript>
 	public int Round;
 	public readonly int FIRST_ROUND = 1;
 	public readonly int LAST_ROUND = 5;
+
+    public ConversationData conversationData;
 
 	private enum State { Start, PreRound, ActiveRound, PostRound, GameOver, GameWin };
 
@@ -104,7 +107,23 @@ public class GameManagerScript : MonoSingleton<GameManagerScript>
 		}
 	} 
 
-	void Start()
+    public void StartResponseTimer()
+    {
+        // TODO: make this use specified time later
+        float timeToRespond = 2.0f;
+
+        ResponseManager.Instance.StartHighlightingResponses(timeToRespond);
+        StartCoroutine(TakeQueuedResponse(timeToRespond));
+    }
+
+    IEnumerator TakeQueuedResponse(float delaySeconds)
+    {
+        yield return new WaitForSeconds(delaySeconds);
+        int responsePoints = ResponseManager.Instance.UseHighlightedResponse();
+        ModifyScore(responsePoints);
+    }
+
+    void Start()
 	{
 		GameState = State.Start;
 	}
