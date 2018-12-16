@@ -69,6 +69,8 @@ public class IrlProjectionScaler : MonoBehaviour
 
         _targetImage.texture = _dynamicTexture;
 
+        _targetImage.gameObject.SetActive(true);
+
         Debug.Log(log);
     }
 
