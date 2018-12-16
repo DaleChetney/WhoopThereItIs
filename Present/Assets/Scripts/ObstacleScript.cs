@@ -9,7 +9,7 @@ public class ObstacleScript : MonoBehaviour
 		if (other.name == "Player")
 		{
             ResponseManager.Instance.RemoveRandomCollectedResponse();
-			GameObject.Find("Player").GetComponent<PlayerController2D>().ResetAfterDeath();
+			GameObject.Find("DaydreamPlayer").GetComponent<PlayerController2D>().ResetAfterDeath();
 			gameObject.SetActive(false);
 		}
 	}
