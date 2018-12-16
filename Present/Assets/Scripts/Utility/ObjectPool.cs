@@ -21,6 +21,7 @@ public class ObjectPool<T> : IObjectPool where T : MonoBehaviour, IPoolable
     public void ReleaseInstance(T instance)
     {
         instance.Deactivate();
+        instance.gameObject.SetActive(false);
         _pooledInstances.Enqueue(instance);
     }
 
@@ -40,13 +41,21 @@ public class ObjectPool<T> : IObjectPool where T : MonoBehaviour, IPoolable
         }
 
         instance.Activate();
+        instance.gameObject.SetActive(true);
 
         return instance;
     }
 
     public void ReleaseInstance<T1>(T1 instance) where T1 : MonoBehaviour, IPoolable
     {
-        ReleaseInstance(instance);
+        T castInstance = instance as T;
+
+        if (castInstance == null)
+        {
+            throw new InvalidCastException($"Cannot acquire {nameof(T1)} from pool of {nameof(T)}");
+        }
+
+        ReleaseInstance(castInstance);
     }
 
     public T1 AcquireInstance<T1>() where T1 : MonoBehaviour, IPoolable
