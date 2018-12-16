@@ -12,10 +12,10 @@ public class PlayerController2D : PlayerPhysics
 	protected bool isJumping;
 	protected CapsuleCollider2D playerCollider;
 
-	protected const float verticalSizeX = 0.08f;
-	protected const float verticalSizeY = 0.16f;
-	protected const float horizontalSizeX = 0.16f;
-	protected const float horizontalSizeY = 0.06f;
+	protected const float verticalSizeX = 0.33f;
+	protected const float verticalSizeY = 0.64f;
+	protected const float horizontalSizeX = 0.64f;
+	protected const float horizontalSizeY = 0.33f;
 
 	// Start is called before the first frame update
 	void Start()
@@ -61,6 +61,7 @@ public class PlayerController2D : PlayerPhysics
 			isCrouching = false;
 			playerCollider.direction = CapsuleDirection2D.Vertical;
 			playerCollider.size = new Vector2(verticalSizeX, verticalSizeY);
+			playerRigidbody.position = new Vector2(playerRigidbody.position.x, playerRigidbody.position.y + 0.17f);
 		}
 	}
 
