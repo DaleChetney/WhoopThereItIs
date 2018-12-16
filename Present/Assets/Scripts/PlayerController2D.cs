@@ -77,6 +77,7 @@ public class PlayerController2D : PlayerPhysics
 		{
 			velocity.y = jumpVelocity;
 			IsJumping = true;
+            AudioManager.Instance.jump.Play();
 		}
 		else if (Input.GetKeyUp(KeyCode.W))
 		{
@@ -114,5 +115,6 @@ public class PlayerController2D : PlayerPhysics
 		IsCrouching = false;
 		isGrounded = false;
 		playerAnimator.SetTrigger(knockbackAnimHash);
+        AudioManager.Instance.knockBack.Play();
 	}
 }
