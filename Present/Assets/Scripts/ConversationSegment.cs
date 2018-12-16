@@ -17,7 +17,7 @@ public class ConversationSegment
     public GruntType GruntType;
 
     [SerializeField]
-    private float TimeToRespond;
+    public float TimeToRespond;
 }
 
 public enum ConversationResponseType
