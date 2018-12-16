@@ -26,11 +26,11 @@ public class GruntSign : MonoBehaviour
         {
             if (Input.GetMouseButton(1))
             {
-                Grunt(true);
+                Grunt(GruntType.Green);
             }
             else if (Input.GetMouseButton(2))
             {
-                Grunt(false);
+                Grunt(GruntType.Red);
             }
             else if (DateTime.UtcNow > failTime)
             {
@@ -40,11 +40,11 @@ public class GruntSign : MonoBehaviour
         }
     }
 
-    private void Grunt(bool greenGrunt)
+    private void Grunt(GruntType gruntType)
     {
         EndGruntOpportunity();
-        if (greenGrunt == greenLight.isOn)
-            TriggerGruntSuccess();
+        if ((gruntType == GruntType.Green) == greenLight.isOn)
+            TriggerGruntSuccess(gruntType);
         else
             TriggerGruntFailure();
     }
@@ -53,16 +53,17 @@ public class GruntSign : MonoBehaviour
     {
     }
 
-    public void TriggerGruntSuccess()
+    public void TriggerGruntSuccess(GruntType gruntType)
     {
+        //GameObject.Find("ADHD Camera").GetComponent<Look>().Dothething(gruntType);
     }
 
-    public void TriggerGruntOpportunity(bool greenGrunt, string promptText, int availabilityMillis)
+    public void TriggerGruntOpportunity(GruntType gruntType, string promptText, int availabilityMillis)
     {
         failTime = DateTime.UtcNow.AddMilliseconds(availabilityMillis);
         gruntAvailable = true;
 
-        if (greenGrunt)
+        if (gruntType == GruntType.Green)
             greenLight.isOn = true;
         else
             redLight.isOn = true;
@@ -77,4 +78,10 @@ public class GruntSign : MonoBehaviour
         redLight.isOn = false;
         gruntText.text = "";
     }
+}
+
+public enum GruntType
+{
+    Green,
+    Red
 }
