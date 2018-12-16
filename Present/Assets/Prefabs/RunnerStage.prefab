@@ -105,12 +105,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstaclePrefabs:
-  - {fileID: 7025413354370900445, guid: 2aac8e0aeb606db42b16337830b3146a, type: 3}
+  - {fileID: 6345696161325739484, guid: b515c2847d7866f4d911e2a3571a471e, type: 3}
+  - {fileID: 878501260983979867, guid: 9ae56a9c9a004744395b3eae601d224b, type: 3}
+  - {fileID: 8280823398667211709, guid: e0306b9794f34f84ab74c450571ddf01, type: 3}
   leftBoundary: -3
   rightBoundary: 3
   scrollSpeed: 3
   obstacleSpawnIntervalSec: 3
-  spawnTimeVariance: 1
+  spawnTimeVariance: 0.46
   knockbackForce: 0.3
   speedRecovery: 0.5
 --- !u!1 &8570232599238199893
