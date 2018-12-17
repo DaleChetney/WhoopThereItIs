@@ -15,17 +15,22 @@ public class RunnerManager : MonoSingleton<RunnerManager>
     public float spawnTimeVariance;
     public float knockbackForce;
     public float speedRecovery;
+    public int obstacleSpawnRarity;
+    public int maxConsecutiveObstacles;
+    public int maxConsecutivePackets;
 
-    private DateTime nextObstacleSpawnTime;
-    private DateTime nextPacketSpawnTime;
+    private DateTime nextSpawnTime;
     private float defaultScrollSpeed;
+    private int obstaclesSincePacket = 0;
+    private int packetsSinceObstacle = 0;
 
-    private Dictionary<ObstacleType, float> spawnPositions = new Dictionary<ObstacleType, float>()
+    private Dictionary<RunnerObjectType, float> spawnPositions = new Dictionary<RunnerObjectType, float>()
     {
-        {ObstacleType.ShortJump, -0.514f },
-        {ObstacleType.LongJump, -0.667f },
-        {ObstacleType.ShortDuck, -0.179f },
-        {ObstacleType.LongDuck, 1f }
+        {RunnerObjectType.ShortJump, -0.514f },
+        {RunnerObjectType.LongJump, -0.667f },
+        {RunnerObjectType.ShortDuck, -0.179f },
+        {RunnerObjectType.JumpPacket, -0.159f },
+        {RunnerObjectType.WalkPacket, -0.52f },
     };
 
     // Start is called before the first frame update
@@ -38,24 +43,22 @@ public class RunnerManager : MonoSingleton<RunnerManager>
     // Update is called once per frame
     void Update()
     {
-        if (DateTime.UtcNow > nextObstacleSpawnTime)
+        if (DateTime.UtcNow > nextSpawnTime)
         {
             SetNextSpawnTime();
-            ObstacleType obstacleType = (ObstacleType)UnityEngine.Random.Range(0, obstaclePrefabs.Length);
-            SpawnObstacle(obstacleType);
-        }
-
-        if (DateTime.UtcNow > nextPacketSpawnTime)
-        {
-            nextPacketSpawnTime = DateTime.MaxValue;
-            ObstacleType obstacleType = (ObstacleType)UnityEngine.Random.Range(0, obstaclePrefabs.Length);
-            SpawnPacket(obstacleType);
+            
+            if (UnityEngine.Random.Range(0, obstacleSpawnRarity) == 0 && obstaclesSincePacket <= maxConsecutiveObstacles)
+                SpawnObstacle();
+            else if (packetsSinceObstacle <= maxConsecutivePackets)
+                SpawnPacket();
+            else
+                SpawnObstacle();
         }
 
         if (scrollSpeed < defaultScrollSpeed)
         {
             scrollSpeed += defaultScrollSpeed * speedRecovery * Time.deltaTime;
-            nextObstacleSpawnTime.AddSeconds(Time.deltaTime);
+            nextSpawnTime.AddSeconds(Time.deltaTime);
         }
         else
         {
@@ -63,54 +66,72 @@ public class RunnerManager : MonoSingleton<RunnerManager>
         }
     }
 
-    public void SpawnObstacle(ObstacleType obstacleType)
+    public void SpawnObstacle()
     {
-        ObstacleScript obstacle;
-        switch (obstacleType)
-        {
-            case ObstacleType.ShortJump:
-                obstacle = ObjectPoolService.Instance.AcquireInstance<ShortJumpObstacle>(obstaclePrefabs[(int)obstacleType]);
-                break;
-            case ObstacleType.LongJump:
-                obstacle = ObjectPoolService.Instance.AcquireInstance<LongJumpObstacle>(obstaclePrefabs[(int)obstacleType]);
-                break;
-            case ObstacleType.ShortDuck:
-                obstacle = ObjectPoolService.Instance.AcquireInstance<ShortDuckObstacle>(obstaclePrefabs[(int)obstacleType]);
-                break;
-            default:
-                obstacle = ObjectPoolService.Instance.AcquireInstance<ShortJumpObstacle>(obstaclePrefabs[(int)obstacleType]);
-                break;
-        }
-        var spawnPosition = transform.position;
-        spawnPosition.x += RunnerManager.Instance.rightBoundary;
-        spawnPosition.y = spawnPositions[obstacleType];
-        spawnPosition.z = 1;
-        obstacle.transform.position = spawnPosition;
+        RunnerObjectType objectType = (RunnerObjectType)UnityEngine.Random.Range(0, obstaclePrefabs.Length);
+        packetsSinceObstacle = 0;
+        obstaclesSincePacket++;
+
+        SpawnObject(objectType);
     }
 
-    public void SpawnPacket(ObstacleType obstacleType)
+    public void SpawnPacket()
     {
-        if (!ResponseManager.Instance.AnyResponsesAvailable) return;
+        RunnerObjectType objectType = (RunnerObjectType)UnityEngine.Random.Range(obstaclePrefabs.Length, obstaclePrefabs.Length + 2);
+        obstaclesSincePacket = 0;
+        packetsSinceObstacle++;
 
-        ResponsePacket packet = ResponseManager.Instance.GetRandomAvailableResponse();
-        if (packet == null) return;
+        SpawnObject(objectType);
+    }
 
-        var spawnPosition = transform.position;
-        spawnPosition.x += RunnerManager.Instance.rightBoundary;
-        spawnPosition.y = spawnPositions[obstacleType];
-        spawnPosition.z = 1;
-        packet.transform.position = spawnPosition;
+    private void SpawnObject(RunnerObjectType objectType)
+    {
+        RunnerObject item;
+        switch (objectType)
+        {
+            case RunnerObjectType.ShortJump:
+                item = ObjectPoolService.Instance.AcquireInstance<ShortJumpObstacle>(obstaclePrefabs[(int)objectType]);
+                break;
+            case RunnerObjectType.LongJump:
+                item = ObjectPoolService.Instance.AcquireInstance<LongJumpObstacle>(obstaclePrefabs[(int)objectType]);
+                break;
+            case RunnerObjectType.ShortDuck:
+                item = ObjectPoolService.Instance.AcquireInstance<ShortDuckObstacle>(obstaclePrefabs[(int)objectType]);
+                break;
+            case RunnerObjectType.JumpPacket:
+            case RunnerObjectType.WalkPacket:
+            default:
+                item = ResponseManager.Instance.GetRandomAvailableResponse();
+                break;
+        }
+
+        if(item != null)
+        {
+            var spawnPosition = transform.position;
+            spawnPosition.x += RunnerManager.Instance.rightBoundary;
+            spawnPosition.y = spawnPositions[objectType];
+            spawnPosition.z = 1;
+            item.transform.position = spawnPosition;
+        }
     }
 
     private void SetNextSpawnTime()
     {
         float spawnVariance = UnityEngine.Random.Range(-spawnTimeVariance * obstacleSpawnIntervalSec, spawnTimeVariance * obstacleSpawnIntervalSec);
-        nextObstacleSpawnTime = DateTime.UtcNow.AddSeconds(obstacleSpawnIntervalSec + spawnVariance);
-        nextPacketSpawnTime = DateTime.UtcNow.AddSeconds((obstacleSpawnIntervalSec + spawnVariance) * 0.5f);
+        nextSpawnTime = DateTime.UtcNow.AddSeconds(obstacleSpawnIntervalSec + spawnVariance);
     }
 
     public void InterruptScrolling()
     {
         scrollSpeed = defaultScrollSpeed * -knockbackForce;
     }
+}
+
+public enum RunnerObjectType
+{
+    ShortJump,
+    LongJump,
+    ShortDuck,
+    JumpPacket,
+    WalkPacket,
 }

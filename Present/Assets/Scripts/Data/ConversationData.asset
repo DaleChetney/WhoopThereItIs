@@ -74,7 +74,7 @@ MonoBehaviour:
     ResponseType: 1
     ValidResponses: []
     GruntType: 0
-    TimeToRespond: 5
+    TimeToRespond: 10
   - ConversationText: This one time we got the bright idea to TP our teacher's house.
       What we didn't know was that she had an absolute beast of a dog chained up on
       the front porch.
@@ -87,12 +87,12 @@ MonoBehaviour:
     ResponseType: 1
     ValidResponses: []
     GruntType: 0
-    TimeToRespond: 0
+    TimeToRespond: 10
   - ConversationText: ' I guess I shouldn''t tell that story at his party should I?'
     ResponseType: 1
     ValidResponses: []
     GruntType: 1
-    TimeToRespond: 0
+    TimeToRespond: 5
   - ConversationText: 'Oh well. He''ll forgive me. He always does.  I''ll be honest,
       I kinda skimmed the invitation. What are we celebrating this time anyway? '
     ResponseType: 0
@@ -152,7 +152,7 @@ MonoBehaviour:
     ResponseType: 1
     ValidResponses: []
     GruntType: 0
-    TimeToRespond: 5
+    TimeToRespond: 10
   - ConversationText: Hey, I didn't get your name, friend. Who are you?
     ResponseType: 0
     ValidResponses:
@@ -176,11 +176,6 @@ MonoBehaviour:
       Points: -5
     GruntType: 0
     TimeToRespond: 10
-  - ConversationText: 
-    ResponseType: 0
-    ValidResponses: []
-    GruntType: 0
-    TimeToRespond: 0
   RandomConversationSegments:
   - ConversationText: Who are you?
     ResponseType: 0

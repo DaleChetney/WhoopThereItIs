@@ -111,10 +111,13 @@ MonoBehaviour:
   leftBoundary: -3
   rightBoundary: 3
   scrollSpeed: 3
-  obstacleSpawnIntervalSec: 3
-  spawnTimeVariance: 0.46
+  obstacleSpawnIntervalSec: 1.5
+  spawnTimeVariance: 0.3
   knockbackForce: 0.3
   speedRecovery: 0.5
+  obstacleSpawnRarity: 3
+  maxConsecutiveObstacles: 2
+  maxConsecutivePackets: 3
 --- !u!1 &8570232599238199893
 GameObject:
   m_ObjectHideFlags: 0
@@ -336,8 +339,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 7812077105484544472, guid: dea284a2f402966469bc7ff3c602f6f6, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dea284a2f402966469bc7ff3c602f6f6, type: 3}
 --- !u!4 &3420273156552825819 stripped
 Transform:

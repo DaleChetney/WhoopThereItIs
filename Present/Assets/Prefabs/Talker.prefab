@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 8548357616527268216}
   - component: {fileID: 8548357616527268222}
   - component: {fileID: 8548357616527268223}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Torso
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -210,7 +210,7 @@ GameObject:
   - component: {fileID: 8548357616686707037}
   - component: {fileID: 8548357616686707027}
   - component: {fileID: 8548357616686707036}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -287,7 +287,7 @@ GameObject:
   - component: {fileID: 8548357616789679532}
   - component: {fileID: 8548357616789679522}
   - component: {fileID: 8548357616789679523}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ArmLeftBottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -333,7 +333,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b444e22c9b2ec1643828bf6f2c6bfa17, type: 2}
+  - {fileID: 2100000, guid: 785129610d9c23c4da399e7710a43736, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -362,7 +362,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8548357616862371007}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: LegLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -397,7 +397,7 @@ GameObject:
   - component: {fileID: 8548357616947795741}
   - component: {fileID: 8548357616947795731}
   - component: {fileID: 8548357616947795740}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Capsule (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -474,7 +474,7 @@ GameObject:
   - component: {fileID: 8548357616972208765}
   - component: {fileID: 8548357616972208755}
   - component: {fileID: 8548357616972208764}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: RightLegTop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -551,7 +551,7 @@ GameObject:
   - component: {fileID: 8548357617035095028}
   - component: {fileID: 8548357617035094794}
   - component: {fileID: 8548357617035094795}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: LegLeftBottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -626,7 +626,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8548357617222389632}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ArmRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -660,7 +660,7 @@ GameObject:
   - component: {fileID: 8548357617539038642}
   - component: {fileID: 8548357617539038640}
   - component: {fileID: 8548357617539038641}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: RightLegBottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -737,7 +737,7 @@ GameObject:
   - component: {fileID: 8548357617549457789}
   - component: {fileID: 8548357617549457779}
   - component: {fileID: 8548357617549457788}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ArmRightBottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -783,7 +783,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b444e22c9b2ec1643828bf6f2c6bfa17, type: 2}
+  - {fileID: 2100000, guid: 785129610d9c23c4da399e7710a43736, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -812,7 +812,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8548357617621082826}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ArmLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -847,7 +847,7 @@ GameObject:
   - component: {fileID: 8548357617807485699}
   - component: {fileID: 8548357617807485697}
   - component: {fileID: 8548357617807485698}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ArmRightTop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -924,7 +924,7 @@ GameObject:
   - component: {fileID: 8548357617876712262}
   - component: {fileID: 8548357617876712260}
   - component: {fileID: 8548357617876712261}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ArmLeftTop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1001,7 +1001,7 @@ GameObject:
   - component: {fileID: 8548357617927715613}
   - component: {fileID: 8548357617927715603}
   - component: {fileID: 8548357617927715612}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: LegLeftTop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1078,7 +1078,7 @@ GameObject:
   - component: {fileID: 8548357617983842278}
   - component: {fileID: 8548357617983842276}
   - component: {fileID: 8548357617983842277}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1156,7 +1156,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8548357618076605489}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: RightLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1189,7 +1189,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8548357618134577236}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Talker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1310,20 +1310,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8548357617621082826}
     m_Modifications:
+    - target: {fileID: 3999667944282774054, guid: 0b52d6750e5a5674593fd14712766140,
+        type: 3}
+      propertyPath: m_Name
+      value: SoloCup
+      objectReference: {fileID: 0}
+    - target: {fileID: 3999667944282774054, guid: 0b52d6750e5a5674593fd14712766140,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 5371579405693445929, guid: 0b52d6750e5a5674593fd14712766140,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.18399835
+      value: -0.17
       objectReference: {fileID: 0}
     - target: {fileID: 5371579405693445929, guid: 0b52d6750e5a5674593fd14712766140,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.4377017
+      value: -0.554
       objectReference: {fileID: 0}
     - target: {fileID: 5371579405693445929, guid: 0b52d6750e5a5674593fd14712766140,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.77800006
+      value: -0.747
       objectReference: {fileID: 0}
     - target: {fileID: 5371579405693445929, guid: 0b52d6750e5a5674593fd14712766140,
         type: 3}
@@ -1380,10 +1390,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 3.7116134
       objectReference: {fileID: 0}
-    - target: {fileID: 3999667944282774054, guid: 0b52d6750e5a5674593fd14712766140,
+    - target: {fileID: 5581168052447745447, guid: 0b52d6750e5a5674593fd14712766140,
         type: 3}
-      propertyPath: m_Name
-      value: SoloCup
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0b52d6750e5a5674593fd14712766140, type: 3}
