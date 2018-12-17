@@ -56,12 +56,13 @@ public class GruntSign : MonoSingleton<GruntSign>
     public void TriggerGruntFailure()
     {
 		wasLastGruntSuccessful = false;
-
-	}
+        AudioManager.Instance.gruntFail.Play();
+    }
 
     public void TriggerGruntSuccess(GruntType gruntType)
     {
 		wasLastGruntSuccessful = true;
+        AudioManager.Instance.gruntPass.Play();
 	}
 
     public void TriggerGruntOpportunity(GruntType gruntType, string promptText, int availabilityMillis)
@@ -76,6 +77,7 @@ public class GruntSign : MonoSingleton<GruntSign>
             redLight.isOn = true;
 
         gruntText.text = promptText;
+        AudioManager.Instance.gruntAlert.Play();
     }
 
 	private void EndGruntOpportunity()
