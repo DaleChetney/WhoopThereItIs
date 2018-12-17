@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5571849620699315133}
   - component: {fileID: 5571849620699315134}
   - component: {fileID: 5571849620699315135}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: WallRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,7 +100,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5571849620884858519}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Shelf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 5571849621226196600}
   - component: {fileID: 5571849621226196550}
   - component: {fileID: 5571849621226196551}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ShelfSupportRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -210,7 +210,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5571849621314929426}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ShelfStuff
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -247,7 +247,7 @@ GameObject:
   - component: {fileID: 5571849621585150269}
   - component: {fileID: 5571849621585150270}
   - component: {fileID: 5571849621585150271}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: WallLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -335,7 +335,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5571849621857480142}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Room
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -371,7 +371,7 @@ GameObject:
   - component: {fileID: 5571849621928795084}
   - component: {fileID: 5571849621928795082}
   - component: {fileID: 5571849621928795083}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ShelfBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -449,7 +449,7 @@ GameObject:
   - component: {fileID: 5571849622068655369}
   - component: {fileID: 5571849622068655370}
   - component: {fileID: 5571849622068655371}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -539,7 +539,7 @@ GameObject:
   - component: {fileID: 4455429507291443778}
   - component: {fileID: 4064960579731035584}
   - component: {fileID: 3456035770561617382}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ShelfSupportLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -617,6 +617,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: plantPot
       objectReference: {fileID: 0}
+    - target: {fileID: 4022984696817274044, guid: 98229d38223020f439b75866b9011997,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 14141030652456899, guid: 98229d38223020f439b75866b9011997,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -686,6 +691,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1.7809
+      objectReference: {fileID: 0}
+    - target: {fileID: 6309906730864621919, guid: 98229d38223020f439b75866b9011997,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 98229d38223020f439b75866b9011997, type: 3}
@@ -797,6 +807,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: bambooPlant
       objectReference: {fileID: 0}
+    - target: {fileID: 6343210928088802136, guid: 4ee00b07b1042d7498e97e27997ecc1b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2888803576211129876, guid: 4ee00b07b1042d7498e97e27997ecc1b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -851,6 +866,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7888021579631808000, guid: 4ee00b07b1042d7498e97e27997ecc1b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ee00b07b1042d7498e97e27997ecc1b, type: 3}
