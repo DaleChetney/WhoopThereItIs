@@ -203,11 +203,11 @@ public class GameManagerScript : MonoSingleton<GameManagerScript>
         submitTime = Time.time;
     }
 
-    public void ModifyScore(int modifier)
+    public void ModifyScore(int modifier, bool playAudio = true)
 	{
-        if(modifier < 0)
+        if(modifier < 0 && playAudio)
             AudioManager.Instance.gruntFail.Play();
-        if (modifier > 0)
+        if (modifier > 0 && playAudio)
             AudioManager.Instance.gruntPass.Play();
 
         Score += modifier;
