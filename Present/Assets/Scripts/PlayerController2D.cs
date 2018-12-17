@@ -86,16 +86,19 @@ public class PlayerController2D : PlayerPhysics
 				velocity.y = velocity.y * fallSpeed;
 			}
 		}
-
-		if(IsJumping && Input.GetKeyDown(KeyCode.S))
-		{
-			velocity.y = velocity.y * 3f;
-		}
 	}
 
 	private void Crouch()
 	{
-		if (isGrounded && !IsCrouching && Input.GetKey(KeyCode.S))
+		if(IsJumping && Input.GetKeyDown(KeyCode.S))
+		{
+			if(velocity.y < 0)
+				velocity.y = velocity.y * 2f;
+			else
+				velocity.y = velocity.y * -2f;
+
+		}
+		else if (Input.GetKey(KeyCode.S) && (isGrounded && !IsCrouching))
 		{
 			IsCrouching = true;
 			SetCrouchState(CapsuleDirection2D.Horizontal, horizontalSizeX, horizontalSizeY);
