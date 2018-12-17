@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class GruntSign : MonoSingleton<GruntSign>
@@ -12,7 +9,7 @@ public class GruntSign : MonoSingleton<GruntSign>
 	public bool wasLastGruntSuccessful;
 
 	private bool gruntAvailable;
-    private DateTime failTime;
+    private float failTime;
 
     // Start is called before the first frame update
     void Start()
@@ -35,7 +32,7 @@ public class GruntSign : MonoSingleton<GruntSign>
 				Grunt(GruntType.Red);
 				Look.Instance.GruntEffects(GruntType.Red);
 			}
-            else if (DateTime.UtcNow > failTime)
+            else if (Time.time > failTime)
             {
                 EndGruntOpportunity();
                 TriggerGruntFailure();
@@ -65,9 +62,9 @@ public class GruntSign : MonoSingleton<GruntSign>
         GameManagerScript.Instance.ShortSubmitTime();
     }
 
-    public void TriggerGruntOpportunity(GruntType gruntType, string promptText, int availabilityMillis)
+    public void TriggerGruntOpportunity(GruntType gruntType, string promptText, float availabilitySecs)
     {
-        failTime = DateTime.UtcNow.AddMilliseconds(availabilityMillis);
+        failTime = Time.time + availabilitySecs;
         gruntAvailable = true;
 		wasLastGruntSuccessful = false;
 
