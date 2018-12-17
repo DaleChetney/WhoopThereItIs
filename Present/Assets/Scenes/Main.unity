@@ -1448,6 +1448,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3420273156552825819, guid: 232b4bebf87d0474391ed30f4666dc90,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.012
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 232b4bebf87d0474391ed30f4666dc90, type: 3}
 --- !u!4 &2073044556 stripped
@@ -2861,8 +2866,6 @@ MonoBehaviour:
     type: 3}
   _responsePacketPrefab: {fileID: 5114971495267112254, guid: dc6569c74f4784f4f89c0484317bed13,
     type: 3}
-  _minResponsePoints: -100
-  _maxResponsePoints: 100
   _responseColorRange:
     serializedVersion: 2
     key0: {r: 1, g: 0, b: 0, a: 1}

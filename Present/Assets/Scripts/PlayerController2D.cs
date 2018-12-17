@@ -77,7 +77,7 @@ public class PlayerController2D : PlayerPhysics
 		{
 			velocity.y = jumpVelocity;
 			IsJumping = true;
-            AudioManager.Instance.jump.Play();
+			AudioManager.Instance.jump.Play();
 		}
 		else if (Input.GetKeyUp(KeyCode.W))
 		{
@@ -93,29 +93,40 @@ public class PlayerController2D : PlayerPhysics
 		if (isGrounded && Input.GetKeyDown(KeyCode.S))
 		{
 			IsCrouching = true;
-			playerCollider.direction = CapsuleDirection2D.Horizontal;
-			playerCollider.size = new Vector2(horizontalSizeX, horizontalSizeY);
-            AudioManager.Instance.slide.Play();
+			SetCrouchState(CapsuleDirection2D.Horizontal, horizontalSizeX, horizontalSizeY);
+			AudioManager.Instance.slide.Play();
 		}
 		else if (IsCrouching && Input.GetKeyUp(KeyCode.S))
 		{
 			IsCrouching = false;
-			playerCollider.direction = CapsuleDirection2D.Vertical;
-			playerCollider.size = new Vector2(verticalSizeX, verticalSizeY);
+			SetCrouchState(CapsuleDirection2D.Vertical, verticalSizeX, verticalSizeY);
 			playerRigidbody.position = new Vector2(playerRigidbody.position.x, playerRigidbody.position.y + 0.17f);
 		}
 	}
 
 	public void Knockback()
 	{
+		if (IsCrouching)
+		{
+			playerRigidbody.position = new Vector2(playerRigidbody.position.x, playerRigidbody.position.y + 0.17f);
+			SetCrouchState(CapsuleDirection2D.Vertical, verticalSizeX, verticalSizeY);
+		}
+
 		if (isGrounded)
 			velocity.y = jumpVelocity*0.6f;
 		else
 			velocity.y = jumpVelocity * 0.3f;
+		
 		IsJumping = false;
 		IsCrouching = false;
 		isGrounded = false;
 		playerAnimator.SetTrigger(knockbackAnimHash);
-        AudioManager.Instance.knockBack.Play();
+		AudioManager.Instance.knockBack.Play();
+	}
+
+	private void SetCrouchState(CapsuleDirection2D direction, float sizeX, float sizeY)
+	{
+		playerCollider.direction = direction;
+		playerCollider.size = new Vector2(sizeX, sizeY);
 	}
 }
