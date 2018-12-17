@@ -48,8 +48,7 @@ public class ResponseManager : MonoSingleton<ResponseManager>, IScrollHandler
     {
         if(_highlightedResponseIndex == -1)
         {
-            Debug.LogError("No response card highlighted - ResponseManager dropped the ball");
-            return 0;
+            return -20;
         }
 
         ResponseCard highlighted = _collectedResponses[_highlightedResponseIndex];
@@ -112,6 +111,7 @@ public class ResponseManager : MonoSingleton<ResponseManager>, IScrollHandler
     public void ClearAvailableResponses()
     {
         _availableResponses.Clear();
+        RunnerManager.Instance.DespawnEverything();
     }
 
     public void AddCollectedResponse(Response response)

@@ -115,6 +115,15 @@ public class RunnerManager : MonoSingleton<RunnerManager>
         }
     }
 
+    public void DespawnEverything()
+    {
+        var runnerObjects = GameObject.FindObjectsOfType<RunnerObject>();
+        for(int i = 0; i<runnerObjects.Length; i++)
+        {
+            runnerObjects[i].Despawn();
+        }
+    }
+
     private void SetNextSpawnTime()
     {
         float spawnVariance = Random.Range(-spawnTimeVariance * obstacleSpawnIntervalSec, spawnTimeVariance * obstacleSpawnIntervalSec);
