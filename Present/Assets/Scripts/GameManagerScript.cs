@@ -156,7 +156,7 @@ public class GameManagerScript : MonoSingleton<GameManagerScript>
 			}
 			else
 			{
-				responsePoints = -1;
+				responsePoints = -1;;
 			}
 		}
         else
@@ -164,6 +164,11 @@ public class GameManagerScript : MonoSingleton<GameManagerScript>
             responsePoints = ResponseManager.Instance.UseHighlightedResponse();
         }
 
+
+		if(responsePoints < 0)
+		{
+			TextFeed.Instance.Say(_conversationData.UnhappyNPCReactions[Random.Range(0, _conversationData.UnhappyNPCReactions.Length)]);
+		}
         ModifyScore(responsePoints);
         NextConversationSegment();
     }
@@ -184,7 +189,9 @@ public class GameManagerScript : MonoSingleton<GameManagerScript>
 		if (Score <= MIN_SCORE)
 		{
             _gameState = State.GameLose;
-            Debug.Log("YOU LOST");
+			TextFeed.Instance.Say(_conversationData.GameEndingNPCReactions[Random.Range(0, _conversationData.GameEndingNPCReactions.Length)]);
+
+			Debug.Log("YOU LOST");
 		}
 		else if (Score > MAX_SCORE)
 		{

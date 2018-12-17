@@ -8,4 +8,10 @@ public class ConversationData : ScriptableObject
 
     [SerializeField]
     public ConversationSegment[] RandomConversationSegments;
+
+	[SerializeField]
+	public string[] UnhappyNPCReactions;
+
+	[SerializeField]
+	public string[] GameEndingNPCReactions;
 }
