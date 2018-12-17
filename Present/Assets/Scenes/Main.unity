@@ -6411,7 +6411,8 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: -1.012
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8570232598261094768, guid: 232b4bebf87d0474391ed30f4666dc90, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 232b4bebf87d0474391ed30f4666dc90, type: 3}
 --- !u!4 &2073044556 stripped
 Transform:
@@ -6981,7 +6982,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0.000030517578, y: -0.000022888184}
+  m_AnchoredPosition: {x: 0.000030517578, y: -0.0000120425775}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &4854599882769319955
@@ -8027,7 +8028,8 @@ PrefabInstance:
       propertyPath: distractions.Array.data[2]
       value: 
       objectReference: {fileID: 2073044556}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7982874575714486038, guid: 507271992279a9b48bf5b2c52671d9e3, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 507271992279a9b48bf5b2c52671d9e3, type: 3}
 --- !u!224 &8674286959772126377
 RectTransform:
