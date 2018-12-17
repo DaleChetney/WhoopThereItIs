@@ -145,7 +145,7 @@ public class Look : MonoSingleton<Look>
         yield return new WaitForSeconds(1f);
         while (eyeContactLost)
         {
-            //GameManagerScript.Instance.ModifyScore(-1);
+            GameManagerScript.Instance.ModifyScore(-1);
             yield return new WaitForSeconds(1f);
         }
     }
