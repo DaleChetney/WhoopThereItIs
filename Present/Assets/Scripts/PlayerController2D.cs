@@ -77,6 +77,7 @@ public class PlayerController2D : PlayerPhysics
 		{
 			velocity.y = jumpVelocity;
 			IsJumping = true;
+			isGrounded = false;
 			AudioManager.Instance.jump.Play();
 		}
 		else if (Input.GetKeyUp(KeyCode.W))
