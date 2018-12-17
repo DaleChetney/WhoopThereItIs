@@ -214,7 +214,6 @@ GameObject:
   - component: {fileID: 9154253022200656920}
   - component: {fileID: 9154253022200656923}
   - component: {fileID: 9154253022200656922}
-  - component: {fileID: 9154253022200656921}
   m_Layer: 0
   m_Name: CounterSignPanel
   m_TagString: Untagged
@@ -280,22 +279,6 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
---- !u!114 &9154253022200656921
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9154253022200656927}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d400e7953d7c076418cf09edf6fe508e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  greenLight: {fileID: 0}
-  redLight: {fileID: 0}
-  gruntText: {fileID: 0}
-  wasLastGruntSuccessful: 0
 --- !u!1 &9154253022303920546
 GameObject:
   m_ObjectHideFlags: 0

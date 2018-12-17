@@ -25,7 +25,6 @@ public class GruntSign : MonoSingleton<GruntSign>
     {
 		if (gruntAvailable)
 		{
-			Debug.Log("GET YOUR GRUNT ON");
 			if (Input.GetMouseButton(0))
             {
                 Grunt(GruntType.Green);
