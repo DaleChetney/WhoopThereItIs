@@ -12,15 +12,10 @@ public class AudioManager : MonoSingleton<AudioManager>
     public AudioSource gruntPass;
     public AudioSource gruntFail;
 
-    // Start is called before the first frame update
     void Start()
     {
-        bgm.Play();
-    }
+        DontDestroyOnLoad(this);
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        bgm.Play();
     }
 }

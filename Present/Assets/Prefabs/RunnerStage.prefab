@@ -108,7 +108,9 @@ MonoBehaviour:
   - {fileID: 6345696161325739484, guid: b515c2847d7866f4d911e2a3571a471e, type: 3}
   - {fileID: 878501260983979867, guid: 9ae56a9c9a004744395b3eae601d224b, type: 3}
   - {fileID: 8280823398667211709, guid: e0306b9794f34f84ab74c450571ddf01, type: 3}
-  endingPrefab: {fileID: 2222689865170035819, guid: e50901f009974ff45b0113b4610ecd6c,
+  housePrefab: {fileID: 2222689865170035819, guid: e50901f009974ff45b0113b4610ecd6c,
+    type: 3}
+  toiletPrefab: {fileID: 3980732993368818001, guid: 3829f43f47a4207479e4ba462d7efc45,
     type: 3}
   leftBoundary: -3
   rightBoundary: 3

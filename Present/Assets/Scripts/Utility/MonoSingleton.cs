@@ -11,8 +11,8 @@ public class MonoSingleton<T> : MonoBehaviour where T : MonoSingleton<T>
             if (_instance == null)
             {
                 _instance = GameObject.FindObjectOfType<T>();
-                if(_instance != null)
-                    DontDestroyOnLoad(_instance.gameObject);
+                //if(_instance != null)
+                    //DontDestroyOnLoad(_instance.gameObject);
             }
             if(_instance == null)
             {
@@ -25,10 +25,11 @@ public class MonoSingleton<T> : MonoBehaviour where T : MonoSingleton<T>
 
     private void Awake()
     {
-        if (_instance == null)
+        if(_instance != null && _instance != this)
         {
-            _instance = (T)this;
-            DontDestroyOnLoad(_instance.gameObject);
+            DestroyImmediate(_instance.gameObject);
         }
+
+        _instance = (T)this;
     }
 }

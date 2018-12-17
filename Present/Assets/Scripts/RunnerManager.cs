@@ -7,7 +7,9 @@ public class RunnerManager : MonoSingleton<RunnerManager>
     [SerializeField]
     public GameObject[] obstaclePrefabs;
     [SerializeField]
-    private GameObject endingPrefab;
+    private GameObject housePrefab;
+    [SerializeField]
+    private GameObject toiletPrefab;
 
     public float leftBoundary;
     public float rightBoundary;
@@ -34,6 +36,7 @@ public class RunnerManager : MonoSingleton<RunnerManager>
         {RunnerObjectType.JumpPacket, -0.159f },
         {RunnerObjectType.WalkPacket, -0.52f },
         {RunnerObjectType.House, 0 },
+        {RunnerObjectType.Toilet, 0 },
     };
 
     // Start is called before the first frame update
@@ -46,21 +49,21 @@ public class RunnerManager : MonoSingleton<RunnerManager>
     // Update is called once per frame
     void Update()
     {
-        if (GameManagerScript.Instance.GameState == GameManagerScript.State.GameWin)
+        if (GameManagerScript.Instance.GameState == GameManagerScript.State.GameWin
+            || GameManagerScript.Instance.GameState == GameManagerScript.State.GameLose)
         {
             if (!endingSpawned)
             {
                 DespawnEverything();
-                SpawnObject(RunnerObjectType.House);
+                if (GameManagerScript.Instance.GameState == GameManagerScript.State.GameWin)
+                    SpawnObject(RunnerObjectType.House);
+                else
+                    SpawnObject(RunnerObjectType.Toilet);
                 endingSpawned = true;
             }
-            if(scrollSpeed < 0.2f)
+            if(scrollSpeed > 0.2f)
             {
-
-            }
-            else
-            {
-                scrollSpeed *= 0.9f;
+                scrollSpeed *= 1f - Time.deltaTime;
             }
         }
         else
@@ -127,7 +130,10 @@ public class RunnerManager : MonoSingleton<RunnerManager>
                     item = ResponseManager.Instance.GetRandomAvailableResponse();
                 break;
             case RunnerObjectType.House:
-                item = ObjectPoolService.Instance.AcquireInstance<EndingHouse>(endingPrefab);
+                item = ObjectPoolService.Instance.AcquireInstance<EndingHouse>(housePrefab);
+                break;
+            case RunnerObjectType.Toilet:
+                item = ObjectPoolService.Instance.AcquireInstance<EndingToilet>(toiletPrefab);
                 break;
             default:
                 if(ResponseManager.Instance.AnyResponsesAvailable)
@@ -174,4 +180,5 @@ public enum RunnerObjectType
     JumpPacket,
     WalkPacket,
     House,
+    Toilet,
 }
