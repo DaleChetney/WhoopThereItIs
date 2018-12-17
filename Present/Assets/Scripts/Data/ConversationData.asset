@@ -1093,3 +1093,35 @@ MonoBehaviour:
       Points: -10
     GruntType: 0
     TimeToRespond: 8
+  UnhappyNPCReactions:
+  - Why would you say that?
+  - Not cool.
+  - Are you serious right now?
+  - Chill out dude.
+  - Do you always act this weird?
+  - "I don\u2019t get your thing."
+  - Have you considered not being a dick?
+  - "I don\u2019t appreciate your attitude."
+  - "That\u2019s not really appropriate."
+  - "You probably shouldn\u2019t say that."
+  - No one wants to hear that. Read the room.
+  - You made it weird.
+  - Awkward...
+  - Jerk...
+  - Rude!
+  GameEndingNPCReactions:
+  - "I think we\u2019re done talking."
+  - Fuck off.
+  - "I don\u2019t need this. I\u2019m out."
+  - Get away from me.
+  - I have... a thing to go take care of. Somewhere else.
+  - I am SO done with this conversation.
+  - "Well that\u2019s enough of that. See ya."
+  - I need to be something else, your just too much.
+  - "You probably don\u2019t have many friends. I\u2019m out."
+  - "Oh hey my friend is calling me so I\u2019m gonna go."
+  - "You\u2019re killing my buzz. Peace out."
+  - "I\u2019m gonna make like the tree and never talk to you again."
+  - Who even invited you, leave me alone!
+  - "I don\u2019t think talking thing is working out, see ya."
+  - "That\u2019s gonna be a no for me dawg."

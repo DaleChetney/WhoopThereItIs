@@ -20,6 +20,7 @@ public class GameManagerScript : MonoSingleton<GameManagerScript>
 
 	private enum State { StartScreen, InGame, GameLose, GameWin };
 	private State _gameState;
+    private float submitTime;
 
     private Queue<ConversationSegment> _remainingStarterSegments;
     private List<ConversationSegment> _remainingRandomSegments;
@@ -133,9 +134,9 @@ public class GameManagerScript : MonoSingleton<GameManagerScript>
     IEnumerator TakeQueuedResponse(float delaySeconds)
     {
         float startTime = Time.time;
-        float stopTime = startTime + delaySeconds;
+        submitTime = startTime + delaySeconds;
 
-        while(Time.time < stopTime)
+        while(Time.time < submitTime)
         {
             _timerImage.fillAmount = (Time.time - startTime) / delaySeconds;
             yield return null;
@@ -155,7 +156,7 @@ public class GameManagerScript : MonoSingleton<GameManagerScript>
 			}
 			else
 			{
-				responsePoints = -1;
+				responsePoints = -1;;
 			}
 		}
         else
@@ -163,17 +164,34 @@ public class GameManagerScript : MonoSingleton<GameManagerScript>
             responsePoints = ResponseManager.Instance.UseHighlightedResponse();
         }
 
+
+		if(responsePoints < 0)
+		{
+			TextFeed.Instance.Say(_conversationData.UnhappyNPCReactions[Random.Range(0, _conversationData.UnhappyNPCReactions.Length)]);
+		}
         ModifyScore(responsePoints);
         NextConversationSegment();
     }
 
+    public void ShortSubmitTime()
+    {
+        submitTime = Time.time;
+    }
+
     public void ModifyScore(int modifier)
 	{
-		Score += modifier;
+        if(modifier < 0)
+            AudioManager.Instance.gruntFail.Play();
+        if (modifier > 0)
+            AudioManager.Instance.gruntPass.Play();
+
+        Score += modifier;
 		if (Score <= MIN_SCORE)
 		{
             _gameState = State.GameLose;
-            Debug.Log("YOU LOST");
+			TextFeed.Instance.Say(_conversationData.GameEndingNPCReactions[Random.Range(0, _conversationData.GameEndingNPCReactions.Length)]);
+
+			Debug.Log("YOU LOST");
 		}
 		else if (Score > MAX_SCORE)
 		{

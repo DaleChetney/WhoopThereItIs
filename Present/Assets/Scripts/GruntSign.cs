@@ -25,7 +25,6 @@ public class GruntSign : MonoSingleton<GruntSign>
     {
 		if (gruntAvailable)
 		{
-			Debug.Log("GET YOUR GRUNT ON");
 			if (Input.GetMouseButton(0))
             {
                 Grunt(GruntType.Green);
@@ -46,8 +45,9 @@ public class GruntSign : MonoSingleton<GruntSign>
 
     private void Grunt(GruntType gruntType)
     {
+        bool success = (gruntType == GruntType.Green) == greenLight.isOn;
         EndGruntOpportunity();
-        if ((gruntType == GruntType.Green) == greenLight.isOn)
+        if (success)
             TriggerGruntSuccess(gruntType);
         else
             TriggerGruntFailure();
@@ -56,13 +56,14 @@ public class GruntSign : MonoSingleton<GruntSign>
     public void TriggerGruntFailure()
     {
 		wasLastGruntSuccessful = false;
-
-	}
+        GameManagerScript.Instance.ShortSubmitTime();
+    }
 
     public void TriggerGruntSuccess(GruntType gruntType)
     {
 		wasLastGruntSuccessful = true;
-	}
+        GameManagerScript.Instance.ShortSubmitTime();
+    }
 
     public void TriggerGruntOpportunity(GruntType gruntType, string promptText, int availabilityMillis)
     {
@@ -76,6 +77,7 @@ public class GruntSign : MonoSingleton<GruntSign>
             redLight.isOn = true;
 
         gruntText.text = promptText;
+        AudioManager.Instance.gruntAlert.Play();
     }
 
 	private void EndGruntOpportunity()
