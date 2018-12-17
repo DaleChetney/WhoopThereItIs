@@ -6,6 +6,8 @@ public class RunnerManager : MonoSingleton<RunnerManager>
 {
     [SerializeField]
     public GameObject[] obstaclePrefabs;
+    [SerializeField]
+    private GameObject endingPrefab;
 
     public float leftBoundary;
     public float rightBoundary;
@@ -22,6 +24,7 @@ public class RunnerManager : MonoSingleton<RunnerManager>
     private float defaultScrollSpeed;
     private int obstaclesSincePacket = 0;
     private int packetsSinceObstacle = 0;
+    private bool endingSpawned = false;
 
     private Dictionary<RunnerObjectType, float> spawnPositions = new Dictionary<RunnerObjectType, float>()
     {
@@ -30,6 +33,7 @@ public class RunnerManager : MonoSingleton<RunnerManager>
         {RunnerObjectType.ShortDuck, -0.179f },
         {RunnerObjectType.JumpPacket, -0.159f },
         {RunnerObjectType.WalkPacket, -0.52f },
+        {RunnerObjectType.House, 0 },
     };
 
     // Start is called before the first frame update
@@ -42,26 +46,46 @@ public class RunnerManager : MonoSingleton<RunnerManager>
     // Update is called once per frame
     void Update()
     {
-        if (Time.time > nextSpawnTime)
+        if (GameManagerScript.Instance.GameState == GameManagerScript.State.GameWin)
         {
-            SetNextSpawnTime();
-            
-            if (Random.Range(0, obstacleSpawnRarity) == 0 && obstaclesSincePacket <= maxConsecutiveObstacles)
-                SpawnObstacle();
-            else if (packetsSinceObstacle <= maxConsecutivePackets)
-                SpawnPacket();
-            else
-                SpawnObstacle();
-        }
+            if (!endingSpawned)
+            {
+                DespawnEverything();
+                SpawnObject(RunnerObjectType.House);
+                endingSpawned = true;
+            }
+            if(scrollSpeed < 0.2f)
+            {
 
-        if (scrollSpeed < defaultScrollSpeed)
-        {
-            scrollSpeed += defaultScrollSpeed * speedRecovery * Time.deltaTime;
-            nextSpawnTime += Time.deltaTime;
+            }
+            else
+            {
+                scrollSpeed *= 0.9f;
+            }
         }
         else
         {
-            scrollSpeed = defaultScrollSpeed;
+            if (Time.time > nextSpawnTime)
+            {
+                SetNextSpawnTime();
+
+                if (Random.Range(0, obstacleSpawnRarity) == 0 && obstaclesSincePacket <= maxConsecutiveObstacles)
+                    SpawnObstacle();
+                else if (packetsSinceObstacle <= maxConsecutivePackets)
+                    SpawnPacket();
+                else
+                    SpawnObstacle();
+            }
+
+            if (scrollSpeed < defaultScrollSpeed)
+            {
+                scrollSpeed += defaultScrollSpeed * speedRecovery * Time.deltaTime;
+                nextSpawnTime += Time.deltaTime;
+            }
+            else
+            {
+                scrollSpeed = defaultScrollSpeed;
+            }
         }
     }
 
@@ -99,6 +123,12 @@ public class RunnerManager : MonoSingleton<RunnerManager>
                 break;
             case RunnerObjectType.JumpPacket:
             case RunnerObjectType.WalkPacket:
+                if (ResponseManager.Instance.AnyResponsesAvailable)
+                    item = ResponseManager.Instance.GetRandomAvailableResponse();
+                break;
+            case RunnerObjectType.House:
+                item = ObjectPoolService.Instance.AcquireInstance<EndingHouse>(endingPrefab);
+                break;
             default:
                 if(ResponseManager.Instance.AnyResponsesAvailable)
                     item = ResponseManager.Instance.GetRandomAvailableResponse();
@@ -143,4 +173,5 @@ public enum RunnerObjectType
     ShortDuck,
     JumpPacket,
     WalkPacket,
+    House,
 }

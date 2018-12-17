@@ -18,8 +18,10 @@ public class GameManagerScript : MonoSingleton<GameManagerScript>
     [SerializeField]
     private Image _timerImage;
 
-	private enum State { StartScreen, InGame, GameLose, GameWin };
+	public enum State { StartScreen, InGame, GameLose, GameWin };
 	private State _gameState;
+    public State GameState { get => _gameState; }
+
     private float submitTime;
 
     private Queue<ConversationSegment> _remainingStarterSegments;
@@ -76,7 +78,7 @@ public class GameManagerScript : MonoSingleton<GameManagerScript>
         {
 			if(RandomSegmentCount >= RANDOM_SEGMENTS_NEEDED_TO_WIN)
 			{
-				_gameState = State.GameWin;
+                _gameState = State.GameWin;
 				Debug.Log("YOU WON");
 				return;
 			}
@@ -207,5 +209,10 @@ public class GameManagerScript : MonoSingleton<GameManagerScript>
 			Score = MAX_SCORE;
 		}
 	}
+
+    public void GoToWinScreen()
+    {
+        Debug.Log("Welcome to the Win Screen");
+    }
 
 }
