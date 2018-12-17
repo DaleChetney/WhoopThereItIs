@@ -61,13 +61,9 @@ public class RunnerManager : MonoSingleton<RunnerManager>
                     SpawnObject(RunnerObjectType.Toilet);
                 endingSpawned = true;
             }
-            if(scrollSpeed < 0.2f)
+            if(scrollSpeed > 0.2f)
             {
-
-            }
-            else
-            {
-                scrollSpeed *= 0.9f;
+                scrollSpeed *= 1f - Time.deltaTime;
             }
         }
         else
@@ -137,7 +133,7 @@ public class RunnerManager : MonoSingleton<RunnerManager>
                 item = ObjectPoolService.Instance.AcquireInstance<EndingHouse>(housePrefab);
                 break;
             case RunnerObjectType.Toilet:
-                item = ObjectPoolService.Instance.AcquireInstance<EndingToilet>(housePrefab);
+                item = ObjectPoolService.Instance.AcquireInstance<EndingToilet>(toiletPrefab);
                 break;
             default:
                 if(ResponseManager.Instance.AnyResponsesAvailable)
