@@ -20,6 +20,7 @@ public class GameManagerScript : MonoSingleton<GameManagerScript>
 
 	private enum State { StartScreen, InGame, GameLose, GameWin };
 	private State _gameState;
+    private float submitTime;
 
     private Queue<ConversationSegment> _remainingStarterSegments;
     private List<ConversationSegment> _remainingRandomSegments;
@@ -133,9 +134,9 @@ public class GameManagerScript : MonoSingleton<GameManagerScript>
     IEnumerator TakeQueuedResponse(float delaySeconds)
     {
         float startTime = Time.time;
-        float stopTime = startTime + delaySeconds;
+        submitTime = startTime + delaySeconds;
 
-        while(Time.time < stopTime)
+        while(Time.time < submitTime)
         {
             _timerImage.fillAmount = (Time.time - startTime) / delaySeconds;
             yield return null;
@@ -170,6 +171,11 @@ public class GameManagerScript : MonoSingleton<GameManagerScript>
 		}
         ModifyScore(responsePoints);
         NextConversationSegment();
+    }
+
+    public void ShortSubmitTime()
+    {
+        submitTime = Time.time;
     }
 
     public void ModifyScore(int modifier)
