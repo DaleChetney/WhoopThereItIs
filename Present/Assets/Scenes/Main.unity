@@ -1121,7 +1121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 330aabea7b5b44f4a9c2055145b51575, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WithVoice: 0
+  WithVoice: 1
   text: {fileID: 4854599881949687259}
   typeDelay: 0.03
   endStatementDelay: 0.8
