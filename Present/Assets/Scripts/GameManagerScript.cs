@@ -222,7 +222,7 @@ public class GameManagerScript : MonoSingleton<GameManagerScript>
 
     public void GoToLoseScreen()
     {
-        Debug.Log("Welcome to the Win Screen");
+        Debug.Log("Welcome to the Lose Screen");
     }
 
 }
