@@ -22,18 +22,18 @@ public class TextFeed : MonoSingleton<TextFeed>
     {
         if (!writing && textQueue.Count > 0)
         {
-            UpdateText((string)textQueue.Dequeue());
+            string textToSay = (string)textQueue.Dequeue();
+            UpdateText(textToSay);
+#if UNITY_STANDALONE || UNITY_EDITOR_WIN
+            if (WithVoice)
+                Speak(textToSay);
+#endif
         }
     }
 
     public void Say(string textToSay)
     {
         textQueue.Enqueue(textToSay);
-#if UNITY_STANDALONE || UNITY_EDITOR_WIN
-        if(WithVoice)
-            Speak(textToSay);
-#endif
-
     }
 
     private void Speak(string textToSay)
