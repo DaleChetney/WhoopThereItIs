@@ -23,16 +23,17 @@ public class GruntSign : MonoSingleton<GruntSign>
     // Update is called once per frame
     void Update()
     {
-        if (gruntAvailable)
-        {
-            if (Input.GetMouseButton(1))
+		if (gruntAvailable)
+		{
+			Debug.Log("GET YOUR GRUNT ON");
+			if (Input.GetMouseButton(0))
             {
                 Grunt(GruntType.Green);
 				Look.Instance.GruntEffects(GruntType.Green);
 			}
-            else if (Input.GetMouseButton(2))
+            else if (Input.GetMouseButton(1))
             {
-                Grunt(GruntType.Red);
+				Grunt(GruntType.Red);
 				Look.Instance.GruntEffects(GruntType.Red);
 			}
             else if (DateTime.UtcNow > failTime)
