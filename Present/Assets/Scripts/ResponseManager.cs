@@ -129,7 +129,8 @@ public class ResponseManager : MonoSingleton<ResponseManager>, IScrollHandler
     }
     public void ScrambleCollectedResponses()
     {
-        StartCoroutine(PixelateRoutine());
+        if (_collectedResponses.Count > 1)
+            StartCoroutine(PixelateRoutine());
     }
 
     private float _transitionTime = 1;
@@ -158,7 +159,8 @@ public class ResponseManager : MonoSingleton<ResponseManager>, IScrollHandler
             yield return null;
         }
 
-        _collectedResponses[_highlightedResponseIndex].UnHighlight();
+        if(_highlightedResponseIndex >= 0)
+            _collectedResponses[_highlightedResponseIndex].UnHighlight();
 
         _collectedResponses.Shuffle<ResponseCard>();
 
@@ -167,7 +169,8 @@ public class ResponseManager : MonoSingleton<ResponseManager>, IScrollHandler
             _collectedResponses[i].transform.SetSiblingIndex(i);
         }
 
-        _collectedResponses[_highlightedResponseIndex].Highlight();
+        if (_highlightedResponseIndex >= 0)
+            _collectedResponses[_highlightedResponseIndex].Highlight();
 
         while (Time.time < stopDownTime)
         {
