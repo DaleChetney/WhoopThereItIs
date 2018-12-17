@@ -92,11 +92,7 @@ public class PlayerController2D : PlayerPhysics
 	{
 		if(IsJumping && Input.GetKeyDown(KeyCode.S))
 		{
-			if(velocity.y < 0)
-				velocity.y = velocity.y * 2f;
-			else
-				velocity.y = velocity.y * -2f;
-
+			velocity.y = -4f;
 		}
 		else if (Input.GetKey(KeyCode.S) && (isGrounded && !IsCrouching))
 		{
