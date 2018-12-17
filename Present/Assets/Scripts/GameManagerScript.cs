@@ -91,11 +91,6 @@ public class GameManagerScript : MonoSingleton<GameManagerScript>
 
         TextFeed.Instance.Say(_currentSegment.ConversationText);
 
-        if(_currentSegment.ResponseType == ConversationResponseType.GruntResponse)
-        {
-            // TODO: Do something with available grunt stuff
-        }
-
         ResponseManager.Instance.ClearAvailableResponses();
         ResponseManager.Instance.ClearCollectedResponses();
     }
@@ -110,7 +105,15 @@ public class GameManagerScript : MonoSingleton<GameManagerScript>
         {
 			float timeTORespondMillisRaw = _currentSegment.TimeToRespond * 1000;
 			int timeToRespondMillis = Mathf.RoundToInt(timeTORespondMillisRaw);
-			GruntSign.Instance.TriggerGruntOpportunity(_currentSegment.GruntType, _currentSegment.ConversationText, timeToRespondMillis);
+
+			if(_currentSegment.GruntType == GruntType.Green)
+			{
+				GruntSign.Instance.TriggerGruntOpportunity(_currentSegment.GruntType, "Yup", timeToRespondMillis);
+			}
+			else
+			{
+				GruntSign.Instance.TriggerGruntOpportunity(_currentSegment.GruntType, "Naw", timeToRespondMillis);
+			}
 		}
         else
         {
