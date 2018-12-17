@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: ConversationData
   m_EditorClassIdentifier: 
   StartingConversationSegments:
-  - ConversationText: 'Hey you. You gonna socialize or just keep staring at that plant?
+  - ConversationText: Hey you. You gonna socialize or just keep staring at that plant?
       I mean, it does seem a bit shady. Get it? Plant humor. Ha. So who do you know
-      here? Don''t say the plant. '
+      here? Don't say the plant.
     ResponseType: 0
     ValidResponses:
     - Phrase: Kevin
@@ -42,24 +42,23 @@ MonoBehaviour:
       Points: -100
     GruntType: 0
     TimeToRespond: 10
-  - ConversationText: "Well obviously you know Kevin. How else would you be here?
+  - ConversationText: Well obviously you know Kevin. How else would you be here?
       I mean I guess you could just be wandering into random parties looking for a
-      good time, but you don\u2019t seem the type. Anyway, have you known Kevin long?
-      \ "
+      good time, but you don’t seem the type. Anyway, have you known Kevin long?
     ResponseType: 0
     ValidResponses:
     - Phrase: Not long. We work together.
       Points: 10
-    - Phrase: "Coworkers, but like we\u2019re not on the same team, but like our teams
+    - Phrase: "Coworkers, but like we're not on the same team, but like our teams
         work together sometimes."
       Points: -2
     - Phrase: Like, forever.
       Points: 10
     - Phrase: We are literally siblings.
       Points: -5
-    - Phrase: "Sooo\u2026 maybe.... A week?"
+    - Phrase: "Sooo... maybe... A week?"
       Points: -10
-    - Phrase: "I\u2019m not sure I\u2019d say I KNOW Kevin\u2026"
+    - Phrase: "I'm not sure I'd say I KNOW Kevin..."
       Points: 5
     - Phrase: Longer than you, bitch
       Points: -20
@@ -74,7 +73,7 @@ MonoBehaviour:
     ResponseType: 1
     ValidResponses: []
     GruntType: 0
-    TimeToRespond: 10
+    TimeToRespond: 5
   - ConversationText: This one time we got the bright idea to TP our teacher's house.
       What we didn't know was that she had an absolute beast of a dog chained up on
       the front porch.
@@ -87,7 +86,7 @@ MonoBehaviour:
     ResponseType: 1
     ValidResponses: []
     GruntType: 0
-    TimeToRespond: 10
+    TimeToRespond: 5
   - ConversationText: ' I guess I shouldn''t tell that story at his party should I?'
     ResponseType: 1
     ValidResponses: []
@@ -97,9 +96,9 @@ MonoBehaviour:
       I kinda skimmed the invitation. What are we celebrating this time anyway? '
     ResponseType: 0
     ValidResponses:
-    - Phrase: "His kid\u2019s bar mitzvah"
+    - Phrase: "His kid's bar mitzvah"
       Points: 10
-    - Phrase: "It\u2019s a Housewarming party"
+    - Phrase: "It's a Housewarming party"
       Points: 10
     - Phrase: Baby shower
       Points: 0
@@ -107,13 +106,13 @@ MonoBehaviour:
       Points: 5
     - Phrase: Heck if I know
       Points: 5
-    - Phrase: "Kevin\u2019s Birthday"
+    - Phrase: "Kevin's Birthday"
       Points: 10
-    - Phrase: "It\u2019s the company\u2019s Holiday party"
+    - Phrase: "It's the company's Holiday party"
       Points: -5
-    - Phrase: "Uhh I\u2019m not\u2026 really like sure?"
+    - Phrase: "Uhh I'm not... really like sure?"
       Points: 5
-    - Phrase: "I think it\u2019s we\u2019re here to celebrate something."
+    - Phrase: "I think it's we're here to celebrate something."
       Points: -5
     - Phrase: 9/11
       Points: -11
@@ -125,7 +124,7 @@ MonoBehaviour:
       Points: -15
     - Phrase: Nothing, Kevin just like pretending he has friends
       Points: -10
-    - Phrase: "His wife\u2019s miscarriage"
+    - Phrase: "His wife's miscarriage"
       Points: -20
     - Phrase: MAGA
       Points: -10
@@ -141,7 +140,7 @@ MonoBehaviour:
       Points: -5
     - Phrase: The bee movie
       Points: -5
-    - Phrase: "Kevin, it\u2019s a Kevin party"
+    - Phrase: "Kevin, it's a Kevin party"
       Points: -5
     - Phrase: Please leave me alone
       Points: -100
@@ -156,7 +155,7 @@ MonoBehaviour:
   - ConversationText: Hey, I didn't get your name, friend. Who are you?
     ResponseType: 0
     ValidResponses:
-    - Phrase: "Kevin\u2019s friend"
+    - Phrase: "Kevin's friend"
       Points: 5
     - Phrase: Kevin
       Points: -5
@@ -168,11 +167,11 @@ MonoBehaviour:
       Points: 5
     - Phrase: A friend of the family
       Points: 5
-    - Phrase: "One of Kevin\u2019s coworkers"
+    - Phrase: "One of Kevin's coworkers"
       Points: 5
     - Phrase: Please leave me alone
       Points: -100
-    - Phrase: "Who\u2019s asking?"
+    - Phrase: "Who's asking?"
       Points: -5
     GruntType: 0
     TimeToRespond: 10
@@ -180,27 +179,25 @@ MonoBehaviour:
   - ConversationText: Who are you?
     ResponseType: 0
     ValidResponses:
-    - Phrase: "Kevin\u2019s friend"
+    - Phrase: "Kevin's friend"
       Points: 2
     - Phrase: Kevin
       Points: -2
     - Phrase: No, thanks
       Points: -5
-    - Phrase: "My name is ____ (\U0001F3BA\U0001F3BA\U0001F3BA\U0001F3BA)"
-      Points: 5
     - Phrase: Your mom
       Points: -11
     - Phrase: Hello. My name is Inigo Montoya. You killed my father. Prepare to die.
       Points: 5
     - Phrase: A friend of the family
       Points: 1
-    - Phrase: "One of Kevin\u2019s coworkers"
+    - Phrase: "One of Kevin's coworkers"
       Points: 2
     - Phrase: Please leave me alone
       Points: -10
-    - Phrase: "Who\u2019s asking?"
+    - Phrase: "Who's asking?"
       Points: -5
-    - Phrase: "I work for the international police. I\u2019m hot on the tail of Team
+    - Phrase: "I work for the international police. I'm hot on the tail of Team
         Rocket who is also attending this party."
       Points: -8
     GruntType: 0
@@ -210,23 +207,23 @@ MonoBehaviour:
     ValidResponses:
     - Phrase: I make sock puppets from scratch and sell them on Etsy.
       Points: -5
-    - Phrase: "I\u2019m a software developer."
+    - Phrase: "I'm a software developer."
       Points: 10
     - Phrase: I perform open heart surgeries.
       Points: -5
     - Phrase: I manage the public library nearby.
       Points: -10
-    - Phrase: "I handle rich people\u2019s taxes."
+    - Phrase: "I handle rich people's taxes."
       Points: 10
     - Phrase: I train dogs that were born with 5 legs.
       Points: -15
     - Phrase: I run an ASMR youtube channel.
       Points: -20
-    - Phrase: "I\u2019m above working."
+    - Phrase: "I'm above working."
       Points: -25
     - Phrase: "I volunteer for the \u201CPorn kills love\u201D campaign."
       Points: -40
-    - Phrase: "I play HOTS, oh no\u2026"
+    - Phrase: "I play HOTS, oh no..."
       Points: -5
     - Phrase: Oh ya know. This and that.
       Points: 1
@@ -234,9 +231,9 @@ MonoBehaviour:
       Points: -11
     - Phrase: I play in a ska band that exclusively covers a-ha.
       Points: -5
-    - Phrase: "Just some boring office job, you wouldn\u2019t care."
+    - Phrase: "Just some boring office job, you wouldn't care."
       Points: 1
-    - Phrase: "I\u2019m a space cowboy."
+    - Phrase: "I'm a space cowboy."
       Points: 25
     - Phrase: Veterinarian
       Points: 10
@@ -244,24 +241,24 @@ MonoBehaviour:
       Points: 20
     - Phrase: Maintenance work for cell towers all across the rockies.
       Points: -5
-    - Phrase: "I don\u2019t"
+    - Phrase: "I don't"
       Points: -10
     - Phrase: Game Jams
       Points: 1
-    - Phrase: "I\u2019m an international art thief."
+    - Phrase: "I'm an international art thief."
       Points: 10
     - Phrase: I make memes.
       Points: -40
     - Phrase: Please leave me alone
       Points: -10
     GruntType: 0
-    TimeToRespond: 7
+    TimeToRespond: 15
   - ConversationText: What are we celebrating?
     ResponseType: 0
     ValidResponses:
-    - Phrase: "His kid\u2019s bar mitzvah"
+    - Phrase: "His kid's bar mitzvah"
       Points: 5
-    - Phrase: "It\u2019s a Housewarming party"
+    - Phrase: "It's a Housewarming party"
       Points: 5
     - Phrase: Baby shower
       Points: -5
@@ -269,13 +266,13 @@ MonoBehaviour:
       Points: 10
     - Phrase: Heck if I know
       Points: 5
-    - Phrase: "Kevin\u2019s Birthday"
+    - Phrase: "Kevin's Birthday"
       Points: 10
-    - Phrase: "It\u2019s the company\u2019s Holiday party"
+    - Phrase: "It's the company's Holiday party"
       Points: -10
-    - Phrase: "Uhh I\u2019m not\u2026 really like sure?"
+    - Phrase: "Uhh I'm not... really like sure?"
       Points: 1
-    - Phrase: "I think it\u2019s we\u2019re here to celebrate something."
+    - Phrase: "I think it's we're here to celebrate something."
       Points: -5
     - Phrase: 9/11
       Points: -100
@@ -287,7 +284,7 @@ MonoBehaviour:
       Points: -100
     - Phrase: Nothing, Kevin just like pretending he has friends
       Points: -20
-    - Phrase: "His wife\u2019s miscarriage"
+    - Phrase: "His wife's miscarriage"
       Points: -91
     - Phrase: MAGA
       Points: -51
@@ -303,12 +300,12 @@ MonoBehaviour:
       Points: -60
     - Phrase: The bee movie
       Points: 3
-    - Phrase: "Kevin, it\u2019s a Kevin party"
+    - Phrase: "Kevin, it's a Kevin party"
       Points: -5
     - Phrase: Please leave me alone
       Points: -10
     GruntType: 0
-    TimeToRespond: 8
+    TimeToRespond: 15
   - ConversationText: So who do you know here? Don't say the plant.
     ResponseType: 0
     ValidResponses:
@@ -320,7 +317,7 @@ MonoBehaviour:
       Points: -10
     - Phrase: The Jews
       Points: -40
-    - Phrase: "Charlemagne. And he\u2019s a cabbage."
+    - Phrase: "Charlemagne. And he's a cabbage."
       Points: -1
     - Phrase: I uhhh...Kevin?
       Points: 1
@@ -335,7 +332,7 @@ MonoBehaviour:
     - Phrase: Most of the people here (lie)
       Points: -20
     GruntType: 0
-    TimeToRespond: 5
+    TimeToRespond: 15
   - ConversationText: What do you do for fun?
     ResponseType: 0
     ValidResponses:
@@ -347,7 +344,7 @@ MonoBehaviour:
       Points: 5
     - Phrase: I like meeting new people
       Points: 10
-    - Phrase: "Imagine I\u2019m in a platform runner"
+    - Phrase: "Imagine I'm in a platform runner"
       Points: 1
     - Phrase: Take house plants
       Points: 7
@@ -362,22 +359,22 @@ MonoBehaviour:
     - Phrase: Please leave me alone
       Points: -10
     GruntType: 0
-    TimeToRespond: 8
+    TimeToRespond: 10
   - ConversationText: How long have you known Kevin?
     ResponseType: 0
     ValidResponses:
     - Phrase: Not long. We work together.
       Points: 5
-    - Phrase: "Coworkers, but like we\u2019re not on the same team, but like our teams
+    - Phrase: "Coworkers, but like we're not on the same team, but like our teams
         work together sometimes."
       Points: -1
     - Phrase: Like, forever.
       Points: 1
     - Phrase: We are literally siblings.
       Points: -10
-    - Phrase: "Sooo\u2026 maybe.... A week?"
+    - Phrase: "Sooo... maybe.... A week?"
       Points: -5
-    - Phrase: "I\u2019m not sure I\u2019d say I KNOW Kevin\u2026"
+    - Phrase: "I'm not sure I'd say I KNOW Kevin..."
       Points: 3
     - Phrase: Longer than you, bitch
       Points: -22
@@ -386,7 +383,7 @@ MonoBehaviour:
     - Phrase: Please leave me alone
       Points: -10
     GruntType: 0
-    TimeToRespond: 6
+    TimeToRespond: 10
   - ConversationText: What kind of music you listen to?
     ResponseType: 0
     ValidResponses:
@@ -400,15 +397,15 @@ MonoBehaviour:
       Points: 10
     - Phrase: Only ska covers of a-ha
       Points: -20
-    - Phrase: "Eh, you\u2019ve never heard of it."
+    - Phrase: "Eh, you've never heard of it."
       Points: -15
     - Phrase: Hardcore, metalcore, deathcore, grindcore... any core really..
       Points: 5
     - Phrase: Please leave me alone
       Points: -10
     GruntType: 0
-    TimeToRespond: 6
-  - ConversationText: "So what\u2019s your drink of choice?"
+    TimeToRespond: 10
+  - ConversationText: "So what's your drink of choice?"
     ResponseType: 0
     ValidResponses:
     - Phrase: Bleach
@@ -421,11 +418,11 @@ MonoBehaviour:
       Points: 1
     - Phrase: Whatever gets me to forget this shitty party
       Points: -10
-    - Phrase: "I don\u2019t know, I just grabbed this from the counter"
+    - Phrase: "I don't know, I just grabbed this from the counter"
       Points: 10
-    - Phrase: "It\u2019s an alcohol"
+    - Phrase: "It's an alcohol"
       Points: 5
-    - Phrase: "It\u2019s uhhhh beer"
+    - Phrase: "It's uhhhh beer"
       Points: -5
     - Phrase: An aged je ne sais quoi shaken into a bottle of Patron
       Points: -11
@@ -435,12 +432,12 @@ MonoBehaviour:
       Points: -20
     - Phrase: The blood of the innocent
       Points: -15
-    - Phrase: "I don\u2019t drink"
+    - Phrase: "I don't drink"
       Points: -5
     - Phrase: Please leave me alone
       Points: -10
     GruntType: 0
-    TimeToRespond: 6
+    TimeToRespond: 10
   - ConversationText: Have you played that game that just came out?
     ResponseType: 0
     ValidResponses:
@@ -458,18 +455,18 @@ MonoBehaviour:
       Points: -11
     - Phrase: 'Yes. So much fun! '
       Points: 10
-    - Phrase: "No, but I can\u2019t wait. Been a fan since game 1."
+    - Phrase: "No, but I can't wait. Been a fan since game 1."
       Points: -1
     - Phrase: Please leave me alone
       Points: -10
     GruntType: 0
-    TimeToRespond: 4
+    TimeToRespond: 10
   - ConversationText: Did you do any stupid stuff as a kid?
     ResponseType: 0
     ValidResponses:
     - Phrase: Drugs
       Points: -25
-    - Phrase: "Poked a dog\u2019s eyebrows. Bad idea."
+    - Phrase: "Poked a dog's eyebrows. Bad idea."
       Points: -10
     - Phrase: Tried to dig to Mexico - border patrol is vicious.
       Points: -15
@@ -486,15 +483,15 @@ MonoBehaviour:
     - Phrase: Please leave me alone
       Points: -10
     GruntType: 0
-    TimeToRespond: 6
+    TimeToRespond: 10
   - ConversationText: Are you excited about the new Superhero movie?
     ResponseType: 0
     ValidResponses:
-    - Phrase: "More excited than you. I bet you didn\u2019t even read the comic."
+    - Phrase: "More excited than you. I bet you didn't even read the comic."
       Points: -20
     - Phrase: I love superhero movies.
       Points: 10
-    - Phrase: "You goddamn normies and your shit taste in movies\u2026"
+    - Phrase: "You goddamn normies and your shit taste in movies..."
       Points: -40
     - Phrase: Heack yeah, Superhero is the best!
       Points: 15
@@ -503,7 +500,7 @@ MonoBehaviour:
     - Phrase: Please leave me alone
       Points: -10
     GruntType: 0
-    TimeToRespond: 3
+    TimeToRespond: 10
   - ConversationText: Where are you from?
     ResponseType: 0
     ValidResponses:
@@ -511,7 +508,7 @@ MonoBehaviour:
       Points: 5
     - Phrase: The northwest quadrant of Uranus.
       Points: -69
-    - Phrase: "Small town, you wouldn\u2019t know it."
+    - Phrase: "Small town, you wouldn't know it."
       Points: 1
     - Phrase: My mom, HA!
       Points: -20
@@ -523,7 +520,7 @@ MonoBehaviour:
       Points: -10
     GruntType: 0
     TimeToRespond: 10
-  - ConversationText: "What hobby would you get into if time and money weren\u2019t
+  - ConversationText: "What hobby would you get into if time and money weren't
       an issue?"
     ResponseType: 0
     ValidResponses:
@@ -531,21 +528,21 @@ MonoBehaviour:
       Points: -10
     - Phrase: Creating additional issues
       Points: -20
-    - Phrase: " I\u2019d keep EVERY bee."
+    - Phrase: " I'd keep EVERY bee."
       Points: -15
     - Phrase: Time and money bartering
       Points: -30
     - Phrase: Definitely more traveling, see the world.
       Points: 5
-    - Phrase: "I\u2019d train Tigers"
+    - Phrase: "I'd train Tigers"
       Points: 10
-    - Phrase: "I\u2019d build irrigation systems in third world countries"
+    - Phrase: "I'd build irrigation systems in third world countries"
       Points: 13
     - Phrase: Please leave me alone
       Points: -10
     GruntType: 0
-    TimeToRespond: 2
-  - ConversationText: "If you didn\u2019t have to sleep, what would you do with the
+    TimeToRespond: 10
+  - ConversationText: "If you didn't have to sleep, what would you do with the
       extra time?"
     ResponseType: 0
     ValidResponses:
@@ -555,7 +552,7 @@ MonoBehaviour:
       Points: -1
     - Phrase: A lot of reading.
       Points: 2
-    - Phrase: "I don\u2019t sleep."
+    - Phrase: "I don't sleep."
       Points: 5
     - Phrase: Build better games.
       Points: 10
@@ -570,19 +567,19 @@ MonoBehaviour:
     - Phrase: Please leave me alone
       Points: -10
     GruntType: 0
-    TimeToRespond: 2
+    TimeToRespond: 10
   - ConversationText: What fictional place would you most like to go?
     ResponseType: 0
     ValidResponses:
-    - Phrase: "Your girlfriend\u2019s house"
+    - Phrase: "Your girlfriend's house"
       Points: -30
-    - Phrase: "My girlfriend\u2019s house"
+    - Phrase: "My girlfriend's house"
       Points: -3
     - Phrase: Delaware
       Points: -1
     - Phrase: That cigarette store Dad went to
       Points: 5
-    - Phrase: "I\u2019ve always wanted to see Hogwarts."
+    - Phrase: "I've always wanted to see Hogwarts."
       Points: 10
     - Phrase: Narnia, since I was a kid.
       Points: 11
@@ -590,14 +587,14 @@ MonoBehaviour:
       Points: 12
     - Phrase: Auschwitz
       Points: -100
-    - Phrase: "The Moon. No, it\u2019s not real. I don\u2019t want to get into this."
+    - Phrase: "The Moon. No, it's not real. I don't want to get into this."
       Points: -20
     - Phrase: New Zealand
       Points: -9
     - Phrase: Please leave me alone
       Points: -10
     GruntType: 0
-    TimeToRespond: 4
+    TimeToRespond: 10
   - ConversationText: What job would you be terrible at?
     ResponseType: 0
     ValidResponses:
@@ -605,22 +602,22 @@ MonoBehaviour:
       Points: 10
     - Phrase: Keeping children alive.
       Points: -12
-    - Phrase: "Librarian - can\u2019t read"
+    - Phrase: "Librarian - can't read"
       Points: -7
-    - Phrase: "Anything with horses, I\u2019m allergic."
+    - Phrase: "Anything with horses, I'm allergic."
       Points: 6
     - Phrase: Probably construction, I sunburn real easy.
       Points: 13
-    - Phrase: "Game designer. It\u2019s too hard."
+    - Phrase: "Game designer. It's too hard."
       Points: -14
     - Phrase: Please leave me alone
       Points: -10
     GruntType: 0
-    TimeToRespond: 6
+    TimeToRespond: 10
   - ConversationText: What is the most annoying habit that other people have?
     ResponseType: 0
     ValidResponses:
-    - Phrase: "Asking about other people\u2019s habits"
+    - Phrase: "Asking about other people's habits"
       Points: 1
     - Phrase: Loud chewing
       Points: 5
@@ -637,7 +634,7 @@ MonoBehaviour:
     - Phrase: Please leave me alone
       Points: -10
     GruntType: 0
-    TimeToRespond: 4
+    TimeToRespond: 10
   - ConversationText: What state or country do you never want to go back to?
     ResponseType: 0
     ValidResponses:
@@ -649,10 +646,10 @@ MonoBehaviour:
       Points: 10
     - Phrase: The South.
       Points: -1
-    - Phrase: "Canada. I don\u2019t think you die in real if there."
+    - Phrase: "Canada. I don't think you die in real if there."
       Points: 19
     GruntType: 0
-    TimeToRespond: 4
+    TimeToRespond: 10
   - ConversationText: What takes up too much of your time?
     ResponseType: 0
     ValidResponses:
@@ -667,7 +664,7 @@ MonoBehaviour:
     - Phrase: Figuring out what in the new should offend me.
       Points: -20
     GruntType: 0
-    TimeToRespond: 6
+    TimeToRespond: 10
   - ConversationText: What would be your first question after waking up from being
       cryogenically frozen for 100 years?
     ResponseType: 0
@@ -683,8 +680,8 @@ MonoBehaviour:
     - Phrase: Please leave me alone
       Points: -10
     GruntType: 0
-    TimeToRespond: 1
-  - ConversationText: "What\u2019s your claim to fame?"
+    TimeToRespond: 10
+  - ConversationText: "What's your claim to fame?"
     ResponseType: 0
     ValidResponses:
     - Phrase: I once got kicked out of a buffet for eating too much.
@@ -695,7 +692,7 @@ MonoBehaviour:
       Points: -31
     - Phrase: I won a spelling bee in the 8th grade
       Points: 8
-    - Phrase: "I\u2019ve balanced over 26 pears at one time"
+    - Phrase: "I've balanced over 26 pears at one time"
       Points: 26
     - Phrase: Please leave me alone
       Points: -10
@@ -721,14 +718,14 @@ MonoBehaviour:
       Points: -3
     - Phrase: Pool of Jello?
       Points: 5
-    - Phrase: "I\u2019d make them like, comment, AND subscribe"
+    - Phrase: "I'd make them like, comment, AND subscribe"
       Points: -5
     - Phrase: Please leave me alone
       Points: -10
     GruntType: 0
-    TimeToRespond: 2
+    TimeToRespond: 10
   - ConversationText: "What is something that a ton of people are obsessed with but
-      you just don\u2019t get the point of? "
+      you just don't get the point of? "
     ResponseType: 0
     ValidResponses:
     - Phrase: Bathing
@@ -744,15 +741,15 @@ MonoBehaviour:
     - Phrase: -10
       Points: 0
     GruntType: 0
-    TimeToRespond: 1
-  - ConversationText: "What\u2019s the best way a person can spend their time?"
+    TimeToRespond: 10
+  - ConversationText: "What's the best way a person can spend their time?"
     ResponseType: 0
     ValidResponses:
     - Phrase: The best way to get the hang out with my friends
       Points: -11
     - Phrase: Learning and improving themselves
       Points: 5
-    - Phrase: "Casing strangers\u2019 homes "
+    - Phrase: "Casing strangers' homes "
       Points: 1
     - Phrase: Please leave me alone
       Points: -10
@@ -761,7 +758,7 @@ MonoBehaviour:
     - Phrase: Death
       Points: -20
     GruntType: 0
-    TimeToRespond: 5
+    TimeToRespond: 10
   - ConversationText: What are you most looking forward to in the next 10 years?
     ResponseType: 0
     ValidResponses:
@@ -782,7 +779,7 @@ MonoBehaviour:
     - Phrase: Please leave me alone
       Points: -10
     GruntType: 0
-    TimeToRespond: 3
+    TimeToRespond: 10
   - ConversationText: What would you rate 10 / 10?
     ResponseType: 0
     ValidResponses:
@@ -794,7 +791,7 @@ MonoBehaviour:
       Points: -1
     - Phrase: Not this conversation
       Points: -20
-    - Phrase: "Ben and Jerry\u2019s Bacon and Egg Ice Cream"
+    - Phrase: "Ben and Jerry's Bacon and Egg Ice Cream"
       Points: -16
     - Phrase: Please leave me alone
       Points: -10
@@ -814,7 +811,7 @@ MonoBehaviour:
     - Phrase: Please leave me alone
       Points: -10
     GruntType: 0
-    TimeToRespond: 5
+    TimeToRespond: 10
   - ConversationText: What movie title best describes your life?
     ResponseType: 0
     ValidResponses:
@@ -822,7 +819,7 @@ MonoBehaviour:
       Points: -5
     - Phrase: A Series of Unfortunate Events
       Points: 5
-    - Phrase: "She\u2019s the Man"
+    - Phrase: "She's the Man"
       Points: 1
     - Phrase: Mean Girls
       Points: 10
@@ -837,22 +834,22 @@ MonoBehaviour:
     - Phrase: Please leave me alone
       Points: -10
     GruntType: 0
-    TimeToRespond: 5
-  - ConversationText: "What was the best compliment you\u2019ve received?"
+    TimeToRespond: 10
+  - ConversationText: "What was the best compliment you've received?"
     ResponseType: 0
     ValidResponses:
-    - Phrase: "\"Well at least you tried\u201D"
+    - Phrase: "\"Well at least you tried\""
       Points: 5
-    - Phrase: "\u201CThanks for understanding\u201D"
+    - Phrase: "\"Thanks for understanding\""
       Points: -5
-    - Phrase: "\u201CI thought you\u2019d do much worse\u201D"
+    - Phrase: "\"I thought you'd do much worse\""
       Points: 10
-    - Phrase: "\u201CThat is a lot of hair gel\u201D"
+    - Phrase: "\"That is a lot of hair gel\""
       Points: 15
     - Phrase: Please leave me alone
       Points: -10
     GruntType: 0
-    TimeToRespond: 5
+    TimeToRespond: 10
   - ConversationText: As the only human left on Earth, what would you do?
     ResponseType: 0
     ValidResponses:
@@ -862,15 +859,15 @@ MonoBehaviour:
       Points: -20
     - Phrase: Drink my own piss.
       Points: -5
-    - Phrase: "I\u2019d be lonely and sad :("
+    - Phrase: "I'd be lonely and sad :("
       Points: 10
     - Phrase: Run horizontally in a bear suit
       Points: 20
     - Phrase: Please leave me alone
       Points: -10
     GruntType: 0
-    TimeToRespond: 5
-  - ConversationText: "What did you think you would grow out of but haven\u2019t?"
+    TimeToRespond: 10
+  - ConversationText: "What did you think you would grow out of but haven't?"
     ResponseType: 0
     ValidResponses:
     - Phrase: Illiteracy
@@ -881,12 +878,12 @@ MonoBehaviour:
       Points: -5
     - Phrase: Harry Potter books honestly.
       Points: 20
-    - Phrase: "Video games, they\u2019re amazing for meeting people"
+    - Phrase: "Video games, they're amazing for meeting people"
       Points: 6
     - Phrase: Please leave me alone
       Points: -10
     GruntType: 0
-    TimeToRespond: 5
+    TimeToRespond: 10
   - ConversationText: In what situation or place would you feel the most out of place
       in?
     ResponseType: 0
@@ -905,7 +902,7 @@ MonoBehaviour:
       Points: -10
     GruntType: 0
     TimeToRespond: 3
-  - ConversationText: "What\u2019s the dumbest thing you\u2019ve done that actually
+  - ConversationText: "What's the dumbest thing you've done that actually
       turned out pretty well? "
     ResponseType: 0
     ValidResponses:
@@ -947,7 +944,7 @@ MonoBehaviour:
     ValidResponses:
     - Phrase: Crack cocaine
       Points: -40
-    - Phrase: "Coffee. Can\u2019t start my day without it."
+    - Phrase: "Coffee. Can't start my day without it."
       Points: 11
     - Phrase: Do you see that plant there?
       Points: 20
@@ -977,7 +974,7 @@ MonoBehaviour:
   - ConversationText: What is something you can never seem to finish?
     ResponseType: 0
     ValidResponses:
-    - Phrase: "I\u2019m bad at finishing my senten\u2026"
+    - Phrase: "I'm bad at finishing my senten..."
       Points: 5
     - Phrase: Conversations
       Points: 6
@@ -1015,8 +1012,8 @@ MonoBehaviour:
       Points: -40
     - Phrase: A guy pulled over and helped push my car to a gas station
       Points: 10
-    - Phrase: "I got flashed at an Arby\u2019s once. Haven\u2019t been the same since.
-        Can\u2019t look at curly fries the same way."
+    - Phrase: "I got flashed at an Arby's once. Haven't been the same since.
+        Can't look at curly fries the same way."
       Points: 20
     - Phrase: A stranger said hi to me once, so that was nice.
       Points: -5
@@ -1055,7 +1052,7 @@ MonoBehaviour:
       Points: -10
     GruntType: 0
     TimeToRespond: 8
-  - ConversationText: "What\u2019s the title of the current chapter of your life?"
+  - ConversationText: "What's the title of the current chapter of your life?"
     ResponseType: 0
     ValidResponses:
     - Phrase: Untitled Document
@@ -1083,7 +1080,7 @@ MonoBehaviour:
       Points: 10
     - Phrase: All of my eyes.
       Points: -5
-    - Phrase: "How uncool they\u2019ll look next to me."
+    - Phrase: "How uncool they'll look next to me."
       Points: -10
     - Phrase: Knives, probably.
       Points: -15
@@ -1099,29 +1096,29 @@ MonoBehaviour:
   - Are you serious right now?
   - Chill out dude.
   - Do you always act this weird?
-  - "I don\u2019t get your thing."
+  - "I don't get your thing."
   - Have you considered not being a dick?
-  - "I don\u2019t appreciate your attitude."
-  - "That\u2019s not really appropriate."
-  - "You probably shouldn\u2019t say that."
+  - "I don't appreciate your attitude."
+  - "That's not really appropriate."
+  - "You probably shouldn't say that."
   - No one wants to hear that. Read the room.
   - You made it weird.
   - Awkward...
   - Jerk...
   - Rude!
   GameEndingNPCReactions:
-  - "I think we\u2019re done talking."
+  - "I think we're done talking."
   - Fuck off.
-  - "I don\u2019t need this. I\u2019m out."
+  - "I don't need this. I'm out."
   - Get away from me.
   - I have... a thing to go take care of. Somewhere else.
   - I am SO done with this conversation.
-  - "Well that\u2019s enough of that. See ya."
+  - "Well that's enough of that. See ya."
   - I need to be something else, your just too much.
-  - "You probably don\u2019t have many friends. I\u2019m out."
-  - "Oh hey my friend is calling me so I\u2019m gonna go."
-  - "You\u2019re killing my buzz. Peace out."
-  - "I\u2019m gonna make like the tree and never talk to you again."
+  - "You probably don't have many friends. I'm out."
+  - "Oh hey my friend is calling me so I'm gonna go."
+  - "You're killing my buzz. Peace out."
+  - "I'm gonna make like the tree and never talk to you again."
   - Who even invited you, leave me alone!
-  - "I don\u2019t think talking thing is working out, see ya."
-  - "That\u2019s gonna be a no for me dawg."
+  - "I don't think talking thing is working out, see ya."
+  - "That's gonna be a no for me dawg."
