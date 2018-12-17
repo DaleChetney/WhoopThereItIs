@@ -169,7 +169,12 @@ public class GameManagerScript : MonoSingleton<GameManagerScript>
 
     public void ModifyScore(int modifier)
 	{
-		Score += modifier;
+        if(modifier < 0)
+            AudioManager.Instance.gruntFail.Play();
+        if (modifier > 0)
+            AudioManager.Instance.gruntPass.Play();
+
+        Score += modifier;
 		if (Score <= MIN_SCORE)
 		{
             _gameState = State.GameLose;
