@@ -15,17 +15,19 @@ public class RunnerManager : MonoSingleton<RunnerManager>
     public float spawnTimeVariance;
     public float knockbackForce;
     public float speedRecovery;
+    public int obstacleSpawnRarity;
 
     private DateTime nextObstacleSpawnTime;
     private DateTime nextPacketSpawnTime;
     private float defaultScrollSpeed;
 
-    private Dictionary<ObstacleType, float> spawnPositions = new Dictionary<ObstacleType, float>()
+    private Dictionary<RunnerObjectType, float> spawnPositions = new Dictionary<RunnerObjectType, float>()
     {
-        {ObstacleType.ShortJump, -0.514f },
-        {ObstacleType.LongJump, -0.667f },
-        {ObstacleType.ShortDuck, -0.179f },
-        {ObstacleType.LongDuck, 1f }
+        {RunnerObjectType.ShortJump, -0.514f },
+        {RunnerObjectType.LongJump, -0.667f },
+        {RunnerObjectType.ShortDuck, -0.179f },
+        {RunnerObjectType.JumpPacket, -0.159f },
+        {RunnerObjectType.WalkPacket, -0.52f },
     };
 
     // Start is called before the first frame update
@@ -41,15 +43,20 @@ public class RunnerManager : MonoSingleton<RunnerManager>
         if (DateTime.UtcNow > nextObstacleSpawnTime)
         {
             SetNextSpawnTime();
-            ObstacleType obstacleType = (ObstacleType)UnityEngine.Random.Range(0, obstaclePrefabs.Length);
-            SpawnObstacle(obstacleType);
-        }
 
-        if (DateTime.UtcNow > nextPacketSpawnTime)
-        {
-            nextPacketSpawnTime = DateTime.MaxValue;
-            ObstacleType obstacleType = (ObstacleType)UnityEngine.Random.Range(0, obstaclePrefabs.Length);
-            SpawnPacket(obstacleType);
+            RunnerObjectType objectType;
+            if (UnityEngine.Random.Range(0, obstacleSpawnRarity) > 0)
+            {
+                objectType = (RunnerObjectType)UnityEngine.Random.Range(obstaclePrefabs.Length, obstaclePrefabs.Length + 2);
+                Debug.Log("A packet has spawned");
+            }
+            else
+            {
+                objectType = (RunnerObjectType)UnityEngine.Random.Range(0, obstaclePrefabs.Length);
+                Debug.Log("An obstacle has spawned");
+            }
+
+            SpawnObject(objectType);
         }
 
         if (scrollSpeed < defaultScrollSpeed)
@@ -63,43 +70,35 @@ public class RunnerManager : MonoSingleton<RunnerManager>
         }
     }
 
-    public void SpawnObstacle(ObstacleType obstacleType)
+    private void SpawnObject(RunnerObjectType objectType)
     {
-        ObstacleScript obstacle;
-        switch (obstacleType)
+        RunnerObject item;
+        switch (objectType)
         {
-            case ObstacleType.ShortJump:
-                obstacle = ObjectPoolService.Instance.AcquireInstance<ShortJumpObstacle>(obstaclePrefabs[(int)obstacleType]);
+            case RunnerObjectType.ShortJump:
+                item = ObjectPoolService.Instance.AcquireInstance<ShortJumpObstacle>(obstaclePrefabs[(int)objectType]);
                 break;
-            case ObstacleType.LongJump:
-                obstacle = ObjectPoolService.Instance.AcquireInstance<LongJumpObstacle>(obstaclePrefabs[(int)obstacleType]);
+            case RunnerObjectType.LongJump:
+                item = ObjectPoolService.Instance.AcquireInstance<LongJumpObstacle>(obstaclePrefabs[(int)objectType]);
                 break;
-            case ObstacleType.ShortDuck:
-                obstacle = ObjectPoolService.Instance.AcquireInstance<ShortDuckObstacle>(obstaclePrefabs[(int)obstacleType]);
+            case RunnerObjectType.ShortDuck:
+                item = ObjectPoolService.Instance.AcquireInstance<ShortDuckObstacle>(obstaclePrefabs[(int)objectType]);
                 break;
+            case RunnerObjectType.JumpPacket:
+            case RunnerObjectType.WalkPacket:
             default:
-                obstacle = ObjectPoolService.Instance.AcquireInstance<ShortJumpObstacle>(obstaclePrefabs[(int)obstacleType]);
+                item = ResponseManager.Instance.GetRandomAvailableResponse();
                 break;
         }
-        var spawnPosition = transform.position;
-        spawnPosition.x += RunnerManager.Instance.rightBoundary;
-        spawnPosition.y = spawnPositions[obstacleType];
-        spawnPosition.z = 1;
-        obstacle.transform.position = spawnPosition;
-    }
 
-    public void SpawnPacket(ObstacleType obstacleType)
-    {
-        if (!ResponseManager.Instance.AnyResponsesAvailable) return;
-
-        ResponsePacket packet = ResponseManager.Instance.GetRandomAvailableResponse();
-        if (packet == null) return;
-
-        var spawnPosition = transform.position;
-        spawnPosition.x += RunnerManager.Instance.rightBoundary;
-        spawnPosition.y = spawnPositions[obstacleType];
-        spawnPosition.z = 1;
-        packet.transform.position = spawnPosition;
+        if(item != null)
+        {
+            var spawnPosition = transform.position;
+            spawnPosition.x += RunnerManager.Instance.rightBoundary;
+            spawnPosition.y = spawnPositions[objectType];
+            spawnPosition.z = 1;
+            item.transform.position = spawnPosition;
+        }
     }
 
     private void SetNextSpawnTime()
@@ -113,4 +112,13 @@ public class RunnerManager : MonoSingleton<RunnerManager>
     {
         scrollSpeed = defaultScrollSpeed * -knockbackForce;
     }
+}
+
+public enum RunnerObjectType
+{
+    ShortJump,
+    LongJump,
+    ShortDuck,
+    JumpPacket,
+    WalkPacket,
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LongJumpObstacle : ObstacleScript
 {
-    internal override void ReleaseSelf()
+    internal override void Despawn()
     {
         ObjectPoolService.Instance.ReleaseInstance<LongJumpObstacle>(this);
     }

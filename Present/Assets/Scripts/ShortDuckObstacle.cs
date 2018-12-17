@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ShortDuckObstacle : ObstacleScript
 {
-    internal override void ReleaseSelf()
+    internal override void Despawn()
     {
         ObjectPoolService.Instance.ReleaseInstance<ShortDuckObstacle>(this);
     }
