@@ -11,8 +11,8 @@ public class MonoSingleton<T> : MonoBehaviour where T : MonoSingleton<T>
             if (_instance == null)
             {
                 _instance = GameObject.FindObjectOfType<T>();
-                if(_instance != null)
-                    DontDestroyOnLoad(_instance.gameObject);
+                //if(_instance != null)
+                    //DontDestroyOnLoad(_instance.gameObject);
             }
             if(_instance == null)
             {
@@ -28,7 +28,7 @@ public class MonoSingleton<T> : MonoBehaviour where T : MonoSingleton<T>
         if (_instance == null)
         {
             _instance = (T)this;
-            DontDestroyOnLoad(_instance.gameObject);
+            //DontDestroyOnLoad(_instance.gameObject);
         }
     }
 }
