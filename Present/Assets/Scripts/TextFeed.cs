@@ -14,7 +14,7 @@ public class TextFeed : MonoSingleton<TextFeed>
     private bool writing = false;
     private Queue textQueue = new Queue();
 
-    private Dictionary<string, AudioClip> voiceClips;
+    private Dictionary<string, AudioClip> voiceClips = new Dictionary<string, AudioClip>();
 
     void Start ()
     {
