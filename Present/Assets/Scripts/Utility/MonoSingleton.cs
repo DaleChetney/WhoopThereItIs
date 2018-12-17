@@ -25,10 +25,11 @@ public class MonoSingleton<T> : MonoBehaviour where T : MonoSingleton<T>
 
     private void Awake()
     {
-        if (_instance == null)
+        if(_instance != null && _instance != this)
         {
-            _instance = (T)this;
-            //DontDestroyOnLoad(_instance.gameObject);
+            DestroyImmediate(_instance);
         }
+
+        _instance = (T)this;
     }
 }
