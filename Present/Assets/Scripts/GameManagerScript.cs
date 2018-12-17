@@ -126,16 +126,13 @@ public class GameManagerScript : MonoSingleton<GameManagerScript>
 
         if(_currentSegment.ResponseType == ConversationResponseType.GruntResponse)
         {
-			float timeTORespondMillisRaw = _currentSegment.TimeToRespond * 1000;
-			int timeToRespondMillis = Mathf.RoundToInt(timeTORespondMillisRaw);
-
 			if(_currentSegment.GruntType == GruntType.Green)
 			{
-				GruntSign.Instance.TriggerGruntOpportunity(_currentSegment.GruntType, "Yup", timeToRespondMillis);
+				GruntSign.Instance.TriggerGruntOpportunity(_currentSegment.GruntType, "Yup", _currentSegment.TimeToRespond);
 			}
 			else
 			{
-				GruntSign.Instance.TriggerGruntOpportunity(_currentSegment.GruntType, "Naw", timeToRespondMillis);
+				GruntSign.Instance.TriggerGruntOpportunity(_currentSegment.GruntType, "Naw", _currentSegment.TimeToRespond);
 			}
 		}
         else
