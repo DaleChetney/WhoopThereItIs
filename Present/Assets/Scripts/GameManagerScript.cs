@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManagerScript : MonoSingleton<GameManagerScript>
 {
@@ -18,9 +19,14 @@ public class GameManagerScript : MonoSingleton<GameManagerScript>
     [SerializeField]
     private Image _timerImage;
 
-	public enum State { StartScreen, InGame, GameLose, GameWin };
+    [SerializeField]
+    private GameObject _winScreen;
+    [SerializeField]
+    private GameObject _loseScreen;
+
+    public enum State { StartScreen, InGame, GameLose, GameWin };
 	private State _gameState;
-    public State GameState { get => _gameState; }
+    public State GameState => _gameState;
 
     private float submitTime;
 
@@ -36,6 +42,9 @@ public class GameManagerScript : MonoSingleton<GameManagerScript>
 
     void StartGame()
     {
+        _winScreen.SetActive(false);
+        _loseScreen.SetActive(false);
+
         _currentSegment = null;
 
         if (_conversationData == null)
@@ -217,12 +226,17 @@ public class GameManagerScript : MonoSingleton<GameManagerScript>
 
     public void GoToWinScreen()
     {
-        Debug.Log("Welcome to the Win Screen");
+        _winScreen.SetActive(true);
     }
 
     public void GoToLoseScreen()
     {
-        Debug.Log("Welcome to the Lose Screen");
+        _loseScreen.SetActive(true);
+    }
+
+    public void GoToMainMenu()
+    {
+        SceneManager.LoadScene("Title");
     }
 
 }
