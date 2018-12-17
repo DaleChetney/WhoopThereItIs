@@ -6,7 +6,7 @@ using System.Diagnostics;
 
 public class TextFeed : MonoSingleton<TextFeed>
 {
-
+    public bool WithVoice = true;
     public Text text;
     public float typeDelay;
     public float endStatementDelay;
@@ -30,6 +30,7 @@ public class TextFeed : MonoSingleton<TextFeed>
     {
         textQueue.Enqueue(textToSay);
 #if UNITY_STANDALONE || UNITY_EDITOR_WIN
+        if(WithVoice)
             Speak(textToSay);
 #endif
 

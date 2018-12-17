@@ -20,10 +20,12 @@ MonoBehaviour:
       Points: 5
     - Phrase: Bad
       Points: 1
+    GruntType: 0
     TimeToRespond: 10
   - ConversationText: You like trees?
     ResponseType: 1
     ValidResponses: []
+    GruntType: 0
     TimeToRespond: 30
   RandomConversationSegments:
   - ConversationText: Want a pop?
@@ -31,8 +33,12 @@ MonoBehaviour:
     ValidResponses:
     - Phrase: Yes
       Points: 50
+    GruntType: 0
     TimeToRespond: 3
   - ConversationText: Play ball
     ResponseType: 1
     ValidResponses: []
-    TimeToRespond: 0
+    GruntType: 0
+    TimeToRespond: 2
+  UnhappyNPCReactions: []
+  GameEndingNPCReactions: []
