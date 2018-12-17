@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,7 +18,7 @@ public class RunnerManager : MonoSingleton<RunnerManager>
     public int maxConsecutiveObstacles;
     public int maxConsecutivePackets;
 
-    private DateTime nextSpawnTime;
+    private float nextSpawnTime;
     private float defaultScrollSpeed;
     private int obstaclesSincePacket = 0;
     private int packetsSinceObstacle = 0;
@@ -43,11 +42,11 @@ public class RunnerManager : MonoSingleton<RunnerManager>
     // Update is called once per frame
     void Update()
     {
-        if (DateTime.UtcNow > nextSpawnTime)
+        if (Time.time > nextSpawnTime)
         {
             SetNextSpawnTime();
             
-            if (UnityEngine.Random.Range(0, obstacleSpawnRarity) == 0 && obstaclesSincePacket <= maxConsecutiveObstacles)
+            if (Random.Range(0, obstacleSpawnRarity) == 0 && obstaclesSincePacket <= maxConsecutiveObstacles)
                 SpawnObstacle();
             else if (packetsSinceObstacle <= maxConsecutivePackets)
                 SpawnPacket();
@@ -58,7 +57,7 @@ public class RunnerManager : MonoSingleton<RunnerManager>
         if (scrollSpeed < defaultScrollSpeed)
         {
             scrollSpeed += defaultScrollSpeed * speedRecovery * Time.deltaTime;
-            nextSpawnTime.AddSeconds(Time.deltaTime);
+            nextSpawnTime += Time.deltaTime;
         }
         else
         {
@@ -68,7 +67,7 @@ public class RunnerManager : MonoSingleton<RunnerManager>
 
     public void SpawnObstacle()
     {
-        RunnerObjectType objectType = (RunnerObjectType)UnityEngine.Random.Range(0, obstaclePrefabs.Length);
+        RunnerObjectType objectType = (RunnerObjectType)Random.Range(0, obstaclePrefabs.Length);
         packetsSinceObstacle = 0;
         obstaclesSincePacket++;
 
@@ -77,7 +76,7 @@ public class RunnerManager : MonoSingleton<RunnerManager>
 
     public void SpawnPacket()
     {
-        RunnerObjectType objectType = (RunnerObjectType)UnityEngine.Random.Range(obstaclePrefabs.Length, obstaclePrefabs.Length + 2);
+        RunnerObjectType objectType = (RunnerObjectType)Random.Range(obstaclePrefabs.Length, obstaclePrefabs.Length + 2);
         obstaclesSincePacket = 0;
         packetsSinceObstacle++;
 
@@ -118,8 +117,8 @@ public class RunnerManager : MonoSingleton<RunnerManager>
 
     private void SetNextSpawnTime()
     {
-        float spawnVariance = UnityEngine.Random.Range(-spawnTimeVariance * obstacleSpawnIntervalSec, spawnTimeVariance * obstacleSpawnIntervalSec);
-        nextSpawnTime = DateTime.UtcNow.AddSeconds(obstacleSpawnIntervalSec + spawnVariance);
+        float spawnVariance = Random.Range(-spawnTimeVariance * obstacleSpawnIntervalSec, spawnTimeVariance * obstacleSpawnIntervalSec);
+        nextSpawnTime = Time.time + obstacleSpawnIntervalSec + spawnVariance;
     }
 
     public void InterruptScrolling()
