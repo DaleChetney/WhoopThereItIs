@@ -27,7 +27,7 @@ public class MonoSingleton<T> : MonoBehaviour where T : MonoSingleton<T>
     {
         if(_instance != null && _instance != this)
         {
-            DestroyImmediate(_instance);
+            DestroyImmediate(_instance.gameObject);
         }
 
         _instance = (T)this;
