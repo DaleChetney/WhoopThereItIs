@@ -86,7 +86,7 @@ public class RunnerManager : MonoSingleton<RunnerManager>
 
     private void SpawnObject(RunnerObjectType objectType)
     {
-        RunnerObject item;
+        RunnerObject item = null;
         switch (objectType)
         {
             case RunnerObjectType.ShortJump:
@@ -101,7 +101,8 @@ public class RunnerManager : MonoSingleton<RunnerManager>
             case RunnerObjectType.JumpPacket:
             case RunnerObjectType.WalkPacket:
             default:
-                item = ResponseManager.Instance.GetRandomAvailableResponse();
+                if(ResponseManager.Instance.AnyResponsesAvailable)
+                    item = ResponseManager.Instance.GetRandomAvailableResponse();
                 break;
         }
 
