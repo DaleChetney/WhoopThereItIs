@@ -5,6 +5,9 @@ using UnityEngine;
 public class ConversationSegment
 {
     [SerializeField]
+    public string LineId;
+
+    [SerializeField]
     public string ConversationText;
 
     [SerializeField]

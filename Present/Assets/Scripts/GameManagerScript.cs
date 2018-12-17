@@ -112,7 +112,7 @@ public class GameManagerScript : MonoSingleton<GameManagerScript>
 
         _timerImage.fillAmount = 0;
 
-        TextFeed.Instance.Say(_currentSegment.ConversationText);
+        TextFeed.Instance.Say(new Line() { LineId = _currentSegment.LineId, ConversationText = _currentSegment.ConversationText });
 
         ResponseManager.Instance.ClearAvailableResponses();
         ResponseManager.Instance.ClearCollectedResponses();

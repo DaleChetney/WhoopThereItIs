@@ -12,6 +12,7 @@ public class AudioManager : MonoSingleton<AudioManager>
     public AudioSource gruntPass;
     public AudioSource gruntFail;
     public AudioSource mildAlarm;
+    public AudioSource voicePlayer;
 
     void Start()
     {
