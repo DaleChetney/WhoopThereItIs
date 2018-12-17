@@ -16,10 +16,13 @@ public class RunnerManager : MonoSingleton<RunnerManager>
     public float knockbackForce;
     public float speedRecovery;
     public int obstacleSpawnRarity;
+    public int maxConsecutiveObstacles;
+    public int maxConsecutivePackets;
 
-    private DateTime nextObstacleSpawnTime;
-    private DateTime nextPacketSpawnTime;
+    private DateTime nextSpawnTime;
     private float defaultScrollSpeed;
+    private int obstaclesSincePacket = 0;
+    private int packetsSinceObstacle = 0;
 
     private Dictionary<RunnerObjectType, float> spawnPositions = new Dictionary<RunnerObjectType, float>()
     {
@@ -40,34 +43,45 @@ public class RunnerManager : MonoSingleton<RunnerManager>
     // Update is called once per frame
     void Update()
     {
-        if (DateTime.UtcNow > nextObstacleSpawnTime)
+        if (DateTime.UtcNow > nextSpawnTime)
         {
             SetNextSpawnTime();
-
-            RunnerObjectType objectType;
-            if (UnityEngine.Random.Range(0, obstacleSpawnRarity) > 0)
-            {
-                objectType = (RunnerObjectType)UnityEngine.Random.Range(obstaclePrefabs.Length, obstaclePrefabs.Length + 2);
-                Debug.Log("A packet has spawned");
-            }
+            
+            if (UnityEngine.Random.Range(0, obstacleSpawnRarity) == 0 && obstaclesSincePacket <= maxConsecutiveObstacles)
+                SpawnObstacle();
+            else if (packetsSinceObstacle <= maxConsecutivePackets)
+                SpawnPacket();
             else
-            {
-                objectType = (RunnerObjectType)UnityEngine.Random.Range(0, obstaclePrefabs.Length);
-                Debug.Log("An obstacle has spawned");
-            }
-
-            SpawnObject(objectType);
+                SpawnObstacle();
         }
 
         if (scrollSpeed < defaultScrollSpeed)
         {
             scrollSpeed += defaultScrollSpeed * speedRecovery * Time.deltaTime;
-            nextObstacleSpawnTime.AddSeconds(Time.deltaTime);
+            nextSpawnTime.AddSeconds(Time.deltaTime);
         }
         else
         {
             scrollSpeed = defaultScrollSpeed;
         }
+    }
+
+    public void SpawnObstacle()
+    {
+        RunnerObjectType objectType = (RunnerObjectType)UnityEngine.Random.Range(0, obstaclePrefabs.Length);
+        packetsSinceObstacle = 0;
+        obstaclesSincePacket++;
+
+        SpawnObject(objectType);
+    }
+
+    public void SpawnPacket()
+    {
+        RunnerObjectType objectType = (RunnerObjectType)UnityEngine.Random.Range(obstaclePrefabs.Length, obstaclePrefabs.Length + 2);
+        obstaclesSincePacket = 0;
+        packetsSinceObstacle++;
+
+        SpawnObject(objectType);
     }
 
     private void SpawnObject(RunnerObjectType objectType)
@@ -104,8 +118,7 @@ public class RunnerManager : MonoSingleton<RunnerManager>
     private void SetNextSpawnTime()
     {
         float spawnVariance = UnityEngine.Random.Range(-spawnTimeVariance * obstacleSpawnIntervalSec, spawnTimeVariance * obstacleSpawnIntervalSec);
-        nextObstacleSpawnTime = DateTime.UtcNow.AddSeconds(obstacleSpawnIntervalSec + spawnVariance);
-        nextPacketSpawnTime = DateTime.UtcNow.AddSeconds((obstacleSpawnIntervalSec + spawnVariance) * 0.5f);
+        nextSpawnTime = DateTime.UtcNow.AddSeconds(obstacleSpawnIntervalSec + spawnVariance);
     }
 
     public void InterruptScrolling()

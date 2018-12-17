@@ -111,11 +111,13 @@ MonoBehaviour:
   leftBoundary: -3
   rightBoundary: 3
   scrollSpeed: 3
-  obstacleSpawnIntervalSec: 1.2
-  spawnTimeVariance: 0.2
+  obstacleSpawnIntervalSec: 1.5
+  spawnTimeVariance: 0.3
   knockbackForce: 0.3
   speedRecovery: 0.5
   obstacleSpawnRarity: 3
+  maxConsecutiveObstacles: 2
+  maxConsecutivePackets: 3
 --- !u!1 &8570232599238199893
 GameObject:
   m_ObjectHideFlags: 0
