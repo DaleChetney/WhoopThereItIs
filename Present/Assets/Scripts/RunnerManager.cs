@@ -61,10 +61,10 @@ public class RunnerManager : MonoSingleton<RunnerManager>
                     SpawnObject(RunnerObjectType.Toilet);
                 endingSpawned = true;
             }
-            if(scrollSpeed > 0.2f)
-            {
+            if (scrollSpeed > 0.25f)
                 scrollSpeed *= 1f - Time.deltaTime;
-            }
+            else
+                scrollSpeed = 0.25f;
         }
         else
         {

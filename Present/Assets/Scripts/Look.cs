@@ -59,6 +59,7 @@ public class Look : MonoSingleton<Look>
     private void ResetGaze()
     {
         eyeContactLost = false;
+        AudioManager.Instance.mildAlarm.Stop();
         distractionPosition = eyeContact.position;
     }
 
@@ -68,6 +69,7 @@ public class Look : MonoSingleton<Look>
         if(!eyeContactLost && distractionPosition != eyeContact.position && DistractionReached())
         {
             eyeContactLost = true;
+            AudioManager.Instance.mildAlarm.Play();
             StartCoroutine("SubtractPointsForEyeContact");
         }
     }
@@ -145,7 +147,7 @@ public class Look : MonoSingleton<Look>
         yield return new WaitForSeconds(1f);
         while (eyeContactLost)
         {
-            GameManagerScript.Instance.ModifyScore(-1);
+            GameManagerScript.Instance.ModifyScore(-1, false);
             yield return new WaitForSeconds(1f);
         }
     }
