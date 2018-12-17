@@ -65,6 +65,10 @@ public class TextFeed : MonoSingleton<TextFeed>
                 yield return new WaitForSeconds(endStatementDelay);
 
             }
+            else if (toAppend[i] == (','))
+            {
+                yield return new WaitForSeconds(endStatementDelay/2);
+            }
             else
             {
                 yield return new WaitForSeconds(typeDelay);
