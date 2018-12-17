@@ -112,6 +112,7 @@ public class ResponseManager : MonoSingleton<ResponseManager>, IScrollHandler
     public void ClearAvailableResponses()
     {
         _availableResponses.Clear();
+        RunnerManager.Instance.DespawnEverything();
     }
 
     public void AddCollectedResponse(Response response)
