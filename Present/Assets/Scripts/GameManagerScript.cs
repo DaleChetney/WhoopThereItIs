@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class GameManagerScript : MonoSingleton<GameManagerScript>
 {
@@ -13,6 +14,9 @@ public class GameManagerScript : MonoSingleton<GameManagerScript>
 
     [SerializeField]
     private ConversationData _conversationData;
+
+    [SerializeField]
+    private Image _timerImage;
 
 	private enum State { StartScreen, InGame, GameLose, GameWin };
 	private State _gameState;
@@ -89,6 +93,8 @@ public class GameManagerScript : MonoSingleton<GameManagerScript>
             return;
         }
 
+        _timerImage.fillAmount = 0;
+
         TextFeed.Instance.Say(_currentSegment.ConversationText);
 
         ResponseManager.Instance.ClearAvailableResponses();
@@ -126,7 +132,17 @@ public class GameManagerScript : MonoSingleton<GameManagerScript>
 
     IEnumerator TakeQueuedResponse(float delaySeconds)
     {
-        yield return new WaitForSeconds(delaySeconds);
+        float startTime = Time.time;
+        float stopTime = startTime + delaySeconds;
+
+        while(Time.time < stopTime)
+        {
+            _timerImage.fillAmount = (Time.time - startTime) / delaySeconds;
+            yield return null;
+        }
+
+        _timerImage.fillAmount = 1;
+
         Debug.Log("Time is up");
 
         int responsePoints = 0;

@@ -159,7 +159,7 @@ public class ResponseManager : MonoSingleton<ResponseManager>, IScrollHandler
 
     private void SetHighlightedResponse(int newHighlightIndex)
     {
-        if(_highlightedResponseIndex >= 0)
+        if(_highlightedResponseIndex >= 0 && _highlightedResponseIndex < _collectedResponses.Count)
         {
             _collectedResponses[_highlightedResponseIndex].UnHighlight();
         }
