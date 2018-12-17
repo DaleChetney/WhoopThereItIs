@@ -6,7 +6,7 @@ public class ObstacleScript : RunnerObject
 {
     internal override void CollideEffects()
     {
-        ResponseManager.Instance.RemoveRandomCollectedResponse();
+        ResponseManager.Instance.ScrambleCollectedResponses();
         GameObject.Find("DaydreamPlayer").GetComponent<PlayerController2D>().Knockback();
         RunnerManager.Instance.InterruptScrolling();
     }

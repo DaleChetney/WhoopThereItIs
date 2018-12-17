@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class GameManagerScript : MonoSingleton<GameManagerScript>
 {
@@ -14,8 +15,12 @@ public class GameManagerScript : MonoSingleton<GameManagerScript>
     [SerializeField]
     private ConversationData _conversationData;
 
+    [SerializeField]
+    private Image _timerImage;
+
 	private enum State { StartScreen, InGame, GameLose, GameWin };
 	private State _gameState;
+    private float submitTime;
 
     private Queue<ConversationSegment> _remainingStarterSegments;
     private List<ConversationSegment> _remainingRandomSegments;
@@ -89,6 +94,8 @@ public class GameManagerScript : MonoSingleton<GameManagerScript>
             return;
         }
 
+        _timerImage.fillAmount = 0;
+
         TextFeed.Instance.Say(_currentSegment.ConversationText);
 
         ResponseManager.Instance.ClearAvailableResponses();
@@ -126,7 +133,17 @@ public class GameManagerScript : MonoSingleton<GameManagerScript>
 
     IEnumerator TakeQueuedResponse(float delaySeconds)
     {
-        yield return new WaitForSeconds(delaySeconds);
+        float startTime = Time.time;
+        submitTime = startTime + delaySeconds;
+
+        while(Time.time < submitTime)
+        {
+            _timerImage.fillAmount = (Time.time - startTime) / delaySeconds;
+            yield return null;
+        }
+
+        _timerImage.fillAmount = 1;
+
         Debug.Log("Time is up");
 
         int responsePoints = 0;
@@ -139,7 +156,7 @@ public class GameManagerScript : MonoSingleton<GameManagerScript>
 			}
 			else
 			{
-				responsePoints = -1;
+				responsePoints = -1;;
 			}
 		}
         else
@@ -147,17 +164,34 @@ public class GameManagerScript : MonoSingleton<GameManagerScript>
             responsePoints = ResponseManager.Instance.UseHighlightedResponse();
         }
 
+
+		if(responsePoints < 0)
+		{
+			TextFeed.Instance.Say(_conversationData.UnhappyNPCReactions[Random.Range(0, _conversationData.UnhappyNPCReactions.Length)]);
+		}
         ModifyScore(responsePoints);
         NextConversationSegment();
     }
 
+    public void ShortSubmitTime()
+    {
+        submitTime = Time.time;
+    }
+
     public void ModifyScore(int modifier)
 	{
-		Score += modifier;
+        if(modifier < 0)
+            AudioManager.Instance.gruntFail.Play();
+        if (modifier > 0)
+            AudioManager.Instance.gruntPass.Play();
+
+        Score += modifier;
 		if (Score <= MIN_SCORE)
 		{
             _gameState = State.GameLose;
-            Debug.Log("YOU LOST");
+			TextFeed.Instance.Say(_conversationData.GameEndingNPCReactions[Random.Range(0, _conversationData.GameEndingNPCReactions.Length)]);
+
+			Debug.Log("YOU LOST");
 		}
 		else if (Score > MAX_SCORE)
 		{

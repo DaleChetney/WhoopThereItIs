@@ -46,6 +46,7 @@ public class PlayerPhysics : MonoBehaviour
 
 		ApplyHorizontalMovement(deltaPosition);
 		ApplyVerticalMovement(deltaPosition);
+		ComputeVelocity();
 	}
 
 	protected virtual void ComputeVelocity()

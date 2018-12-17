@@ -90,7 +90,11 @@ public class PlayerController2D : PlayerPhysics
 
 	private void Crouch()
 	{
-		if (isGrounded && Input.GetKeyDown(KeyCode.S))
+		if(IsJumping && Input.GetKeyDown(KeyCode.S))
+		{
+			velocity.y = -4f;
+		}
+		else if (Input.GetKey(KeyCode.S) && (isGrounded && !IsCrouching))
 		{
 			IsCrouching = true;
 			SetCrouchState(CapsuleDirection2D.Horizontal, horizontalSizeX, horizontalSizeY);

@@ -1,24 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using System.Linq;
+using UnityEngine.UI;
+using System.Collections;
 
 public class ResponseManager : MonoSingleton<ResponseManager>, IScrollHandler
 {
-    [Header("Scene")]
     [SerializeField]
     private RectTransform _responseCardContainer;
-
-    [Header("Prefabs")]
     [SerializeField]
     private ResponseCard _responseCardPrefab;
-
     [SerializeField]
     private ResponsePacket _responsePacketPrefab;
-
     [SerializeField]
     private Gradient _responseColorRange;
+    [SerializeField]
+    private RawImage _pixelateImage;
+    [SerializeField]
+    private float _pixelateTransitionTime = 1;
 
     // Responses the player has picked up in the runner
     private List<ResponseCard> _collectedResponses = new List<ResponseCard>();
@@ -90,7 +90,6 @@ public class ResponseManager : MonoSingleton<ResponseManager>, IScrollHandler
     // Mousewheel Scroll Listener
     void IScrollHandler.OnScroll(PointerEventData eventData)
     {
-        Debug.Log(eventData.scrollDelta);
         if (!_isHighlightingResponses)
             return;
 
@@ -128,24 +127,64 @@ public class ResponseManager : MonoSingleton<ResponseManager>, IScrollHandler
             SetHighlightedResponse(0);
         }
     }
-    public void RemoveRandomCollectedResponse()
+    public void ScrambleCollectedResponses()
     {
-        if (_collectedResponses.Count > 0)
-        {
-            int randomIndex = UnityEngine.Random.Range(0, _collectedResponses.Count);
-
-            var removed = _collectedResponses[randomIndex];
-
-            ObjectPoolService.Instance.ReleaseInstance(removed);
-
-            _collectedResponses.RemoveAt(randomIndex);
-
-            if (_highlightedResponseIndex == randomIndex)
-            {
-                SetHighlightedResponse(NextHighlightIndex);
-            }
-        }
+        if (_collectedResponses.Count > 1)
+            StartCoroutine(PixelateRoutine());
     }
+
+    private float _transitionTime = 1;
+    private float _maxPixel = 0.02f;
+    private IEnumerator PixelateRoutine()
+    {
+        float startSize = 0.001f;
+        _pixelateImage.material.SetVector("_CellSize", new Vector2(startSize, startSize));
+        _pixelateImage.gameObject.SetActive(true);
+
+        float directionTransitiontime = _transitionTime / 2;
+        float startTime = Time.time;
+        float stopUpTime = startTime + directionTransitiontime;
+        float stopDownTime = stopUpTime + directionTransitiontime;
+
+        float step;
+        float currentSize;
+
+        while (Time.time < stopUpTime)
+        {
+            step = (Time.time - startTime) / directionTransitiontime;
+
+            currentSize = Mathf.Lerp(startSize, _maxPixel, step);
+
+            _pixelateImage.material.SetVector("_CellSize", new Vector2(currentSize, currentSize));
+            yield return null;
+        }
+
+        if(_highlightedResponseIndex >= 0)
+            _collectedResponses[_highlightedResponseIndex].UnHighlight();
+
+        _collectedResponses.Shuffle<ResponseCard>();
+
+        for(int i = 0; i < _collectedResponses.Count; i++)
+        {
+            _collectedResponses[i].transform.SetSiblingIndex(i);
+        }
+
+        if (_highlightedResponseIndex >= 0)
+            _collectedResponses[_highlightedResponseIndex].Highlight();
+
+        while (Time.time < stopDownTime)
+        {
+            step = (Time.time - stopUpTime) / directionTransitiontime;
+
+            currentSize = Mathf.Lerp(_maxPixel, startSize, step);
+
+            _pixelateImage.material.SetVector("_CellSize", new Vector2(currentSize, currentSize));
+            yield return null;
+        }
+
+        _pixelateImage.gameObject.SetActive(false);
+    }
+
     public void ClearCollectedResponses()
     {
         foreach(var responseCard in _collectedResponses)
@@ -159,7 +198,7 @@ public class ResponseManager : MonoSingleton<ResponseManager>, IScrollHandler
 
     private void SetHighlightedResponse(int newHighlightIndex)
     {
-        if(_highlightedResponseIndex >= 0)
+        if(_highlightedResponseIndex >= 0 && _highlightedResponseIndex < _collectedResponses.Count)
         {
             _collectedResponses[_highlightedResponseIndex].UnHighlight();
         }

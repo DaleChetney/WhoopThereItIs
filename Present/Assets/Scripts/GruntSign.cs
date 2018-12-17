@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class GruntSign : MonoSingleton<GruntSign>
@@ -12,7 +9,7 @@ public class GruntSign : MonoSingleton<GruntSign>
 	public bool wasLastGruntSuccessful;
 
 	private bool gruntAvailable;
-    private DateTime failTime;
+    private float failTime;
 
     // Start is called before the first frame update
     void Start()
@@ -25,7 +22,6 @@ public class GruntSign : MonoSingleton<GruntSign>
     {
 		if (gruntAvailable)
 		{
-			Debug.Log("GET YOUR GRUNT ON");
 			if (Input.GetMouseButton(0))
             {
                 Grunt(GruntType.Green);
@@ -36,7 +32,7 @@ public class GruntSign : MonoSingleton<GruntSign>
 				Grunt(GruntType.Red);
 				Look.Instance.GruntEffects(GruntType.Red);
 			}
-            else if (DateTime.UtcNow > failTime)
+            else if (Time.time > failTime)
             {
                 EndGruntOpportunity();
                 TriggerGruntFailure();
@@ -46,8 +42,9 @@ public class GruntSign : MonoSingleton<GruntSign>
 
     private void Grunt(GruntType gruntType)
     {
+        bool success = (gruntType == GruntType.Green) == greenLight.isOn;
         EndGruntOpportunity();
-        if ((gruntType == GruntType.Green) == greenLight.isOn)
+        if (success)
             TriggerGruntSuccess(gruntType);
         else
             TriggerGruntFailure();
@@ -56,17 +53,18 @@ public class GruntSign : MonoSingleton<GruntSign>
     public void TriggerGruntFailure()
     {
 		wasLastGruntSuccessful = false;
-
-	}
+        GameManagerScript.Instance.ShortSubmitTime();
+    }
 
     public void TriggerGruntSuccess(GruntType gruntType)
     {
 		wasLastGruntSuccessful = true;
-	}
+        GameManagerScript.Instance.ShortSubmitTime();
+    }
 
-    public void TriggerGruntOpportunity(GruntType gruntType, string promptText, int availabilityMillis)
+    public void TriggerGruntOpportunity(GruntType gruntType, string promptText, float availabilitySecs)
     {
-        failTime = DateTime.UtcNow.AddMilliseconds(availabilityMillis);
+        failTime = Time.time + availabilitySecs;
         gruntAvailable = true;
 		wasLastGruntSuccessful = false;
 
@@ -76,6 +74,7 @@ public class GruntSign : MonoSingleton<GruntSign>
             redLight.isOn = true;
 
         gruntText.text = promptText;
+        AudioManager.Instance.gruntAlert.Play();
     }
 
 	private void EndGruntOpportunity()
