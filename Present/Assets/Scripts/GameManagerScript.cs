@@ -170,7 +170,16 @@ public class GameManagerScript : MonoSingleton<GameManagerScript>
 			TextFeed.Instance.Say(_conversationData.UnhappyNPCReactions[Random.Range(0, _conversationData.UnhappyNPCReactions.Length)]);
 		}
         ModifyScore(responsePoints);
-        NextConversationSegment();
+		if(Score > 20)
+			TalkerExpressions.Instance.SetExpression(Expressions.Pleasent);
+		else if (Score > -10 && Score <= 20)
+			TalkerExpressions.Instance.SetExpression(Expressions.Bored);
+		else if (Score > -40 && Score <= -10)
+			TalkerExpressions.Instance.SetExpression(Expressions.WeirdedOut);
+		else if(Score <= -40)
+			TalkerExpressions.Instance.SetExpression(Expressions.Offended);
+
+		NextConversationSegment();
     }
 
     public void ShortSubmitTime()
