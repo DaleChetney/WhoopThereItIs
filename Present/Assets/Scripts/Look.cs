@@ -12,6 +12,7 @@ public class Look : MonoSingleton<Look>
     public float movementThreshold = 5.0f;
     public Transform eyeContact;
     public Transform[] distractions;
+    public LookAlert lookAlert;
     private Vector2 currentRotation;
     private Vector2 lastMousePosition;
     private Vector3 distractionPosition;
@@ -60,6 +61,7 @@ public class Look : MonoSingleton<Look>
     {
         eyeContactLost = false;
         AudioManager.Instance.mildAlarm.Stop();
+        lookAlert.StopSignal();
         distractionPosition = eyeContact.position;
     }
 
@@ -70,6 +72,12 @@ public class Look : MonoSingleton<Look>
         {
             eyeContactLost = true;
             AudioManager.Instance.mildAlarm.Play();
+
+            if (distractionPosition == distractions[1].position)
+                lookAlert.SignalRight();
+            else
+                lookAlert.SignalUp();
+
             StartCoroutine("SubtractPointsForEyeContact");
         }
     }
