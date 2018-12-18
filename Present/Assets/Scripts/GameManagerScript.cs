@@ -182,6 +182,10 @@ public class GameManagerScript : MonoSingleton<GameManagerScript>
 		{
 			TextFeed.Instance.Say(_conversationData.UnhappyNPCReactions[Random.Range(0, _conversationData.UnhappyNPCReactions.Length)]);
 		}
+        else
+        {
+            TextFeed.Instance.Say(_conversationData.PositiveNPCReactions[Random.Range(0, _conversationData.PositiveNPCReactions.Length)]);
+        }
         ModifyScore(responsePoints);
 		if(Score >= 20)
 			TalkerExpressions.Instance.SetExpression(Expressions.Pleasent);
