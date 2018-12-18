@@ -14,4 +14,7 @@ public class ConversationData : ScriptableObject
 
 	[SerializeField]
 	public Line[] GameEndingNPCReactions;
+
+    [SerializeField]
+    public Line[] PositiveNPCReactions;
 }

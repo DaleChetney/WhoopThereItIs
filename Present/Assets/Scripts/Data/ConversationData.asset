@@ -40,7 +40,7 @@ MonoBehaviour:
     - Phrase: Please leave me alone
       Points: -100
     GruntType: 0
-    TimeToRespond: 10
+    TimeToRespond: 14
   - LineId: C_2
     ConversationText: Well obviously you know Kevin. How else would you be here?
       I mean I guess you could just be wandering into random parties looking for a
@@ -67,7 +67,7 @@ MonoBehaviour:
     - Phrase: Please leave me alone
       Points: -100
     GruntType: 0
-    TimeToRespond: 10
+    TimeToRespond: 14
   - LineId: C_3
     ConversationText: 'Ah. Me and Kev go way back. Like, WAY back. We used to get
       into so much trouble. Nothing serious, mind you. Just stupid kid stuff, ya know?  '
@@ -120,13 +120,13 @@ MonoBehaviour:
     - Phrase: "I think it's we're here to celebrate something."
       Points: -5
     - Phrase: 9/11
-      Points: -11
+      Points: -100
     - Phrase: Early mid-life crisis?
       Points: 7
     - Phrase: Being one year closer to our deaths?
       Points: -5
     - Phrase: White supremacy
-      Points: -15
+      Points: -100
     - Phrase: Nothing, Kevin just like pretending he has friends
       Points: -10
     - Phrase: "His wife's miscarriage"
@@ -238,7 +238,7 @@ MonoBehaviour:
     - Phrase: Please leave me alone
       Points: -10
     GruntType: 0
-    TimeToRespond: 15
+    TimeToRespond: 16
   - LineId: R_2
     ConversationText: What do you do for fun? Besides going to Kevin’s parties of course.
     ResponseType: 0
@@ -266,7 +266,7 @@ MonoBehaviour:
     - Phrase: Please leave me alone
       Points: -10
     GruntType: 0
-    TimeToRespond: 15
+    TimeToRespond: 14
   - LineId: R_3
     ConversationText: Dang this music bangin. Kevin’s got good taste. What kind of music you usually listen to?
     ResponseType: 0
@@ -285,10 +285,12 @@ MonoBehaviour:
       Points: -15
     - Phrase: Hardcore, metalcore, deathcore, grindcore... any core really..
       Points: 5
+    - Phrase: mostly podcasts
+      Points: 5
     - Phrase: Please leave me alone
       Points: -10
     GruntType: 0
-    TimeToRespond: 12
+    TimeToRespond: 13
   - LineId: R_4
     ConversationText: "I can’t believe the variety of drinks we have here! What's your drink of choice?"
     ResponseType: 0
@@ -322,7 +324,7 @@ MonoBehaviour:
     - Phrase: Please leave me alone
       Points: -10
     GruntType: 0
-    TimeToRespond: 12
+    TimeToRespond: 15
   - LineId: R_5
     ConversationText: Have you played that game that just came out? It’s been eating up all my free time but I just can’t put it down.
     ResponseType: 0
@@ -333,20 +335,20 @@ MonoBehaviour:
       Points: -30
     - Phrase: No, I have a life
       Points: -15
-    - Phrase: Way to be specific
+    - Phrase: ‘That game?’ Way to be specific
       Points: -10
     - Phrase: No, but you just lost the game
       Points: -100
     - Phrase: The one with the stuff? Dude, so good.
-      Points: -11
+      Points: 10
     - Phrase: 'Yes. So much fun! '
       Points: 10
     - Phrase: "No, but I can't wait. Been a fan since game 1."
-      Points: -1
+      Points: 20
     - Phrase: Please leave me alone
       Points: -10
     GruntType: 0
-    TimeToRespond: 12
+    TimeToRespond: 14
   - LineId: R_6
     ConversationText: Since we’re both sharing childhood stories. Did you do any stupid stuff as a kid? It doesn’t have to be a Kevin story.
     ResponseType: 0
@@ -370,7 +372,7 @@ MonoBehaviour:
     - Phrase: Please leave me alone
       Points: -10
     GruntType: 0
-    TimeToRespond: 11
+    TimeToRespond: 13
   - LineId: R_7
     ConversationText: A new trailer for that new Superhero movie just came out. I’m so hype! You hype?
     ResponseType: 0
@@ -408,7 +410,7 @@ MonoBehaviour:
     - Phrase: Please leave me alone
       Points: -10
     GruntType: 0
-    TimeToRespond: 14
+    TimeToRespond: 12
   - LineId: R_9
     ConversationText: "What hobby would you get into if time and money weren't
       an issue?"
@@ -437,7 +439,7 @@ MonoBehaviour:
     - Phrase: Please leave me alone
       Points: -10
     GruntType: 0
-    TimeToRespond: 15
+    TimeToRespond: 14
   - LineId: R_10
     ConversationText: "If you didn't have to sleep, what would you do with the
       extra time?"
@@ -522,7 +524,7 @@ MonoBehaviour:
     - Phrase: Please leave me alone
       Points: -10
     GruntType: 0
-    TimeToRespond: 12
+    TimeToRespond: 13
   - LineId: R_13
     ConversationText: Everyone at this party seems pretty chill. What do you find is the most annoying thing that people often do?
     ResponseType: 0
@@ -540,6 +542,8 @@ MonoBehaviour:
     - Phrase: Living
       Points: -20
     - Phrase: Talking about politics
+      Points: 4
+    - Phrase: Walking slow in front of me
       Points: 4
     - Phrase: Please leave me alone
       Points: -10
@@ -561,7 +565,7 @@ MonoBehaviour:
       Points: -1
     - Phrase: The Tenderloin, San Francisco. Really disgusting place.
       Points: 12
-    - Phrase: "Canada. I don't think you die in real if there."
+    - Phrase: "Canada. I don't think you die for real if there."
       Points: 19
     GruntType: 0
     TimeToRespond: 12
@@ -753,13 +757,21 @@ MonoBehaviour:
     - Phrase: These footsie pajamas
       Points: 10
     - Phrase: Roast beef
-      Points: -5
+      Points: 1
     - Phrase: Harry Potter books honestly.
       Points: 20
     - Phrase: "Video games, they're amazing for meeting people"
       Points: 6
     - Phrase: Please leave me alone
       Points: -10
+    - Phrase: Emo music. Turns out it’s not phase.
+      Points: 10
+    - Phrase: Warm milk
+      Points: -10
+    - Phrase: Quoting Vines
+      Points: -5
+    - Phrase: Throwing rocks at small animals.
+      Points: -20
     GruntType: 0
     TimeToRespond: 14
   - LineId: R_24
@@ -767,16 +779,22 @@ MonoBehaviour:
       turned out pretty well? "
     ResponseType: 0
     ValidResponses:
-    - Phrase: Dig an ugly well
-      Points: 13
     - Phrase: Talk to Kevin
       Points: 5
-    - Phrase: hought I joined a child cult, apparently it was an orphanag
+    - Phrase: Left out some mold, accidentally invented penicillin
+      Points: 10
+    - Phrase: Thought I joined a child cult, apparently it was an orphanage
       Points: -5
     - Phrase: Please leave me alone
       Points: -10
     - Phrase: I Invested in Bitcoin during the early days
       Points: 1
+    - Phrase: I spilled coffee in an art gallery and sold it for 5k.
+      Points: 15
+    - Phrase: Got involved in a MLM business. It can change your life too!
+      Points: -20
+    - Phrase: Lent money to a Nigerian prince. He actually delivered!
+      Points: 10
     GruntType: 0
     TimeToRespond: 13
   - LineId: R_25
@@ -790,15 +808,21 @@ MonoBehaviour:
     - Phrase: Attend a Kevin party
       Points: -15
     - Phrase: Vote republican
-      Points: 71
+      Points: 20
     - Phrase: Crack cocaine
       Points: -30
     - Phrase: Meth
-      Points: -47
+      Points: -40
     - Phrase: Drink the Kool Aid
       Points: 10
     - Phrase: Please leave me alone
       Points: -10
+    - Phrase: Drunk karaoke with coworkers
+      Points: 10
+    - Phrase: Eat Thai food before a flight. The mess...
+      Points: 10
+    - Phrase: My ex! Hey-oooo!
+      Points: 5
     GruntType: 0
     TimeToRespond: 14
   - LineId: R_26
@@ -817,6 +841,14 @@ MonoBehaviour:
       Points: -5
     - Phrase: Please leave me alone
       Points: -10
+    - Phrase: Fresh baked apple pie
+      Points: 10
+    - Phrase: Pine trees!
+      Points: 5
+    - Phrase: Honestly? Greasy burgers.
+      Points: 3
+    - Phrase: Spicy Cajun food
+      Points: 10
     GruntType: 0
     TimeToRespond: 15
   - LineId: R_27
@@ -830,21 +862,23 @@ MonoBehaviour:
     - Phrase: Interoffice relations. Oh you said fired UP? Awkward.
       Points: 1
     - Phrase: Anime tiddies
-      Points: -60
-    - Phrase: Normies
       Points: -40
+    - Phrase: Normies
+      Points: -10
     - Phrase: My fave fight song
       Points: -1
     - Phrase: Political Arguments
       Points: 5
     - Phrase: When someone disses my friends
-      Points: -5
+      Points: 5
     - Phrase: Disrespect
+      Points: 12
+    - Phrase: Brigitte mains
       Points: 15
-    - Phrase: Brigette mains
-      Points: 40
     - Phrase: Please leave me alone
       Points: -10
+    - Phrase: Prejudice. Can’t stand it.
+      Points: 15
     GruntType: 0
     TimeToRespond: 13
   - LineId: R_28
@@ -879,12 +913,36 @@ MonoBehaviour:
       Points: -2
     - Phrase: 40 Year Old Virgin
       Points: 7
-    - Phrase: The hangover
+    - Phrase: The Hangover
       Points: 12
     - Phrase: Shrek the Third
       Points: 3
     GruntType: 0
     TimeToRespond: 15
+  - LineId: R_29
+    ConversationText: 'Oh, I forgot to mention that I almost got hit by some drunk driver on my way here. Dude was swerving all over the place. Isn’t that crazy?'
+    ResponseType: 1
+    ValidResponses: []
+    GruntType: 0
+    TimeToRespond: 4
+  - LineId: R_30
+    ConversationText: 'Hey, you keep staring off at other things. You aren’t daydreaming, are you?'
+    ResponseType: 1
+    ValidResponses: []
+    GruntType: 1
+    TimeToRespond: 2
+  - LineId: R_31
+    ConversationText: 'I hope my questions aren’t making you uncomfortable, are they?'
+    ResponseType: 1
+    ValidResponses: []
+    GruntType: 1
+    TimeToRespond: 3
+  - LineId: R_32
+    ConversationText: 'This is a pretty cool party, don’tcha think?'
+    ResponseType: 1
+    ValidResponses: []
+    GruntType: 0
+    TimeToRespond: 5
   UnhappyNPCReactions:
   - LineId: U_1
     ConversationText: Why would you say that?
@@ -928,7 +986,7 @@ MonoBehaviour:
   - LineId: F_6
     ConversationText: "Well that's enough of that. See ya."
   - LineId: F_7
-    ConversationText: I need to be somewhere else, your just too much.
+    ConversationText: I need to be somewhere else, you’re just too much.
   - LineId: F_8
     ConversationText: "This is why you don't have many friends. I'm out."
   - LineId: F_9
@@ -943,3 +1001,30 @@ MonoBehaviour:
     ConversationText: "I don't think this talking thing is working out, see ya."
   - LineId: F_14
     ConversationText: "That's gonna be a no for me dawg."
+  PositiveNPCReactions:
+  - LineId: P_1
+    ConversationText: "I hear that."
+  - LineId: P_2
+    ConversationText: "Gotcha."
+  - LineId: P_3
+    ConversationText: "Nice."
+  - LineId: P_4
+    ConversationText: "Cool."
+  - LineId: P_5
+    ConversationText: "Neat."
+  - LineId: P_6
+    ConversationText: "Okay."
+  - LineId: P_7
+    ConversationText: "I like it."
+  - LineId: P_8
+    ConversationText: "Well said."
+  - LineId: P_9
+    ConversationText: "Alright."
+  - LineId: P_10
+    ConversationText: "I get you."
+  - LineId: P_11
+    ConversationText: "That’s interesting."
+
+
+
+
