@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static GameManagerScript;
 
 public class Look : MonoSingleton<Look>
 {
@@ -41,18 +42,21 @@ public class Look : MonoSingleton<Look>
     // Update is called once per frame
     void Update()
     {
+		if(GameManagerScript.Instance.GameState == State.InGame)
+		{
 
-        if (!nodding && !shaking)
-        {
-            if (Vector2.Distance(Input.mousePosition, lastMousePosition) > movementThreshold)
-            {
-                ResetGaze();
-            }
-        }
+			if (!nodding && !shaking)
+			{
+				if (Vector2.Distance(Input.mousePosition, lastMousePosition) > movementThreshold)
+				{
+					ResetGaze();
+				}
+			}
 
-        DriftMove();
+			DriftMove();
 
-        lastMousePosition = Input.mousePosition;
+			lastMousePosition = Input.mousePosition;
+		}
     }
 
     private void ResetGaze()
