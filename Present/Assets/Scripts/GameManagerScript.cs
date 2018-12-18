@@ -189,15 +189,6 @@ public class GameManagerScript : MonoSingleton<GameManagerScript>
 				TextFeed.Instance.Say(_conversationData.PositiveNPCReactions[Random.Range(0, _conversationData.PositiveNPCReactions.Length)]);
 			}
 			ModifyScore(responsePoints);
-			if (Score >= 20)
-				TalkerExpressions.Instance.SetExpression(Expressions.Pleasent);
-			else if (Score >= -10 && Score < 20)
-				TalkerExpressions.Instance.SetExpression(Expressions.Bored);
-			else if (Score >= -40 && Score < -10)
-				TalkerExpressions.Instance.SetExpression(Expressions.WeirdedOut);
-			else if (Score < -40)
-				TalkerExpressions.Instance.SetExpression(Expressions.Offended);
-
 			NextConversationSegment();
 		}
     }
@@ -225,6 +216,15 @@ public class GameManagerScript : MonoSingleton<GameManagerScript>
 				Debug.Log("YOU LOST");
 			}
 		}
+
+		if (Score >= 20)
+			TalkerExpressions.Instance.SetExpression(Expressions.Pleasent);
+		else if (Score >= -10 && Score < 20)
+			TalkerExpressions.Instance.SetExpression(Expressions.Bored);
+		else if (Score >= -40 && Score < -10)
+			TalkerExpressions.Instance.SetExpression(Expressions.WeirdedOut);
+		else if (Score < -40)
+			TalkerExpressions.Instance.SetExpression(Expressions.Offended);
 	}
 
     public void GoToWinScreen()
