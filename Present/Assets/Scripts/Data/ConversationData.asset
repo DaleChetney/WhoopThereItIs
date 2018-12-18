@@ -340,7 +340,7 @@ MonoBehaviour:
       Points: -30
     - Phrase: No, I have a life
       Points: -15
-    - Phrase: "\u2018That game?\u2019 Way to be spec"
+    - Phrase: "\u2018That game?\u2019 Way to be specific."
       Points: -10
     - Phrase: No, but you just lost the game
       Points: -100
@@ -568,9 +568,9 @@ MonoBehaviour:
       Points: 5
     - Phrase: Please leave me alone
       Points: -10
-    - Phrase: "Oklahoma. Don\u2019t get me starte"
+    - Phrase: "Oklahoma. Don\u2019t get me started."
       Points: 10
-    - Phrase: "Mexico. I got a tan and almost couldn\u2019t get back across the borde"
+    - Phrase: "Mexico. I got a tan and almost couldn\u2019t get back across the border."
       Points: 10
     - Phrase: The South.
       Points: -1
@@ -601,7 +601,7 @@ MonoBehaviour:
       Points: 6
     - Phrase: Are we any closer to world peace?
       Points: 5
-    - Phrase: "Why can\u2019t you just let me di"
+    - Phrase: "Why can\u2019t you just let me die?"
       Points: -10
     GruntType: 0
     TimeToRespond: 12
@@ -630,7 +630,7 @@ MonoBehaviour:
       Points: -10
     - Phrase: National Pizza Worship Day. Nuff said.
       Points: 14
-    - Phrase: "I\u2019d require all cars to have minimum 200 horsepowe"
+    - Phrase: "I\u2019d require all cars to have minimum 200 horsepower"
       Points: 10
     GruntType: 0
     TimeToRespond: 13
@@ -649,9 +649,9 @@ MonoBehaviour:
       Points: -20
     - Phrase: Memes
       Points: -50
-    - Phrase: "Composting. We get it, you\u2019re gree"
+    - Phrase: "Composting. We get it, you\u2019re green."
       Points: 10
-    - Phrase: "Essential oils. Lavender won\u2019t make you younge"
+    - Phrase: "Essential oils. Lavender won\u2019t make you younger."
       Points: 12
     - Phrase: Selfies. Put the phone down.
       Points: 10
@@ -780,7 +780,7 @@ MonoBehaviour:
       Points: 6
     - Phrase: Please leave me alone
       Points: -10
-    - Phrase: "Emo music. Turns out it\u2019s not phas"
+    - Phrase: "Emo music. Turns out it\u2019s not phase."
       Points: 10
     - Phrase: Warm milk
       Points: -10
