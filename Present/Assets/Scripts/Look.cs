@@ -163,7 +163,9 @@ public class Look : MonoSingleton<Look>
         yield return new WaitForSeconds(1f);
         while (eyeContactLost)
         {
-            GameManagerScript.Instance.ModifyScore(-1, false);
+            //You do not want to lose via eye contact. Trust me.
+            if(GameManagerScript.Instance.Score > -49)
+                GameManagerScript.Instance.ModifyScore(-1, false);
             yield return new WaitForSeconds(1f);
         }
     }

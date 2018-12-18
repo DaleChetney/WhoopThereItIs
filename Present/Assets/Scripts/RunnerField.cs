@@ -33,7 +33,7 @@ public class RunnerField : MonoBehaviour
     {
         foreach (var grnd in groundSprites)
         {
-            grnd.position += new Vector3(-RunnerManager.Instance.scrollSpeed * Time.deltaTime, 0, -0.001f);
+            grnd.position += new Vector3(-RunnerManager.Instance.scrollSpeed * Time.deltaTime, 0, -0.001f * RunnerManager.Instance.scrollSpeed);
             if (grnd.position.x < transform.position.x + RunnerManager.Instance.leftBoundary)
             {
                 var newVec = grnd.position;
