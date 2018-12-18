@@ -43,11 +43,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd7f50fd51e2b6d449c42e7d2bbde3bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstaclePrefabs:
-  - {fileID: 7025413354370900445, guid: 2aac8e0aeb606db42b16337830b3146a, type: 3}
   groundPrefab: {fileID: 3780404229457040666, guid: fad28adf0ed13b84882b03359484fe1f,
     type: 3}
-  groundPieces: 8
-  leftBoundary: -3
-  rightBoundary: 3
-  scrollSpeed: 3
+  groundPieces: 12
