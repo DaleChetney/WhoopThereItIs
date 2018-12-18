@@ -61,9 +61,12 @@ public class PlayerController2D : PlayerPhysics
 
 	protected override void ComputeVelocity()
 	{
-		Jump();
-		Crouch();
-		playerAnimator.SetBool(runAnimHash, isGrounded);
+		if (GameManagerScript.Instance.GameState == GameManagerScript.State.InGame)
+		{
+			Jump();
+			Crouch();
+			playerAnimator.SetBool(runAnimHash, isGrounded);
+		}
 	}
 
 	private void Jump()
