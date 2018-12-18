@@ -57,6 +57,11 @@ public class Look : MonoSingleton<Look>
 
 			lastMousePosition = Input.mousePosition;
 		}
+		else
+		{
+			AudioManager.Instance.mildAlarm.Stop();
+			lookAlert.StopSignal();
+		}
     }
 
     private void ResetGaze()
