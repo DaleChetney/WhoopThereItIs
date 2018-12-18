@@ -25,7 +25,6 @@ public class Look : MonoSingleton<Look>
     private bool eyeContactLost = false;
     private Camera cam;
 
-
     // Start is called before the first frame update
     void Start()
     {
@@ -34,16 +33,14 @@ public class Look : MonoSingleton<Look>
         lastMousePosition = currentRotation;
         above = cam.transform.position + new Vector3(0f, 100f, 0f);
         below = cam.transform.position + new Vector3(0f, -100f, 0f);
-        left = cam.transform.position + new Vector3(-100f, 0f, 0f);
-        right = cam.transform.position + new Vector3(100f, 0f, 0f);
+        left = cam.transform.position + new Vector3(0f, 0f, -100f);
+        right = cam.transform.position + new Vector3(0f, 0f, 100f);
         StartCoroutine("Wander");
-
     }
 
     // Update is called once per frame
     void Update()
     {
-
         if (!nodding && !shaking)
         {
             if (Vector2.Distance(Input.mousePosition, lastMousePosition) > movementThreshold)
@@ -112,11 +109,11 @@ public class Look : MonoSingleton<Look>
         yield return new WaitForSeconds(0.05f);
         distractionPosition = oldTarget;
         nodding = false;
-    }
+	}
 
     IEnumerator Shake()
     {
-        Vector3 oldTarget = distractionPosition;
+		Vector3 oldTarget = distractionPosition;
         shaking = true;
         distractionPosition = left;
         yield return new WaitForSeconds(0.05f);
