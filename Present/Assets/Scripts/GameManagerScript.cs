@@ -7,7 +7,6 @@ using UnityEngine.SceneManagement;
 public class GameManagerScript : MonoSingleton<GameManagerScript>
 {
 	public int Score;
-	public const int MAX_SCORE = 50;
 	public const int MIN_SCORE = -50;
 
 	public int RandomSegmentCount;
@@ -190,7 +189,7 @@ public class GameManagerScript : MonoSingleton<GameManagerScript>
 			{
 				TextFeed.Instance.Say(_conversationData.UnhappyNPCReactions[Random.Range(0, _conversationData.UnhappyNPCReactions.Length)]);
 			}
-			else
+			else if(_currentSegment.ResponseType == ConversationResponseType.TextResponse)
 			{
 				TextFeed.Instance.Say(_conversationData.PositiveNPCReactions[Random.Range(0, _conversationData.PositiveNPCReactions.Length)]);
 			}
@@ -230,16 +229,13 @@ public class GameManagerScript : MonoSingleton<GameManagerScript>
 
 				Debug.Log("YOU LOST");
 			}
-			else if (Score > MAX_SCORE)
-			{
-				Score = MAX_SCORE;
-			}
 		}
 	}
 
     public void GoToWinScreen()
     {
-        _winScreen.SetActive(true);
+		TextFeed.Instance.Say(new Line() { LineId = "W_1", ConversationText = "Well, it was nice talking to you."});
+		_winScreen.SetActive(true);
     }
 
     public void GoToLoseScreen()
