@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static GameManagerScript;
 
 public class Look : MonoSingleton<Look>
 {
@@ -18,10 +19,10 @@ public class Look : MonoSingleton<Look>
     private Vector3 distractionPosition;
     private bool nodding = false;
     private bool shaking = false;
-    private Vector3 above;
-    private Vector3 below;
-    private Vector3 left;
-    private Vector3 right;
+    //private Vector3 above;
+    //private Vector3 below;
+    //private Vector3 left;
+    //private Vector3 right;
     private bool eyeContactLost = false;
     private Camera cam;
 
@@ -31,27 +32,31 @@ public class Look : MonoSingleton<Look>
         cam = GetComponent<Camera>();
         currentRotation = Input.mousePosition;
         lastMousePosition = currentRotation;
-        above = cam.transform.position + new Vector3(0f, 100f, 0f);
-        below = cam.transform.position + new Vector3(0f, -100f, 0f);
-        left = cam.transform.position + new Vector3(0f, 0f, -100f);
-        right = cam.transform.position + new Vector3(0f, 0f, 100f);
+        //above = cam.transform.position + new Vector3(0f, 100f, 0f);
+        //below = cam.transform.position + new Vector3(0f, -100f, 0f);
+        //left = cam.transform.position + new Vector3(0f, 0f, -100f);
+        //right = cam.transform.position + new Vector3(0f, 0f, 100f);
         StartCoroutine("Wander");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!nodding && !shaking)
-        {
-            if (Vector2.Distance(Input.mousePosition, lastMousePosition) > movementThreshold)
-            {
-                ResetGaze();
-            }
-        }
+		if(GameManagerScript.Instance.GameState == State.InGame)
+		{
 
-        DriftMove();
+			if (!nodding && !shaking)
+			{
+				if (Vector2.Distance(Input.mousePosition, lastMousePosition) > movementThreshold)
+				{
+					ResetGaze();
+				}
+			}
+          
+			DriftMove();
 
-        lastMousePosition = Input.mousePosition;
+			lastMousePosition = Input.mousePosition;
+		}
     }
 
     private void ResetGaze()
@@ -64,7 +69,13 @@ public class Look : MonoSingleton<Look>
 
     private void DriftMove()
     {
+        Vector3 before = cam.transform.rotation.eulerAngles;
         cam.transform.rotation = Quaternion.Slerp(cam.transform.rotation, Quaternion.LookRotation(distractionPosition - cam.transform.position), driftSpeed * Time.deltaTime);
+        if (nodding)
+        {
+            Vector3 temp = cam.transform.rotation.eulerAngles;
+            cam.transform.rotation = Quaternion.Euler(temp.x, before.y, before.z);
+        }
         if(!eyeContactLost && distractionPosition != eyeContact.position && DistractionReached())
         {
             eyeContactLost = true;
@@ -101,11 +112,11 @@ public class Look : MonoSingleton<Look>
     {
         Vector3 oldTarget = distractionPosition;
         nodding = true;
-        distractionPosition = above;
+        distractionPosition = -transform.up * 100;
         yield return new WaitForSeconds(0.05f);
-        distractionPosition = below;
+        distractionPosition = transform.up * 100;
         yield return new WaitForSeconds(0.10f);
-        distractionPosition = above;
+        distractionPosition = -transform.up * 100;
         yield return new WaitForSeconds(0.05f);
         distractionPosition = oldTarget;
         nodding = false;
@@ -115,11 +126,11 @@ public class Look : MonoSingleton<Look>
     {
 		Vector3 oldTarget = distractionPosition;
         shaking = true;
-        distractionPosition = left;
-        yield return new WaitForSeconds(0.05f);
-        distractionPosition = right;
-        yield return new WaitForSeconds(0.10f);
-        distractionPosition = left;
+        distractionPosition = -transform.right * 100;
+		yield return new WaitForSeconds(0.05f);
+        distractionPosition = transform.right * 100;
+		yield return new WaitForSeconds(0.10f);
+        distractionPosition = -transform.right * 100;
         yield return new WaitForSeconds(0.05f);
         distractionPosition = oldTarget;
         shaking = false;

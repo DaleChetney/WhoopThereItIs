@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: ConversationData
   m_EditorClassIdentifier: 
   StartingConversationSegments:
-  - ConversationText: Hey you. You gonna socialize or just keep staring at that plant?
+  - LineId: C_1
+    ConversationText: Hey you. You gonna socialize or just keep staring at that plant?
       I mean, it does seem a bit shady. Get it? Plant humor. Ha. So who do you know
       here? Don't say the plant.
     ResponseType: 0
@@ -23,8 +24,6 @@ MonoBehaviour:
     - Phrase: You, now
       Points: 10
     - Phrase: The plant
-      Points: -10
-    - Phrase: The Jews
       Points: -10
     - Phrase: Charlemagne. And he's a cabbage.
       Points: -10
@@ -41,8 +40,9 @@ MonoBehaviour:
     - Phrase: Please leave me alone
       Points: -100
     GruntType: 0
-    TimeToRespond: 10
-  - ConversationText: Well obviously you know Kevin. How else would you be here?
+    TimeToRespond: 14
+  - LineId: C_2
+    ConversationText: Well obviously you know Kevin. How else would you be here?
       I mean I guess you could just be wandering into random parties looking for a
       good time, but you don’t seem the type. Anyway, have you known Kevin long?
     ResponseType: 0
@@ -67,32 +67,37 @@ MonoBehaviour:
     - Phrase: Please leave me alone
       Points: -100
     GruntType: 0
-    TimeToRespond: 10
-  - ConversationText: 'Ah. Me and Kev go way back. Like, WAY back. We used to get
+    TimeToRespond: 14
+  - LineId: C_3
+    ConversationText: 'Ah. Me and Kev go way back. Like, WAY back. We used to get
       into so much trouble. Nothing serious, mind you. Just stupid kid stuff, ya know?  '
     ResponseType: 1
     ValidResponses: []
     GruntType: 0
     TimeToRespond: 5
-  - ConversationText: This one time we got the bright idea to TP our teacher's house.
+  - LineId: C_4
+    ConversationText: This one time we got the bright idea to TP our teacher's house.
       What we didn't know was that she had an absolute beast of a dog chained up on
       the front porch.
     ResponseType: 1
     ValidResponses: []
     GruntType: 1
-    TimeToRespond: 5
-  - ConversationText: 'Long story short, that dog scared the piss out of Kevin. Literally.
+    TimeToRespond: 3
+  - LineId: C_5
+    ConversationText: 'Long story short, that dog scared the piss out of Kevin. Literally.
       At least he already had the TP on hand. '
     ResponseType: 1
     ValidResponses: []
     GruntType: 0
-    TimeToRespond: 5
-  - ConversationText: ' I guess I shouldn''t tell that story at his party should I?'
+    TimeToRespond: 2
+  - LineId: C_6
+    ConversationText: ' I guess I shouldn''t tell that story at his party should I?'
     ResponseType: 1
     ValidResponses: []
     GruntType: 1
-    TimeToRespond: 5
-  - ConversationText: 'Oh well. He''ll forgive me. He always does.  I''ll be honest,
+    TimeToRespond: 2
+  - LineId: C_7
+    ConversationText: 'Oh well. He''ll forgive me. He always does.  I''ll be honest,
       I kinda skimmed the invitation. What are we celebrating this time anyway? '
     ResponseType: 0
     ValidResponses:
@@ -115,13 +120,13 @@ MonoBehaviour:
     - Phrase: "I think it's we're here to celebrate something."
       Points: -5
     - Phrase: 9/11
-      Points: -11
+      Points: -100
     - Phrase: Early mid-life crisis?
       Points: 7
     - Phrase: Being one year closer to our deaths?
       Points: -5
     - Phrase: White supremacy
-      Points: -15
+      Points: -100
     - Phrase: Nothing, Kevin just like pretending he has friends
       Points: -10
     - Phrase: "His wife's miscarriage"
@@ -145,22 +150,22 @@ MonoBehaviour:
     - Phrase: Please leave me alone
       Points: -100
     GruntType: 0
-    TimeToRespond: 20
-  - ConversationText: Well I'll drink to that, I suppose. I'll drink to pretty much
+    TimeToRespond: 16
+  - LineId: C_8
+    ConversationText: Well I'll drink to that, I suppose. I'll drink to pretty much
       anything though. Especially if Kevin's buying amiright?
     ResponseType: 1
     ValidResponses: []
     GruntType: 0
-    TimeToRespond: 10
-  - ConversationText: Hey, I didn't get your name, friend. Who are you?
+    TimeToRespond: 3
+  - LineId: C_9
+    ConversationText: Hey, I didn't get your name, friend. Who are you?
     ResponseType: 0
     ValidResponses:
     - Phrase: "Kevin's friend"
       Points: 5
     - Phrase: Kevin
       Points: -5
-    - Phrase: No, thanks
-      Points: -10
     - Phrase: Your mom
       Points: -10
     - Phrase: Hello. My name is Inigo Montoya. You killed my father. Prepare to die.
@@ -173,36 +178,17 @@ MonoBehaviour:
       Points: -100
     - Phrase: "Who's asking?"
       Points: -5
+    - Phrase: "[Your actual name]"
+      Points: 10
+    - Phrase: "[Your actual name], nice to meet you"
+      Points: 12
+    - Phrase: "[Your actual name], at your service"
+      Points: -5
     GruntType: 0
-    TimeToRespond: 10
+    TimeToRespond: 15
   RandomConversationSegments:
-  - ConversationText: Who are you?
-    ResponseType: 0
-    ValidResponses:
-    - Phrase: "Kevin's friend"
-      Points: 2
-    - Phrase: Kevin
-      Points: -2
-    - Phrase: No, thanks
-      Points: -5
-    - Phrase: Your mom
-      Points: -11
-    - Phrase: Hello. My name is Inigo Montoya. You killed my father. Prepare to die.
-      Points: 5
-    - Phrase: A friend of the family
-      Points: 1
-    - Phrase: "One of Kevin's coworkers"
-      Points: 2
-    - Phrase: Please leave me alone
-      Points: -10
-    - Phrase: "Who's asking?"
-      Points: -5
-    - Phrase: "I work for the international police. I'm hot on the tail of Team
-        Rocket who is also attending this party."
-      Points: -8
-    GruntType: 0
-    TimeToRespond: 10
-  - ConversationText: What do you do for a living?
+  - LineId: R_1
+    ConversationText: It feels good to get some time off. I’ve been so busy lately. What do you do for a living?
     ResponseType: 0
     ValidResponses:
     - Phrase: I make sock puppets from scratch and sell them on Etsy.
@@ -252,88 +238,9 @@ MonoBehaviour:
     - Phrase: Please leave me alone
       Points: -10
     GruntType: 0
-    TimeToRespond: 15
-  - ConversationText: What are we celebrating?
-    ResponseType: 0
-    ValidResponses:
-    - Phrase: "His kid's bar mitzvah"
-      Points: 5
-    - Phrase: "It's a Housewarming party"
-      Points: 5
-    - Phrase: Baby shower
-      Points: -5
-    - Phrase: 3 months sobriety
-      Points: 10
-    - Phrase: Heck if I know
-      Points: 5
-    - Phrase: "Kevin's Birthday"
-      Points: 10
-    - Phrase: "It's the company's Holiday party"
-      Points: -10
-    - Phrase: "Uhh I'm not... really like sure?"
-      Points: 1
-    - Phrase: "I think it's we're here to celebrate something."
-      Points: -5
-    - Phrase: 9/11
-      Points: -100
-    - Phrase: Early mid-life crisis?
-      Points: 1
-    - Phrase: Being one year closer to our deaths?
-      Points: -10
-    - Phrase: White supremacy
-      Points: -100
-    - Phrase: Nothing, Kevin just like pretending he has friends
-      Points: -20
-    - Phrase: "His wife's miscarriage"
-      Points: -91
-    - Phrase: MAGA
-      Points: -51
-    - Phrase: Do we need a reason? Life is good.
-      Points: 17
-    - Phrase: Wow, you just randomly show up to parties then?
-      Points: 1
-    - Phrase: Not particularly observant are you?
-      Points: 5
-    - Phrase: I too like to live dangerously
-      Points: -10
-    - Phrase: The gay agenda
-      Points: -60
-    - Phrase: The bee movie
-      Points: 3
-    - Phrase: "Kevin, it's a Kevin party"
-      Points: -5
-    - Phrase: Please leave me alone
-      Points: -10
-    GruntType: 0
-    TimeToRespond: 15
-  - ConversationText: So who do you know here? Don't say the plant.
-    ResponseType: 0
-    ValidResponses:
-    - Phrase: Kevin
-      Points: 5
-    - Phrase: You, now.
-      Points: 10
-    - Phrase: The plant
-      Points: -10
-    - Phrase: The Jews
-      Points: -40
-    - Phrase: "Charlemagne. And he's a cabbage."
-      Points: -1
-    - Phrase: I uhhh...Kevin?
-      Points: 1
-    - Phrase: No one
-      Points: 5
-    - Phrase: Please leave me alone
-      Points: -10
-    - Phrase: Does anyone really know anyone?
-      Points: 10
-    - Phrase: Kevin, a-doiiiii
-      Points: -10
-    - Phrase: Most of the people here (lie)
-      Points: -20
-    GruntType: 0
-    TimeToRespond: 15
-  - ConversationText: What do you do for fun?
+    TimeToRespond: 16
+  - LineId: R_2
+    ConversationText: What do you do for fun? Besides going to Kevin’s parties of course.
     ResponseType: 0
     ValidResponses:
     - Phrase: Crash house parties.
@@ -359,32 +266,9 @@ MonoBehaviour:
     - Phrase: Please leave me alone
       Points: -10
     GruntType: 0
-    TimeToRespond: 10
-  - ConversationText: How long have you known Kevin?
-    ResponseType: 0
-    ValidResponses:
-    - Phrase: Not long. We work together.
-      Points: 5
-    - Phrase: "Coworkers, but like we're not on the same team, but like our teams
-        work together sometimes."
-      Points: -1
-    - Phrase: Like, forever.
-      Points: 1
-    - Phrase: We are literally siblings.
-      Points: -10
-    - Phrase: "Sooo... maybe.... A week?"
-      Points: -5
-    - Phrase: "I'm not sure I'd say I KNOW Kevin..."
-      Points: 3
-    - Phrase: Longer than you, bitch
-      Points: -22
-    - Phrase: According to the restraining order, at least 5 years.
-      Points: 5
-    - Phrase: Please leave me alone
-      Points: -10
-    GruntType: 0
-    TimeToRespond: 10
-  - ConversationText: What kind of music you listen to?
+    TimeToRespond: 14
+  - LineId: R_3
+    ConversationText: Dang this music bangin. Kevin’s got good taste. What kind of music you usually listen to?
     ResponseType: 0
     ValidResponses:
     - Phrase: This and that
@@ -401,11 +285,14 @@ MonoBehaviour:
       Points: -15
     - Phrase: Hardcore, metalcore, deathcore, grindcore... any core really..
       Points: 5
+    - Phrase: mostly podcasts
+      Points: 5
     - Phrase: Please leave me alone
       Points: -10
     GruntType: 0
-    TimeToRespond: 10
-  - ConversationText: "So what's your drink of choice?"
+    TimeToRespond: 13
+  - LineId: R_4
+    ConversationText: "I can’t believe the variety of drinks we have here! What's your drink of choice?"
     ResponseType: 0
     ValidResponses:
     - Phrase: Bleach
@@ -437,8 +324,9 @@ MonoBehaviour:
     - Phrase: Please leave me alone
       Points: -10
     GruntType: 0
-    TimeToRespond: 10
-  - ConversationText: Have you played that game that just came out?
+    TimeToRespond: 15
+  - LineId: R_5
+    ConversationText: Have you played that game that just came out? It’s been eating up all my free time but I just can’t put it down.
     ResponseType: 0
     ValidResponses:
     - Phrase: No
@@ -447,21 +335,22 @@ MonoBehaviour:
       Points: -30
     - Phrase: No, I have a life
       Points: -15
-    - Phrase: Way to be specific
+    - Phrase: ‘That game?’ Way to be specific
       Points: -10
     - Phrase: No, but you just lost the game
       Points: -100
     - Phrase: The one with the stuff? Dude, so good.
-      Points: -11
+      Points: 10
     - Phrase: 'Yes. So much fun! '
       Points: 10
     - Phrase: "No, but I can't wait. Been a fan since game 1."
-      Points: -1
+      Points: 20
     - Phrase: Please leave me alone
       Points: -10
     GruntType: 0
-    TimeToRespond: 10
-  - ConversationText: Did you do any stupid stuff as a kid?
+    TimeToRespond: 14
+  - LineId: R_6
+    ConversationText: Since we’re both sharing childhood stories. Did you do any stupid stuff as a kid? It doesn’t have to be a Kevin story.
     ResponseType: 0
     ValidResponses:
     - Phrase: Drugs
@@ -483,8 +372,9 @@ MonoBehaviour:
     - Phrase: Please leave me alone
       Points: -10
     GruntType: 0
-    TimeToRespond: 10
-  - ConversationText: Are you excited about the new Superhero movie?
+    TimeToRespond: 13
+  - LineId: R_7
+    ConversationText: A new trailer for that new Superhero movie just came out. I’m so hype! You hype?
     ResponseType: 0
     ValidResponses:
     - Phrase: "More excited than you. I bet you didn't even read the comic."
@@ -500,8 +390,9 @@ MonoBehaviour:
     - Phrase: Please leave me alone
       Points: -10
     GruntType: 0
-    TimeToRespond: 10
-  - ConversationText: Where are you from?
+    TimeToRespond: 13
+  - LineId: R_8
+    ConversationText: Did you say you grew up with Kevin? Sorry I forgot. Where are you from?
     ResponseType: 0
     ValidResponses:
     - Phrase: I grew up here in town.
@@ -519,8 +410,9 @@ MonoBehaviour:
     - Phrase: Please leave me alone
       Points: -10
     GruntType: 0
-    TimeToRespond: 10
-  - ConversationText: "What hobby would you get into if time and money weren't
+    TimeToRespond: 12
+  - LineId: R_9
+    ConversationText: "What hobby would you get into if time and money weren't
       an issue?"
     ResponseType: 0
     ValidResponses:
@@ -538,11 +430,18 @@ MonoBehaviour:
       Points: 10
     - Phrase: "I'd build irrigation systems in third world countries"
       Points: 13
+    - Phrase: "Exotic car racing"
+      Points: 10
+    - Phrase: "I’d build tiny ships in tiny bottles."
+      Points: 5
+    - Phrase: "Aviation. No more flying coach for me."
+      Points: 11
     - Phrase: Please leave me alone
       Points: -10
     GruntType: 0
-    TimeToRespond: 10
-  - ConversationText: "If you didn't have to sleep, what would you do with the
+    TimeToRespond: 14
+  - LineId: R_10
+    ConversationText: "If you didn't have to sleep, what would you do with the
       extra time?"
     ResponseType: 0
     ValidResponses:
@@ -566,9 +465,12 @@ MonoBehaviour:
       Points: -20
     - Phrase: Please leave me alone
       Points: -10
+    - Phrase: Create a small business and get rich.
+      Points: 10
     GruntType: 0
-    TimeToRespond: 10
-  - ConversationText: What fictional place would you most like to go?
+    TimeToRespond: 14
+  - LineId: R_11
+    ConversationText: I like things that go really deep into world building. What fictional place would you most like to go?
     ResponseType: 0
     ValidResponses:
     - Phrase: "Your girlfriend's house"
@@ -591,11 +493,16 @@ MonoBehaviour:
       Points: -20
     - Phrase: New Zealand
       Points: -9
+    - Phrase: The Mushroom Kingdom
+      Points: 8
+    - Phrase: Definitely Hyrule
+      Points: 10
     - Phrase: Please leave me alone
       Points: -10
     GruntType: 0
-    TimeToRespond: 10
-  - ConversationText: What job would you be terrible at?
+    TimeToRespond: 12
+  - LineId: R_12
+    ConversationText: I could never do what Kevin does, I can’t imagine dealing with so many drunk people. What job would you be the worst at?
     ResponseType: 0
     ValidResponses:
     - Phrase: My current one, for sure.
@@ -610,11 +517,16 @@ MonoBehaviour:
       Points: 13
     - Phrase: "Game designer. It's too hard."
       Points: -14
+    - Phrase: "President. Well, maybe not the worst..."
+      Points: 12
+    - Phrase: "Stand-up comedy. I would throw up from anxiety."
+      Points: 5
     - Phrase: Please leave me alone
       Points: -10
     GruntType: 0
-    TimeToRespond: 10
-  - ConversationText: What is the most annoying habit that other people have?
+    TimeToRespond: 13
+  - LineId: R_13
+    ConversationText: Everyone at this party seems pretty chill. What do you find is the most annoying thing that people often do?
     ResponseType: 0
     ValidResponses:
     - Phrase: "Asking about other people's habits"
@@ -631,41 +543,34 @@ MonoBehaviour:
       Points: -20
     - Phrase: Talking about politics
       Points: 4
+    - Phrase: Walking slow in front of me
+      Points: 4
     - Phrase: Please leave me alone
       Points: -10
     GruntType: 0
-    TimeToRespond: 10
-  - ConversationText: What state or country do you never want to go back to?
+    TimeToRespond: 12
+  - LineId: R_14
+    ConversationText: I think I remember Kevin saying you’ve done some traveling. What place do you never want to go back to?
     ResponseType: 0
     ValidResponses:
     - Phrase: The land of confusion
       Points: 5
     - Phrase: Please leave me alone
       Points: -10
-    - Phrase: <insert Oklahoma rant here>
+    - Phrase: Oklahoma. Don’t get me started.
+      Points: 10
+    - Phrase: Mexico. I got a tan and almost couldn’t get back across the border.
       Points: 10
     - Phrase: The South.
       Points: -1
-    - Phrase: "Canada. I don't think you die in real if there."
+    - Phrase: The Tenderloin, San Francisco. Really disgusting place.
+      Points: 12
+    - Phrase: "Canada. I don't think you die for real if there."
       Points: 19
     GruntType: 0
-    TimeToRespond: 10
-  - ConversationText: What takes up too much of your time?
-    ResponseType: 0
-    ValidResponses:
-    - Phrase: Talking to you.
-      Points: -10
-    - Phrase: Please leave me alone
-      Points: -10
-    - Phrase: Thinking about death.
-      Points: -13
-    - Phrase: Horticulture. I fucking love plants.
-      Points: 10
-    - Phrase: Figuring out what in the new should offend me.
-      Points: -20
-    GruntType: 0
-    TimeToRespond: 10
-  - ConversationText: What would be your first question after waking up from being
+    TimeToRespond: 12
+  - LineId: R_15
+    ConversationText: What would be your first question after waking up from being
       cryogenically frozen for 100 years?
     ResponseType: 0
     ValidResponses:
@@ -676,34 +581,24 @@ MonoBehaviour:
     - Phrase: What number Shrek are we on?
       Points: 100
     - Phrase: Are real hoverboards a thing yet?
+      Points: 5
+    - Phrase: My crazy relatives better be dead by now.
       Points: -5
     - Phrase: Please leave me alone
       Points: -10
-    GruntType: 0
-    TimeToRespond: 10
-  - ConversationText: "What's your claim to fame?"
-    ResponseType: 0
-    ValidResponses:
-    - Phrase: I once got kicked out of a buffet for eating too much.
-      Points: 1
-    - Phrase: Have you heard of Auschwitz?
-      Points: -100
-    - Phrase: I memorized Pi to Pi digits
-      Points: -31
-    - Phrase: I won a spelling bee in the 8th grade
-      Points: 8
-    - Phrase: "I've balanced over 26 pears at one time"
-      Points: 26
-    - Phrase: Please leave me alone
+    - Phrase: Give me 5 more minutes...
+      Points: 6
+    - Phrase: Are we any closer to world peace?
+      Points: 5
+    - Phrase: Why can’t you just let me die?
       Points: -10
     GruntType: 0
-    TimeToRespond: 10
-  - ConversationText: 'If you were dictator of a small island nation, what crazy dictator
+    TimeToRespond: 12
+  - LineId: R_16
+    ConversationText: 'If you were dictator of a small island nation, what crazy dictator
       stuff would you do? '
     ResponseType: 0
     ValidResponses:
-    - Phrase: Have you heard of Auschwitz?
-      Points: -100
     - Phrase: Be my own Negan.
       Points: -50
     - Phrase: Some of that Lord of the Flies shit.
@@ -722,9 +617,14 @@ MonoBehaviour:
       Points: -5
     - Phrase: Please leave me alone
       Points: -10
+    - Phrase: National Pizza Worship Day. Nuff said.
+      Points: 14
+    - Phrase: I’d require all cars to have minimum 200 horsepower.
+      Points: 10
     GruntType: 0
-    TimeToRespond: 10
-  - ConversationText: "What is something that a ton of people are obsessed with but
+    TimeToRespond: 13
+  - LineId: R_17
+    ConversationText: "What is something that a ton of people are obsessed with but
       you just don't get the point of? "
     ResponseType: 0
     ValidResponses:
@@ -738,11 +638,16 @@ MonoBehaviour:
       Points: -20
     - Phrase: Memes
       Points: -50
-    - Phrase: -10
-      Points: 0
+    - Phrase: Composting. We get it, you’re green.
+      Points: 10
+    - Phrase: Essential oils. Lavender won’t make you younger.
+      Points: 12
+    - Phrase: Selfies. Put the phone down.
+      Points: 10
     GruntType: 0
-    TimeToRespond: 10
-  - ConversationText: "What's the best way a person can spend their time?"
+    TimeToRespond: 13
+  - LineId: R_18
+    ConversationText: "There are just not enough hours in the day, I’m telling you. What's the best way a person can spend their time?"
     ResponseType: 0
     ValidResponses:
     - Phrase: The best way to get the hang out with my friends
@@ -750,22 +655,27 @@ MonoBehaviour:
     - Phrase: Learning and improving themselves
       Points: 5
     - Phrase: "Casing strangers' homes "
-      Points: 1
+      Points: -5
     - Phrase: Please leave me alone
       Points: -10
     - Phrase: Getting to understand the world around them.
       Points: 6
     - Phrase: Death
       Points: -20
+    - Phrase: Volunteer work!
+      Points: 10
+    - Phrase: Pursuing your passions.
+      Points: 10
     GruntType: 0
-    TimeToRespond: 10
-  - ConversationText: What are you most looking forward to in the next 10 years?
+    TimeToRespond: 12
+  - LineId: R_19
+    ConversationText: I was just talking about that new movie trailer with someone. What are you most looking forward to in the next 10 years?
     ResponseType: 0
     ValidResponses:
     - Phrase: Self driving cars!
       Points: 11
     - Phrase: Getting humans on Mars
-      Points: -11
+      Points: 11
     - Phrase: Windows 21 - Whiskey Edition
       Points: 21
     - Phrase: Dying
@@ -778,26 +688,14 @@ MonoBehaviour:
       Points: -20
     - Phrase: Please leave me alone
       Points: -10
+    - Phrase: Starting a family
+      Points: 12
+    - Phrase: Paying off my car
+      Points: 8
     GruntType: 0
-    TimeToRespond: 10
-  - ConversationText: What would you rate 10 / 10?
-    ResponseType: 0
-    ValidResponses:
-    - Phrase: You mean 5/7?
-      Points: 57
-    - Phrase: Anime tiddies
-      Points: -50
-    - Phrase: You ;)
-      Points: -1
-    - Phrase: Not this conversation
-      Points: -20
-    - Phrase: "Ben and Jerry's Bacon and Egg Ice Cream"
-      Points: -16
-    - Phrase: Please leave me alone
-      Points: -10
-    GruntType: 0
-    TimeToRespond: 10
-  - ConversationText: What fad or trend do you hope comes back?
+    TimeToRespond: 11
+  - LineId: R_20
+    ConversationText: I heard that hipsters are trying to bring back zeppelins. What fad or trend do you hope comes back?
     ResponseType: 0
     ValidResponses:
     - Phrase: Crocs
@@ -807,35 +705,15 @@ MonoBehaviour:
     - Phrase: 'Disco for sure. '
       Points: 10
     - Phrase: Tamagotchi, I still have 3 somewhere
-      Points: 3
+      Points: 20
     - Phrase: Please leave me alone
       Points: -10
-    GruntType: 0
-    TimeToRespond: 10
-  - ConversationText: What movie title best describes your life?
-    ResponseType: 0
-    ValidResponses:
-    - Phrase: Avengers Infinity Wars
-      Points: -5
-    - Phrase: A Series of Unfortunate Events
-      Points: 5
-    - Phrase: "She's the Man"
-      Points: 1
-    - Phrase: Mean Girls
+    - Phrase: Pokemon Go. I still play.
       Points: 10
-    - Phrase: Disaster Artist
-      Points: -2
-    - Phrase: 40 Year Old Virgin
-      Points: 7
-    - Phrase: The hangover
-      Points: 12
-    - Phrase: Shrek the Third
-      Points: 3
-    - Phrase: Please leave me alone
-      Points: -10
     GruntType: 0
-    TimeToRespond: 10
-  - ConversationText: "What was the best compliment you've received?"
+    TimeToRespond: 12
+  - LineId: R_21
+    ConversationText: "Let’s talk about something positive. What was the best compliment you've ever received?"
     ResponseType: 0
     ValidResponses:
     - Phrase: "\"Well at least you tried\""
@@ -846,11 +724,14 @@ MonoBehaviour:
       Points: 10
     - Phrase: "\"That is a lot of hair gel\""
       Points: 15
+    - Phrase: I had someone accuse me of aimbotting once
+      Points: 10
     - Phrase: Please leave me alone
       Points: -10
     GruntType: 0
-    TimeToRespond: 10
-  - ConversationText: As the only human left on Earth, what would you do?
+    TimeToRespond: 12
+  - LineId: R_22
+    ConversationText: Let’s say that for some reason everyone else on Earth disappeared. As the only human left on Earth, what would you do?
     ResponseType: 0
     ValidResponses:
     - Phrase: Nothing
@@ -866,8 +747,9 @@ MonoBehaviour:
     - Phrase: Please leave me alone
       Points: -10
     GruntType: 0
-    TimeToRespond: 10
-  - ConversationText: "What did you think you would grow out of but haven't?"
+    TimeToRespond: 11
+  - LineId: R_23
+    ConversationText: "What did you think you would grow out of but haven't?"
     ResponseType: 0
     ValidResponses:
     - Phrase: Illiteracy
@@ -875,50 +757,48 @@ MonoBehaviour:
     - Phrase: These footsie pajamas
       Points: 10
     - Phrase: Roast beef
-      Points: -5
+      Points: 1
     - Phrase: Harry Potter books honestly.
       Points: 20
     - Phrase: "Video games, they're amazing for meeting people"
       Points: 6
     - Phrase: Please leave me alone
       Points: -10
-    GruntType: 0
-    TimeToRespond: 10
-  - ConversationText: In what situation or place would you feel the most out of place
-      in?
-    ResponseType: 0
-    ValidResponses:
-    - Phrase: Parties
-      Points: 1
-    - Phrase: Weddings
-      Points: 5
-    - Phrase: Funerals
-      Points: -5
-    - Phrase: Here
-      Points: -15
-    - Phrase: Karaoke
-      Points: 6
-    - Phrase: Please leave me alone
+    - Phrase: Emo music. Turns out it’s not phase.
+      Points: 10
+    - Phrase: Warm milk
       Points: -10
+    - Phrase: Quoting Vines
+      Points: -5
+    - Phrase: Throwing rocks at small animals.
+      Points: -20
     GruntType: 0
-    TimeToRespond: 3
-  - ConversationText: "What's the dumbest thing you've done that actually
+    TimeToRespond: 14
+  - LineId: R_24
+    ConversationText: "What's the dumbest thing you've done that actually
       turned out pretty well? "
     ResponseType: 0
     ValidResponses:
-    - Phrase: Dig an ugly well
-      Points: 13
     - Phrase: Talk to Kevin
       Points: 5
-    - Phrase: hought I joined a child cult, apparently it was an orphanag
+    - Phrase: Left out some mold, accidentally invented penicillin
+      Points: 10
+    - Phrase: Thought I joined a child cult, apparently it was an orphanage
       Points: -5
     - Phrase: Please leave me alone
       Points: -10
     - Phrase: I Invested in Bitcoin during the early days
       Points: 1
+    - Phrase: I spilled coffee in an art gallery and sold it for 5k.
+      Points: 15
+    - Phrase: Got involved in a MLM business. It can change your life too!
+      Points: -20
+    - Phrase: Lent money to a Nigerian prince. He actually delivered!
+      Points: 10
     GruntType: 0
-    TimeToRespond: 2
-  - ConversationText: What is something you will NEVER do again?
+    TimeToRespond: 13
+  - LineId: R_25
+    ConversationText: What is something you will NEVER do again?
     ResponseType: 0
     ValidResponses:
     - Phrase: Talk to strangers near a plant
@@ -928,67 +808,25 @@ MonoBehaviour:
     - Phrase: Attend a Kevin party
       Points: -15
     - Phrase: Vote republican
-      Points: 71
+      Points: 20
     - Phrase: Crack cocaine
       Points: -30
     - Phrase: Meth
-      Points: -47
+      Points: -40
     - Phrase: Drink the Kool Aid
       Points: 10
     - Phrase: Please leave me alone
       Points: -10
-    GruntType: 0
-    TimeToRespond: 5
-  - ConversationText: What are you addicted to?
-    ResponseType: 0
-    ValidResponses:
-    - Phrase: Crack cocaine
-      Points: -40
-    - Phrase: "Coffee. Can't start my day without it."
-      Points: 11
-    - Phrase: Do you see that plant there?
-      Points: 20
-    - Phrase: Science fiction books
-      Points: 5
-    - Phrase: Please leave me alone
-      Points: -10
-    GruntType: 0
-    TimeToRespond: 10
-  - ConversationText: What stereotype do you completely live up to?
-    ResponseType: 0
-    ValidResponses:
-    - Phrase: <redacted>
-      Points: 5
-    - Phrase: <redacted>
+    - Phrase: Drunk karaoke with coworkers
       Points: 10
-    - Phrase: <redacted>
-      Points: -5
-    - Phrase: <redacted>
-      Points: -50
-    - Phrase: Please leave me alone
-      Points: -10
-    - Phrase: <redacted>
-      Points: -100
-    GruntType: 0
-    TimeToRespond: 5
-  - ConversationText: What is something you can never seem to finish?
-    ResponseType: 0
-    ValidResponses:
-    - Phrase: "I'm bad at finishing my senten..."
+    - Phrase: Eat Thai food before a flight. The mess...
+      Points: 10
+    - Phrase: My ex! Hey-oooo!
       Points: 5
-    - Phrase: Conversations
-      Points: 6
-    - Phrase: Game design documents
-      Points: -1
-    - Phrase: Diets
-      Points: -5
-    - Phrase: Woodworking projects
-      Points: -11
-    - Phrase: Please leave me alone
-      Points: -20
     GruntType: 0
-    TimeToRespond: 5
-  - ConversationText: What is one of your favorite smells?
+    TimeToRespond: 14
+  - LineId: R_26
+    ConversationText: What is one of your favorite smells?
     ResponseType: 0
     ValidResponses:
     - Phrase: Yours
@@ -1003,29 +841,18 @@ MonoBehaviour:
       Points: -5
     - Phrase: Please leave me alone
       Points: -10
-    GruntType: 0
-    TimeToRespond: 6
-  - ConversationText: What small gesture from a stranger made a big impact on you?
-    ResponseType: 0
-    ValidResponses:
-    - Phrase: Birbs
-      Points: -40
-    - Phrase: A guy pulled over and helped push my car to a gas station
+    - Phrase: Fresh baked apple pie
       Points: 10
-    - Phrase: "I got flashed at an Arby's once. Haven't been the same since.
-        Can't look at curly fries the same way."
-      Points: 20
-    - Phrase: A stranger said hi to me once, so that was nice.
-      Points: -5
-    - Phrase: I walked in on my mom with the mailman once.
-      Points: -20
-    - Phrase: This guy had the fluffiest dog ever and he let me pet it. Best day ever.
+    - Phrase: Pine trees!
       Points: 5
-    - Phrase: Please leave me alone
-      Points: -10
+    - Phrase: Honestly? Greasy burgers.
+      Points: 3
+    - Phrase: Spicy Cajun food
+      Points: 10
     GruntType: 0
-    TimeToRespond: 2
-  - ConversationText: What gets you fired up?
+    TimeToRespond: 15
+  - LineId: R_27
+    ConversationText: Leaning against this wall really makes me feel alive. What really gets you fired up?
     ResponseType: 0
     ValidResponses:
     - Phrase: Fire
@@ -1035,24 +862,27 @@ MonoBehaviour:
     - Phrase: Interoffice relations. Oh you said fired UP? Awkward.
       Points: 1
     - Phrase: Anime tiddies
-      Points: -60
-    - Phrase: Normies
       Points: -40
+    - Phrase: Normies
+      Points: -10
     - Phrase: My fave fight song
       Points: -1
     - Phrase: Political Arguments
       Points: 5
     - Phrase: When someone disses my friends
-      Points: -5
+      Points: 5
     - Phrase: Disrespect
+      Points: 12
+    - Phrase: Brigitte mains
       Points: 15
-    - Phrase: Brigette mains
-      Points: 40
     - Phrase: Please leave me alone
       Points: -10
+    - Phrase: Prejudice. Can’t stand it.
+      Points: 15
     GruntType: 0
-    TimeToRespond: 8
-  - ConversationText: "What's the title of the current chapter of your life?"
+    TimeToRespond: 13
+  - LineId: R_28
+    ConversationText: "If your life was like a book or a movie, what would would be the title of the current chapter of your life?"
     ResponseType: 0
     ValidResponses:
     - Phrase: Untitled Document
@@ -1071,54 +901,130 @@ MonoBehaviour:
       Points: 1
     - Phrase: Please leave me alone
       Points: -10
-    GruntType: 0
-    TimeToRespond: 9
-  - ConversationText: What are you afraid people see when they look at you?
-    ResponseType: 0
-    ValidResponses:
-    - Phrase: My face
-      Points: 10
-    - Phrase: All of my eyes.
+    - Phrase: Avengers Infinity Wars
       Points: -5
-    - Phrase: "How uncool they'll look next to me."
-      Points: -10
-    - Phrase: Knives, probably.
-      Points: -15
-    - Phrase: My big anime tiddies. Oh you said afraid.
-      Points: -50
-    - Phrase: Please leave me alone
-      Points: -10
+    - Phrase: A Series of Unfortunate Events
+      Points: 5
+    - Phrase: "She's the Man"
+      Points: 1
+    - Phrase: Mean Girls
+      Points: 10
+    - Phrase: Disaster Artist
+      Points: -2
+    - Phrase: 40 Year Old Virgin
+      Points: 7
+    - Phrase: The Hangover
+      Points: 12
+    - Phrase: Shrek the Third
+      Points: 3
     GruntType: 0
-    TimeToRespond: 8
+    TimeToRespond: 15
+  - LineId: R_29
+    ConversationText: 'Oh, I forgot to mention that I almost got hit by some drunk driver on my way here. Dude was swerving all over the place. Isn’t that crazy?'
+    ResponseType: 1
+    ValidResponses: []
+    GruntType: 0
+    TimeToRespond: 4
+  - LineId: R_30
+    ConversationText: 'Hey, you keep staring off at other things. You aren’t daydreaming, are you?'
+    ResponseType: 1
+    ValidResponses: []
+    GruntType: 1
+    TimeToRespond: 2
+  - LineId: R_31
+    ConversationText: 'I hope my questions aren’t making you uncomfortable, are they?'
+    ResponseType: 1
+    ValidResponses: []
+    GruntType: 1
+    TimeToRespond: 3
+  - LineId: R_32
+    ConversationText: 'This is a pretty cool party, don’tcha think?'
+    ResponseType: 1
+    ValidResponses: []
+    GruntType: 0
+    TimeToRespond: 5
   UnhappyNPCReactions:
-  - Why would you say that?
-  - Not cool.
-  - Are you serious right now?
-  - Chill out dude.
-  - Do you always act this weird?
-  - "I don't get your thing."
-  - Have you considered not being a dick?
-  - "I don't appreciate your attitude."
-  - "That's not really appropriate."
-  - "You probably shouldn't say that."
-  - No one wants to hear that. Read the room.
-  - You made it weird.
-  - Awkward...
-  - Jerk...
-  - Rude!
+  - LineId: U_1
+    ConversationText: Why would you say that?
+  - LineId: U_2
+    ConversationText: Not cool.
+  - LineId: U_3
+    ConversationText: Are you serious right now?
+  - LineId: U_4
+    ConversationText: Chill out dude.
+  - LineId: U_5
+    ConversationText: Do you always act this weird?
+  - LineId: U_6
+    ConversationText: "I don't get your thing."
+  - LineId: U_7
+    ConversationText: Have you considered not being a dick?
+  - LineId: U_8
+    ConversationText: "I don't appreciate your attitude."
+  - LineId: U_9
+    ConversationText: "That's not really appropriate."
+  - LineId: U_10
+    ConversationText: "You probably shouldn't say that."
+  - LineId: U_11
+    ConversationText: No one wants to hear that. Read the room.
+  - LineId: U_12
+    ConversationText: You made it weird.
+  - LineId: U_13
+    ConversationText: Awkward...
+  - LineId: U_14
+    ConversationText: Rude!
   GameEndingNPCReactions:
-  - "I think we're done talking."
-  - Fuck off.
-  - "I don't need this. I'm out."
-  - Get away from me.
-  - I have... a thing to go take care of. Somewhere else.
-  - I am SO done with this conversation.
-  - "Well that's enough of that. See ya."
-  - I need to be something else, your just too much.
-  - "You probably don't have many friends. I'm out."
-  - "Oh hey my friend is calling me so I'm gonna go."
-  - "You're killing my buzz. Peace out."
-  - "I'm gonna make like the tree and never talk to you again."
-  - Who even invited you, leave me alone!
-  - "I don't think talking thing is working out, see ya."
-  - "That's gonna be a no for me dawg."
+  - LineId: F_1
+    ConversationText: "I think we're done talking."
+  - LineId: F_2
+    ConversationText: "I don't need this. I'm out."
+  - LineId: F_3
+    ConversationText: Get away from me.
+  - LineId: F_4
+    ConversationText: I have... a thing to go take care of. Somewhere else.
+  - LineId: F_5
+    ConversationText: I am SO done with this conversation.
+  - LineId: F_6
+    ConversationText: "Well that's enough of that. See ya."
+  - LineId: F_7
+    ConversationText: I need to be somewhere else, you’re just too much.
+  - LineId: F_8
+    ConversationText: "This is why you don't have many friends. I'm out."
+  - LineId: F_9
+    ConversationText: "Oh hey my friend is calling me so I'm gonna go."
+  - LineId: F_10
+    ConversationText: "You're killing my buzz. Peace out."
+  - LineId: F_11
+    ConversationText: "I'm gonna make like the tree and never talk to you again."
+  - LineId: F_12
+    ConversationText: Who even invited you, leave me alone!
+  - LineId: F_13
+    ConversationText: "I don't think this talking thing is working out, see ya."
+  - LineId: F_14
+    ConversationText: "That's gonna be a no for me dawg."
+  PositiveNPCReactions:
+  - LineId: P_1
+    ConversationText: "I hear that."
+  - LineId: P_2
+    ConversationText: "Gotcha."
+  - LineId: P_3
+    ConversationText: "Nice."
+  - LineId: P_4
+    ConversationText: "Cool."
+  - LineId: P_5
+    ConversationText: "Neat."
+  - LineId: P_6
+    ConversationText: "Okay."
+  - LineId: P_7
+    ConversationText: "I like it."
+  - LineId: P_8
+    ConversationText: "Well said."
+  - LineId: P_9
+    ConversationText: "Alright."
+  - LineId: P_10
+    ConversationText: "I get you."
+  - LineId: P_11
+    ConversationText: "That’s interesting."
+
+
+
+

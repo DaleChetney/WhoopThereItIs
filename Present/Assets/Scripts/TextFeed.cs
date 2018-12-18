@@ -2,7 +2,8 @@
 using UnityEngine.UI;
 using System.Collections;
 using System.Diagnostics;
-
+using System.Collections.Generic;
+using System;
 
 public class TextFeed : MonoSingleton<TextFeed>
 {
@@ -13,41 +14,34 @@ public class TextFeed : MonoSingleton<TextFeed>
     private bool writing = false;
     private Queue textQueue = new Queue();
 
+    private Dictionary<string, AudioClip> voiceClips = new Dictionary<string, AudioClip>();
+
     void Start ()
     {
         text.text = "";
+        if (WithVoice)
+            PreloadVoicelines();
     }
 
     void Update ()
     {
         if (!writing && textQueue.Count > 0)
         {
-            string textToSay = (string)textQueue.Dequeue();
-            UpdateText(textToSay);
-#if UNITY_STANDALONE || UNITY_EDITOR_WIN
+            var line = (Line)textQueue.Dequeue();
+            UpdateText(line.ConversationText);
             if (WithVoice)
-                Speak(textToSay);
-#endif
+                Speak(line.LineId);
         }
     }
 
-    public void Say(string textToSay)
+    public void Say(Line line)
     {
-        textQueue.Enqueue(textToSay);
+        textQueue.Enqueue(line);
     }
 
-    private void Speak(string textToSay)
+    private void Speak(string lineId)
     {
-        string path = System.IO.Path.GetFullPath(".");
-#if UNITY_EDITOR_WIN
-        path = Application.dataPath;
-#endif
-        ProcessStartInfo startInfo = new ProcessStartInfo();
-        startInfo.CreateNoWindow = true;
-        startInfo.FileName = path + "/TTS_App.exe";
-        startInfo.Arguments = " \"" + textToSay + "\"";
-        startInfo.UseShellExecute = false;
-        Process.Start(startInfo);
+        AudioManager.Instance.voicePlayer.PlayOneShot(voiceClips[lineId]);
     }
 
     private void UpdateText(string toAppend)
@@ -83,6 +77,15 @@ public class TextFeed : MonoSingleton<TextFeed>
         if (textQueue.Count < 1)
         {
             GameManagerScript.Instance.StartResponseTimer();
+        }
+    }
+
+    private void PreloadVoicelines()
+    {
+        var voiceFiles = Resources.LoadAll<AudioClip>("Voice Lines");
+        foreach (var line in voiceFiles)
+        {
+            voiceClips.Add(line.name, line);
         }
     }
 }

@@ -76,123 +76,136 @@ public class GameManagerScript : MonoSingleton<GameManagerScript>
 
     private void NextConversationSegment()
     {
-        Debug.Log("Next Conversation Segment");
-        _currentSegment = null;
+		if (_gameState ==  State.InGame)
+		{
+			Debug.Log("Next Conversation Segment");
+			_currentSegment = null;
 
-        if(_remainingStarterSegments.Count > 0)
-        {
-            _currentSegment = _remainingStarterSegments.Dequeue();
-        }
-        else if(_remainingRandomSegments.Count > 0)
-        {
-			if(RandomSegmentCount >= RANDOM_SEGMENTS_NEEDED_TO_WIN)
+			if (_remainingStarterSegments.Count > 0)
 			{
-                _gameState = State.GameWin;
+				_currentSegment = _remainingStarterSegments.Dequeue();
+			}
+			else if (_remainingRandomSegments.Count > 0)
+			{
+				if (RandomSegmentCount >= RANDOM_SEGMENTS_NEEDED_TO_WIN)
+				{
+					_gameState = State.GameWin;
+					Debug.Log("YOU WON");
+					return;
+				}
+				int randomIndex = Random.Range(0, _remainingRandomSegments.Count);
+				_currentSegment = _remainingRandomSegments[randomIndex];
+				RandomSegmentCount++;
+				_remainingRandomSegments.RemoveAt(randomIndex);
+			}
+
+			if (Input.GetKey(KeyCode.Space))
+			{
+				_currentSegment = null;
+			}
+
+			if (_currentSegment == null)
+			{
+				// Out of segments, you made it
+				_gameState = State.GameWin;
 				Debug.Log("YOU WON");
 				return;
 			}
-			int randomIndex = Random.Range(0, _remainingRandomSegments.Count);
-            _currentSegment = _remainingRandomSegments[randomIndex];
-			RandomSegmentCount++;
-			_remainingRandomSegments.RemoveAt(randomIndex);
-        }
 
-        if (Input.GetKey(KeyCode.Space))
-        {
-            _currentSegment = null;
-        }
+			_timerImage.fillAmount = 0;
 
-        if (_currentSegment == null)
-        {
-            // Out of segments, you made it
-            _gameState = State.GameWin;
-            Debug.Log("YOU WON");
-            return;
-        }
+			TextFeed.Instance.Say(new Line() { LineId = _currentSegment.LineId, ConversationText = _currentSegment.ConversationText });
 
-        _timerImage.fillAmount = 0;
-
-        TextFeed.Instance.Say(_currentSegment.ConversationText);
-
-        ResponseManager.Instance.ClearAvailableResponses();
-        ResponseManager.Instance.ClearCollectedResponses();
+			ResponseManager.Instance.ClearAvailableResponses();
+			ResponseManager.Instance.ClearCollectedResponses();
+		}
     }
 
     public void StartResponseTimer()
     {
-        Debug.Log("Timer started");
+		if (_gameState == State.InGame)
+		{
+			Debug.Log("Timer started");
 
-        float timeToRespond = _currentSegment.TimeToRespond;
+			float timeToRespond = _currentSegment.TimeToRespond;
 
-        if(_currentSegment.ResponseType == ConversationResponseType.GruntResponse)
-        {
-			if(_currentSegment.GruntType == GruntType.Green)
+			if (_currentSegment.ResponseType == ConversationResponseType.GruntResponse)
 			{
-				GruntSign.Instance.TriggerGruntOpportunity(_currentSegment.GruntType, "Yup", _currentSegment.TimeToRespond);
+				if (_currentSegment.GruntType == GruntType.Green)
+				{
+					GruntSign.Instance.TriggerGruntOpportunity(_currentSegment.GruntType, "Yup", _currentSegment.TimeToRespond);
+				}
+				else
+				{
+					GruntSign.Instance.TriggerGruntOpportunity(_currentSegment.GruntType, "Naw", _currentSegment.TimeToRespond);
+				}
 			}
 			else
 			{
-				GruntSign.Instance.TriggerGruntOpportunity(_currentSegment.GruntType, "Naw", _currentSegment.TimeToRespond);
+				ResponseManager.Instance.AddAvailableResponses(_currentSegment.ValidResponses);
+				ResponseManager.Instance.StartHighlightingResponses(timeToRespond);
 			}
-		}
-        else
-        {
-            ResponseManager.Instance.AddAvailableResponses(_currentSegment.ValidResponses);
-            ResponseManager.Instance.StartHighlightingResponses(timeToRespond);
-        }
 
-        StartCoroutine(TakeQueuedResponse(timeToRespond));
+			StartCoroutine(TakeQueuedResponse(timeToRespond));
+		}
     }
 
     IEnumerator TakeQueuedResponse(float delaySeconds)
     {
-        float startTime = Time.time;
-        submitTime = startTime + delaySeconds;
+		if (_gameState == State.InGame)
+		{
+			float startTime = Time.time;
+			submitTime = startTime + delaySeconds;
 
-        while(Time.time < submitTime)
-        {
-            _timerImage.fillAmount = (Time.time - startTime) / delaySeconds;
-            yield return null;
-        }
-
-        _timerImage.fillAmount = 1;
-
-        Debug.Log("Time is up");
-
-        int responsePoints = 0;
-
-        if (_currentSegment.ResponseType == ConversationResponseType.GruntResponse)
-        {
-			if(GruntSign.Instance.wasLastGruntSuccessful)
+			while (Time.time < submitTime)
 			{
-				responsePoints = 1;
+				_timerImage.fillAmount = (Time.time - startTime) / delaySeconds;
+				yield return null;
+			}
+
+			_timerImage.fillAmount = 1;
+
+			Debug.Log("Time is up");
+
+			int responsePoints = 0;
+
+			if (_currentSegment.ResponseType == ConversationResponseType.GruntResponse)
+			{
+				if (GruntSign.Instance.wasLastGruntSuccessful)
+				{
+					responsePoints = 1;
+				}
+				else
+				{
+					responsePoints = -1; ;
+				}
 			}
 			else
 			{
-				responsePoints = -1;;
+				responsePoints = ResponseManager.Instance.UseHighlightedResponse();
 			}
+
+
+			if (responsePoints < 0)
+			{
+				TextFeed.Instance.Say(_conversationData.UnhappyNPCReactions[Random.Range(0, _conversationData.UnhappyNPCReactions.Length)]);
+			}
+			else
+			{
+				TextFeed.Instance.Say(_conversationData.PositiveNPCReactions[Random.Range(0, _conversationData.PositiveNPCReactions.Length)]);
+			}
+			ModifyScore(responsePoints);
+			if (Score >= 20)
+				TalkerExpressions.Instance.SetExpression(Expressions.Pleasent);
+			else if (Score >= -10 && Score < 20)
+				TalkerExpressions.Instance.SetExpression(Expressions.Bored);
+			else if (Score >= -40 && Score < -10)
+				TalkerExpressions.Instance.SetExpression(Expressions.WeirdedOut);
+			else if (Score < -40)
+				TalkerExpressions.Instance.SetExpression(Expressions.Offended);
+
+			NextConversationSegment();
 		}
-        else
-        {
-            responsePoints = ResponseManager.Instance.UseHighlightedResponse();
-        }
-
-
-		if(responsePoints < 0)
-		{
-			TextFeed.Instance.Say(_conversationData.UnhappyNPCReactions[Random.Range(0, _conversationData.UnhappyNPCReactions.Length)]);
-		}
-        ModifyScore(responsePoints);
-		if(Score >= 20)
-			TalkerExpressions.Instance.SetExpression(Expressions.Pleasent);
-		else if (Score >= -10 && Score < 20)
-			TalkerExpressions.Instance.SetExpression(Expressions.Bored);
-		else if (Score >= -40 && Score < -10)
-			TalkerExpressions.Instance.SetExpression(Expressions.WeirdedOut);
-		else if(Score < -40)
-			TalkerExpressions.Instance.SetExpression(Expressions.Offended);
-
-		NextConversationSegment();
     }
 
     public void ShortSubmitTime()
@@ -202,22 +215,25 @@ public class GameManagerScript : MonoSingleton<GameManagerScript>
 
     public void ModifyScore(int modifier, bool playAudio = true)
 	{
-        if(modifier < 0 && playAudio)
-            AudioManager.Instance.gruntFail.Play();
-        if (modifier > 0 && playAudio)
-            AudioManager.Instance.gruntPass.Play();
-
-        Score += modifier;
-		if (Score <= MIN_SCORE)
+		if (_gameState == State.InGame)
 		{
-            _gameState = State.GameLose;
-			TextFeed.Instance.Say(_conversationData.GameEndingNPCReactions[Random.Range(0, _conversationData.GameEndingNPCReactions.Length)]);
+			if (modifier < 0 && playAudio)
+				AudioManager.Instance.gruntFail.Play();
+			if (modifier > 0 && playAudio)
+				AudioManager.Instance.gruntPass.Play();
 
-			Debug.Log("YOU LOST");
-		}
-		else if (Score > MAX_SCORE)
-		{
-			Score = MAX_SCORE;
+			Score += modifier;
+			if (Score <= MIN_SCORE)
+			{
+				_gameState = State.GameLose;
+				TextFeed.Instance.Say(_conversationData.GameEndingNPCReactions[Random.Range(0, _conversationData.GameEndingNPCReactions.Length)]);
+
+				Debug.Log("YOU LOST");
+			}
+			else if (Score > MAX_SCORE)
+			{
+				Score = MAX_SCORE;
+			}
 		}
 	}
 

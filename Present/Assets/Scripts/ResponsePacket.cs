@@ -20,6 +20,7 @@ public class ResponsePacket : RunnerObject
     internal override void CollideEffects()
     {
         ResponseManager.Instance.AddCollectedResponse(Response);
+        AudioManager.Instance.coin.Play();
     }
 
     internal override void Despawn()
