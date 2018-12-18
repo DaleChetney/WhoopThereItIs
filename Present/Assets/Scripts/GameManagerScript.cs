@@ -98,11 +98,6 @@ public class GameManagerScript : MonoSingleton<GameManagerScript>
 				_remainingRandomSegments.RemoveAt(randomIndex);
 			}
 
-			if (Input.GetKey(KeyCode.Space))
-			{
-				_currentSegment = null;
-			}
-
 			if (_currentSegment == null)
 			{
 				// Out of segments, you made it
