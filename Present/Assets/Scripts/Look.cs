@@ -52,7 +52,7 @@ public class Look : MonoSingleton<Look>
 					ResetGaze();
 				}
 			}
-
+          
 			DriftMove();
 
 			lastMousePosition = Input.mousePosition;
@@ -69,7 +69,13 @@ public class Look : MonoSingleton<Look>
 
     private void DriftMove()
     {
+        Vector3 before = cam.transform.rotation.eulerAngles;
         cam.transform.rotation = Quaternion.Slerp(cam.transform.rotation, Quaternion.LookRotation(distractionPosition - cam.transform.position), driftSpeed * Time.deltaTime);
+        if (nodding)
+        {
+            Vector3 temp = cam.transform.rotation.eulerAngles;
+            cam.transform.rotation = Quaternion.Euler(temp.x, before.y, before.z);
+        }
         if(!eyeContactLost && distractionPosition != eyeContact.position && DistractionReached())
         {
             eyeContactLost = true;
@@ -107,9 +113,9 @@ public class Look : MonoSingleton<Look>
         Vector3 oldTarget = distractionPosition;
         nodding = true;
         distractionPosition = -transform.up * 100;
-		yield return new WaitForSeconds(0.05f);
+        yield return new WaitForSeconds(0.05f);
         distractionPosition = transform.up * 100;
-		yield return new WaitForSeconds(0.10f);
+        yield return new WaitForSeconds(0.10f);
         distractionPosition = -transform.up * 100;
         yield return new WaitForSeconds(0.05f);
         distractionPosition = oldTarget;
